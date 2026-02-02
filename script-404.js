@@ -7,7 +7,7 @@ let particleArray = [];
 let adjustX = 0;
 let adjustY = 0;
 
-// Mouse / touch
+/// Mouse / touch
 const mouse = { x: undefined, y: undefined, radius: 50 };
 
 function updateMouseFromEvent(e) {
