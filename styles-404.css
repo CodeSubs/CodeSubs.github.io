@@ -47,7 +47,7 @@ canvas {
   pointer-events: none;
 }
 
-/* UI sits on top and centers reliably */
+/* UI sits on top and centers reliably. */
 .ui-layer {
   position: absolute;
   left: 50%;
