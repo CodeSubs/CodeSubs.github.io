@@ -7,7 +7,7 @@ let particleArray = [];
 let adjustX = 0;
 let adjustY = 0;
 
-/// Mouse / touch
+// Mouse / touch
 const mouse = { x: undefined, y: undefined, radius: 50 };
 
 function updateMouseFromEvent(e) {
@@ -229,9 +229,7 @@ window.addEventListener('resize', () => {
 const reassembleBtn = document.getElementById('reassembleBtn');
 if (reassembleBtn) {
   reassembleBtn.addEventListener('click', () => {
-    // navigate back if possible, otherwise home
-    if (window.history.length > 1) window.history.back();
-    else window.location.href = '/';
+    window.location.href = '/';
   });
   reassembleBtn.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') reassembleBtn.click();
