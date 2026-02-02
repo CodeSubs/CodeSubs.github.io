@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSubs - تحت التطوير</title>
+    <style>
+        :root {
+            --bg: #0b0b0b;
+            --text: #ffffff;
+            --gold: #ffd700;
+            --card-bg: #1a1a1a;
+        }
+
+        @font-face {
+            font-family: 'Expo Arabic Light';
+            src: url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.woff2') format('woff2'),
+                 url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Expo Arabic Light', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .project-card {
+            width: 100%;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00f1ff;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+        
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header {
+            width: 100%;
+            padding: 1.3rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            position: absolute;
+            left: 1rem;
+        }
+
+        header h2 {
+            color: #19ff00;
+            margin: 0;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            padding: 1.5rem;
+            width: 100%;
+            margin-top: auto;
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/CodeSubs.png" alt="CodeSubs Logo">
+        <h2>CodeSubs</h2>
+    </header>
+
+    <div class="container">
+        <h1>الموقع قيد التطوير</h1>
+        <p>تفقد مشاريعي المتاحة حاليًا:</p>
+        
+        <div class="projects-grid" style="margin-bottom: 1.5rem;">
+            <a href="https://t.me/DCRef_bot" class="project-card" target="_blank">
+                <img src="/DCRB.png" class="icon" alt="DCRB Icon" style="width: 3.5rem; height: 3.5rem;">
+                <div class="project-title">دليل المحقق كونان</div>
+                <div class="project-desc">دليل شامل لعشاق المحقق كونان: يشمل مشاهدة الحلقات، الأفلام، الأوفا وغيرها، مع ترتيب المشاهدة والمعلومات الأساسية</div>
+            </a>
+        </div>
+        
+        <div class="projects-grid">
+            <a href="/RTL/" class="project-card">
+                <img src="/RTL/icon-512.svg" class="icon" alt="RTL Icon" style="width: 3rem; height: 3rem;">
+                <div class="project-title">محرر تحويل RTL/LTR</div>
+                <div class="project-desc">أداة لتصحيح اتجاه النصوص العربية ومعالجة ملفات الترجمة ASS</div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div style="font-size: 1rem;">
+            <span id="year">2025</span>© Developed by
+            <a href="https://t.me/CodeIII" target="_blank" rel="noopener noreferrer">
+                Code
+            </a>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
