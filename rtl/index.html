@@ -269,6 +269,43 @@
                         </div>
                         <input ref="fileInput" type="file" accept=".ass" @change="handleFileUpload" class="hidden">
                     </div>
+
+                    <!-- Disclaimer / Important Notes Section -->
+                    <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-red-200 dark:border-red-700">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-1 space-y-4">
+                                <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">⚠️ تنبيهات هامة ⚠️</h3>
+                                
+                                <div class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
+                                    <p>يرجى الانتباه إلى النقاط التالية لضمان الحصول على أفضل نتيجة:</p>
+                                    
+                                    <ul class="list-disc list-inside space-y-4 marker:text-gray-400">
+                                        <li>
+                                            <span class="font-semibold text-gray-800 dark:text-gray-200">الأداة لا تزال في مرحلة التطوير التجريبي:</span>
+                                            <br>تم اختبار المحرر داخليًا على خمسة ملفات ترجمة مختلفة، وتم تحويل النصوص فيها بنجاح وبشكل صحيح.
+                                        </li>
+                                        
+                                        <li>
+                                            <span class="font-semibold text-gray-800 dark:text-gray-200">تباين الأكواد والأنماط (Styles & Tags):</span>
+                                            <br>ندرك أن ملفات الترجمة قد تحتوي على أنماط وأكواد برمجية تختلف من مترجم لآخر ومن فريق لآخر. هذا التنوع قد يؤدي إلى ظهور حالات نادرة أو سلوكيات معينة لم تتم إضافتها إلى الأداة بعد.
+                                        </li>
+                                        
+                                        <li>
+                                            <span class="font-semibold text-gray-800 dark:text-gray-200">المراجعة والإبلاغ عن الأخطاء:</span>
+                                            <br>يُنصح دائمًا بإلقاء نظرة سريعة على الملف الناتج للتأكد من أن جميع الأسطر ظهرت بالاتجاه الصحيح.
+                                            <br>في حال واجهت أي خطأ أو لاحظت أن سطرًا معيّنًا لم يتم تعديله بشكل سليم، يمكنك إصلاحه عبر مربع التعديل أو <a href="https://t.me/CodeIII" target="_blank" rel="noopener noreferrer" class="text-green-400 dark:text-green-400 hover:underline">التواصل معي عبر تيليجرام</a> لمعالجة المشكلة.
+                                        </li>
+                                    </ul>
+
+                                    <div class="bg-blue-50 text-center dark:bg-blue-900/20 p-4 rounded-lg border border-yellow-100 dark:border-yellow-800 mt-4">
+                                        <p class="text-blue-800 dark:text-blue-200">
+                                            عند الإبلاغ، يرجى إرسال ملف الترجمة مع تحديد رقم السطر الذي ظهرت فيه المشكلة، وسيتم العمل على إصلاحها وإضافة هذا السلوك إلى برمجة المحرر لضمان حله للجميع في التحديثات القادمة.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div v-else class="editor-section">
