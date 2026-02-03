@@ -142,7 +142,7 @@
                 border-radius: 4px;
             }
         </style>
-      <script type="module" crossorigin src="./assets/index-B3uFWYq9.js"></script>
+      <script type="module" crossorigin src="./assets/index-B3syYJUJ.js"></script>
     </head>
     <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-theme font-sans">
         <div id="app" v-cloak class="min-h-screen flex flex-col">
@@ -262,6 +262,9 @@
                             <div>
                                 <p class="text-lg font-medium">انقر للاستعراض</p>
                                 <p class="text-gray-500 dark:text-gray-400 mt-1">أو اسحب ملف ASS. وأفلته هنا</p>
+                                <p class="text-yellow-300 mt-4 text-base" dir="rtl">
+                                    الامتدادات المدعومة: <code class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded" dir="ltr">.ass</code>
+                                </p>
                             </div>
                         </div>
                         <input ref="fileInput" type="file" accept=".ass" @change="handleFileUpload" class="hidden">
@@ -684,7 +687,7 @@
                         </a>
                     </div>
                     <div class="mt-1 text-sm" @dblclick="handleDummyVideoUnlockFirstStep">
-                        v{{ version }} (2026-02-01)
+                        v{{ version }} (2026-02-03)
                     </div>
                 </div>
             </footer>
