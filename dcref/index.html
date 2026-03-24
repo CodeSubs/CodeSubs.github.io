@@ -31,42 +31,6 @@
         })(window, document, "clarity", "script", "tzsxusebyo");
     </script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="4d04a0ff-950d-42aa-b123-ce9984e37559"></script>
-    <!-- <script>
-        // Immediate cleanup function
-        (function() {
-            // Clear localStorage and sessionStorage
-            localStorage.clear();
-            sessionStorage.clear();
-        
-            // Delete all accessible cookies
-            document.cookie.split("; ").forEach(cookie => {
-                const [name] = cookie.split('=');
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
-            });
-        
-            // Clear cache storage
-            if ('caches' in window) {
-                caches.keys().then(cacheNames => {
-                    cacheNames.forEach(cacheName => caches.delete(cacheName))
-                });
-            }
-        
-            // Unregister service workers
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations()
-                    .then(registrations => {
-                        registrations.forEach(registration => registration.unregister())
-                    });
-            }
-        
-            // Clear IndexedDB databases (if needed)
-            if (window.indexedDB) {
-                indexedDB.databases().then(dbs => {
-                    dbs.forEach(db => indexedDB.deleteDatabase(db.name));
-                });
-            }
-        })();
-    </script>  -->
     
     <script type="module">
         import { init, id, lookup } from 'https://cdn.jsdelivr.net/npm/@instantdb/core@0.22.90/+esm';
@@ -77,12 +41,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
         <title>دليل المحقق كونان</title>
         <style>
-            /* Hide elements with v-cloak until Vue is ready */
             [v-cloak] {
                 display: none !important;
             }
             
-            /* Loading spinner animation */
             .coin-spin {
                 animation: spin-y 3s infinite linear; 
                 transform-style: preserve-3d;
@@ -99,7 +61,6 @@
                 100% { -webkit-transform: rotateY(360deg); transform: rotateY(360deg); }
             }
             
-            /* Hide loading spinner when Vue is ready */
             body.vue-ready #vue-loading {
                 display: none !important;
             }
@@ -133,22 +94,21 @@
         </style>
         <style>
             .always-visible-scrollbar {
-                overflow-y: scroll !important; /* Always show scrollbar */
-                scrollbar-width: thin; /* For Firefox */
-                scrollbar-color: rgba(255, 255, 255, 0.7) transparent; /* Custom color */
+                overflow-y: scroll !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(255, 255, 255, 0.7) transparent;
             }
         
-            /* For Webkit Browsers (Chrome, Edge, Safari) */
             .always-visible-scrollbar::-webkit-scrollbar {
-                width: 8px; /* Width of scrollbar */
+                width: 8px;
             }
         
             .always-visible-scrollbar::-webkit-scrollbar-track {
-                background: transparent; /* Track background */
+                background: transparent;
             }
         
             .always-visible-scrollbar::-webkit-scrollbar-thumb {
-                background: rgba(255, 255, 255, 0.7); /* Scrollbar color */
+                background: rgba(255, 255, 255, 0.7);
                 border-radius: 4px;
             }
         </style>
@@ -202,7 +162,6 @@
             }
         </style>
         <style>
-            /* Custom responsive positioning for modal navigation buttons */
             .modal-nav-btn {
                 right: -40px;
             }
@@ -309,57 +268,33 @@
                     event.preventDefault();
                 }
             });
-        
-                // Disable Ctrl+U (View Source), Ctrl+Shift+I (DevTools)
-                // if (event.ctrlKey && 
-                //     (event.key.toLowerCase() === 'u' || 
-                //     (event.shiftKey && event.key.toLowerCase() === 'i'))) {
-                //     event.preventDefault();
-                // }
         </script>    
         <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
-            /* Disable text selection */
-
-            /* html{
-                touch-action: none; Prevent touch gestures like pinch-to-zoom
-            } */
-
-            /* body {
+            * {
+                -webkit-user-drag: none;
+                -webkit-touch-callout: none;
                 user-select: none;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
-                /* touch-action: none;
-            } */
-
-            * {
-                -webkit-user-drag: none; /* Disable dragging */
-                -webkit-touch-callout: none; /* Disable callouts on iOS */
-                user-select: none; /* Disable text selection */
-                -webkit-user-select: none; /* For WebKit browsers */
-                -moz-user-select: none; /* For Firefox */
-                -ms-user-select: none; /* For IE */
             }
 
-            /* Allow text selection specifically in the search input */
             input[type="text"], input[type="search"], textarea, [contenteditable="true"], input.v-model {
-                user-select: text; /* Enable text selection for input fields */
-                -webkit-user-select: text; /* For WebKit browsers (Safari, Chrome) */
-                -moz-user-select: text; /* For Firefox */
-                -ms-user-select: text; /* For Internet Explorer */
+                user-select: text;
+                -webkit-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
                 pointer-events: auto;
             }
         
-            /* Disable drag functionality */
             img {
-                -webkit-user-drag: none; /* Disable dragging of images and links */
+                -webkit-user-drag: none;
                 pointer-events: none;
             }
 
-            /* Enable pointer-events for specific icons */
             .icon-pointer {
                 pointer-events: auto;
             }
@@ -379,18 +314,18 @@
             }
 
             body {
-                background-color: #333333; /* Black background */
-                color: #ffffff; /* White text */
+                background-color: #333333;
+                color: #ffffff;
             }
 
             table {
-                background-color: #333333; /* Slightly lighter black for table background */
-                color: #ffffff; /* White text for table */
+                background-color: #333333;
+                color: #ffffff;
             }
 
             input, select {
-                background-color: #333333; /* Dark gray input fields */
-                color: #ffffff; /* White text for inputs */
+                background-color: #333333;
+                color: #ffffff;
             }
 
             #pagination-buttons {
@@ -407,29 +342,29 @@
             }
 
             th, td {
-                background-color: #2a2a2a; /* Slightly lighter black for table cells */
-                color: #ffffff; /* White text for cells */
+                background-color: #2a2a2a;
+                color: #ffffff;
             }
 
             .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
+                display: none;
+                position: fixed;
+                z-index: 1;
                 left: 0;
                 top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.4);
             }
 
             .modal-content {
                 background-color: black;
-                margin: 15% auto; /* 15% from the top and centered */
+                margin: 15% auto;
                 padding: 20px;
                 border: 1px solid #888;
-                width: 80%; /* Could be more or less, depending on screen size */
+                width: 80%;
                 max-height: 80%;
                 overflow-y: auto;
             }
@@ -448,7 +383,6 @@
                 cursor: pointer;
             }
 
-            /* Media Queries */
             @media (max-width: 768px) {
 
             #pagination-buttons {
@@ -457,7 +391,6 @@
             }
 
             #pagination-buttons button {
-                /* width: 100%; */
                 font-size: 14px;
                 padding: 8px 16px;
             }
@@ -503,7 +436,6 @@
                 }
 
                 #pagination-buttons button {
-                    /* width: 100%; */
                     font-size: 14px;
                     padding: 8px 16px;
                 }
@@ -547,13 +479,12 @@
         </style>
 
     <style>
-        /* Ticker Animation */
         @keyframes ticker {
             0% {
                 transform: translateX(-100%);
             }
             20% {
-                transform: translateX(-3%); /* Adjust to match faster speed */
+                transform: translateX(-3%);
             }
             100% {
                 transform: translateX(100%);
@@ -589,7 +520,6 @@
         }
     </style>
     <style>
-        /* Apple Notch Style */
         .search-notch {
             position: absolute;
             top: -40px;
@@ -641,8 +571,6 @@
     </style>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy.umd.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@loadingio/loading-bar@0.1.1/dist/loading-bar.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@loadingio/loading-bar@0.1.1/dist/loading-bar.min.js"></script> -->
     <style>
         @keyframes gradient-x {
             0% { background-position: 0% 50%; }
@@ -855,7 +783,6 @@
     </style>
 </head>
 <body class="bg-gray-800 py-4 relative">
-    <!-- Loading spinner - shows before Vue initializes -->
     <div id="vue-loading" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center">
         <div>
             <img 
@@ -866,9 +793,8 @@
         </div>
     </div>
     
-    <div id="app" v-cloak class="container mx-auto p-4 rounded"> <!-- Removed .bg-slate-700 -->
+    <div id="app" v-cloak class="container mx-auto p-4 rounded">
 
-        <!-- Inactivity session modal -->
         <div 
             v-if="inactivityModal" 
             class="fixed inset-0 z-[120] bg-black/80 backdrop-blur-sm flex items-center justify-center"
@@ -896,7 +822,6 @@
             </div>        
         </div>
 
-        <!-- Inactivity countdown badge -->
         <div 
             v-if="!inactivityModal && inactivityCountdown <= 30" 
             class="fixed bottom-4 right-1 z-[110] bg-red-900 text-yellow-300 px-2 py-2 rounded shadow-lg text-sm"
@@ -910,15 +835,10 @@
             :class="['fixed bottom-4 right-1 z-[111] bg-emerald-900 text-yellow-100 px-3 py-2 cursor-pointer rounded shadow-lg text-sm max-w-[90vw] sm:max-w-[420px]', successHintAnimatingOut ? 'success-hint-out' : 'success-hint-in']"
         >
             <div class="flex items-center gap-4">
-                <!-- <button @click="dismissSuccessHint" class="text-red-600 hover:text-yellow-300 transition-all duration-100 active:scale-90">
-                    <img src="https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/close.png" alt="Close" class="h-8 w-8" />
-                </button> -->
                 <img src="https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/true.png" alt="Success" class="h-7 w-7 -mx-2" />
                 <div class="flex-1 font-bold">
                     {{ successHintMessage }}
-                    <!-- <span class="opacity-80">({{ successHintCountdown }})</span> -->
                 </div>
-                <!-- <img src="https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/true.png" alt="Success" class="h-7 w-7" /> -->
             </div>
         </div>
 
@@ -969,7 +889,6 @@
                 </div>
             </div>
         </div>
-            <!-- Updated Menu Button -->
             <div v-if="loadingModeResolved && !loadingFromCache" class="fixed top-4 right-4 z-50 menu-container">
                 <button @click.stop="toggleMenu" :disabled="loading" :class="isApplePlatform ? 'liquid-glass liquid-glass-hamburger flex flex-col items-center transition-transform duration-200 disabled:opacity-50 disabled:cursor-not-allowed' : 'bg-yellow-600 text-white p-2 rounded flex flex-col items-center transition-all duration-100 active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed'">
                     <span :class="isApplePlatform ? 'bar' : 'block w-6 h-1 bg-white mb-1'"></span>
@@ -982,13 +901,10 @@
                     <button @click="openDirectWindow('movies')" class="block w-full px-4 py-2 text-base font-bold text-white hover:bg-teal-600 transition-all duration-100 active:scale-90">أفلام</button>
                     <button @click="openDirectWindow('mangas')" class="block w-full px-4 py-2 text-base font-bold text-white hover:bg-teal-600 transition-all duration-100 active:scale-90">مانغا</button>
                     <hr class="my-1 border-gray-500">
-                    <!-- <button @click="openFastingWindow('episodes')" class="block w-full px-4 py-2 text-base font-bold text-white hover:bg-teal-600 transition-all duration-100 active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed" disabled>(قريبًا)</button> -->
                     <button @click="openFastingWindow('mangas')" class="block w-full px-4 py-2 text-base font-bold text-white hover:bg-teal-600 transition-all duration-100 active:scale-90">مانغا 🚀</button>
-                    <!-- <button @click="openFastingWindow('movies')" class="block w-full px-4 py-2 text-base font-bold text-white hover:bg-teal-600 transition-all duration-100 active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed" disabled>(قريبًا)</button> -->
                 </div>
             </div>
 
-            <!-- 🔍 Search Button + Popup -->
             <div v-if="loadingModeResolved && !loadingFromCache" class="fixed top-4 left-4 z-50">
                 <button
                     @click.stop="toggleSearch" :disabled="loading"
@@ -1081,7 +997,6 @@
                 </transition>
             </div>
 
-            <!-- Updated Direct Window Modal -->
             <div v-if="showDirectWindow" class="fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] overflow-hidden flex flex-col">
                     <div class="sticky top-0 bg-cyan-900 pt-4 pl-4 pr-4 pb-2">
@@ -1103,11 +1018,9 @@
                         </fieldset>
                     </div>
 
-                    <!-- Refactored Direct Window Content -->
                     <template v-for="category in directWindowCategories" :key="category.key">
                         <div v-if="selectedCategory === category.key" class="overflow-y-auto p-4 flex-1 always-visible-scrollbar">
                             <div v-if="category.items.length" class="mb-4">
-                            <!-- Group Buttons -->
                             <div class="flex flex-wrap gap-2 mb-4 justify-center" dir="ltr">
                                 <button
                                     v-for="(group, index) in category.items"
@@ -1127,7 +1040,6 @@
                                     </button>
                                 </legend>
 
-                                <!-- GRID VIEW -->
                                 <div v-if="!category.selectedItem" class="grid grid-cols-3 gap-2" dir="ltr">
                                     <button
                                         v-for="item in category.items[category.activeTabIndex]?.items"
@@ -1139,9 +1051,7 @@
                                     </button>
                                 </div>
 
-                                <!-- LIST VIEW -->
                                 <div v-else class="flex flex-col justify-center gap-4">
-                                    <!-- Navigation Controls -->
                                     <div class="flex items-center px-4">
                                         <div class="w-8 flex justify-start">
                                             <button v-if="category.navigation.showNextGroup" :disabled="isGlobalBusy" @click="category.handlers.nextGroup" class="transition-opacity disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-100 active:scale-90">
@@ -1171,10 +1081,8 @@
                                         </div>
                                     </div>
 
-                                    <!-- CONTENT LIST -->
                                     <div v-if="category.key !== 'mangas'" class="flex flex-col gap-4">
                                         <div v-for="group in category.listData" :key="group.key" class="relative">
-                                            <!-- Condition for flat list (no metadata) -->
                                             <template v-if="!group.EpisodeCategory && !group.EpisodeTranslator && !group.EpisodeRemastered && !group.hasMetadata">
                                                 <div v-for="video in group.videos" :key="video.VideoID" class="relative mb-2">
                                                     <div class="relative w-full">
@@ -1194,7 +1102,6 @@
                                                     </div>
                                                 </div>
                                             </template>
-                                            <!-- Condition for grouped list (metadata) -->
                                             <fieldset v-else class="rounded relative border p-2 mb-4">
                                                 <legend class="px-1 text-sm">
                                                     <span v-if="group.EpisodeCategory">
@@ -1231,7 +1138,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- MANGAS -->
                                     <div v-else class="relative flex flex-col gap-4">
                                         <div class="relative w-full">
                                             <button
@@ -1257,7 +1163,6 @@
                 </div>    
             </div>
 
-            <!-- النافذة السريعة Modal -->
             <div v-if="showFastingWindow" class="fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] overflow-hidden flex flex-col">
                     <div class="sticky top-0 bg-cyan-900 pt-4 pl-4 pr-4 pb-2">
@@ -1274,14 +1179,6 @@
                         <fieldset class="border p-2 rounded mt-2">
                             <legend class="px-2">اختر نوع المحتوى:</legend>
                             <div class="flex justify-around">
-                                <!-- <label class="flex items-center transition-all duration-100 active:scale-90">
-                                    <input type="radio" v-model="selectedCategory" value="episodes" class="ml-2" disabled>
-                                    حلقات
-                                </label> -->
-                                <!-- <label class="flex items-center transition-all duration-100 active:scale-90">
-                                    <input type="radio" v-model="selectedCategory" value="movies" class="ml-2" disabled>
-                                    أفلام
-                                </label> -->
                                 <label class="flex items-center transition-all duration-100 active:scale-90">
                                     <input type="radio" v-model="selectedCategory" value="mangas" class="ml-2" :disabled="isMangaQueueRunning">
                                     مانغا
@@ -1290,9 +1187,7 @@
                         </fieldset>
                     </div>
 
-                    <!-- Manga Bulk Send Content -->
                     <div v-if="selectedCategory === 'mangas'" class="overflow-y-auto p-4 flex-1 always-visible-scrollbar">
-                        <!-- Daily Limit Status -->
                         <div class="pt-2 mb-4">
                             <div class="bg-slate-800 rounded p-2 text-sm flex flex-col gap-1 border border-cyan-700">
                                 <div class="flex justify-between items-center">
@@ -1355,9 +1250,7 @@
                             </button>
                         </div>
 
-                        <!-- Queue Progress Display -->
                         <div v-if="isMangaQueueRunning || mangaQueueStats.total > 0" class="space-y-4 mt-4">
-                            <!-- Current Chapter Status (only current, not full list) -->
                             <div v-if="mangaQueueCurrent && mangaQueueCurrent.chapter !== null" class="bg-gray-800 p-3 rounded flex items-center justify-center">
                                 <div class="flex items-center gap-3" dir="ltr">
                                     <span class="text-lg font-bold text-yellow-300">{{ mangaQueueCurrent.chapter }}</span>
@@ -1369,7 +1262,6 @@
                                 </div>
                             </div>
 
-                            <!-- Progress Bar -->
                             <div class="w-full">
                                 <div class="flex justify-between mb-2 text-sm">
                                     <span>التقدم</span>
@@ -1389,7 +1281,6 @@
                                 </div>
                             </div>
 
-                            <!-- Statistics -->
                             <div class="grid grid-cols-2 gap-4 text-sm">
                                 <div class="bg-gray-800 p-3 rounded">
                                     <div class="text-gray-400">إجمالي المانغا</div>
@@ -1435,7 +1326,6 @@
                                 </div>
                             </div>
 
-                            <!-- Control Buttons -->
                             <div v-if="isMangaQueueRunning" class="flex gap-4">
                                 <button 
                                     @click="toggleMangaQueuePause" 
@@ -1450,7 +1340,6 @@
                                 </button>
                             </div>
 
-                            <!-- Finished Button -->
                             <div v-if="!isMangaQueueRunning && mangaQueueStats.total > 0" class="flex gap-4 mt-4">
                                 <button 
                                     @click="resetMangaQueue" 
@@ -1464,7 +1353,6 @@
                 </div>
             </div>
 
-            <!-- Stop Confirmation Modal -->
             <div v-if="showStopConfirmation" class="fixed z-[75] inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-4/5 md:w-2/3 lg:w-1/2 max-h-[95vh] overflow-hidden flex flex-col text-center p-6">
                     <h3 class="text-xl mb-4">تأكيد الإيقاف</h3>
@@ -1484,7 +1372,6 @@
                 </div>
             </div>
 
-            <!-- Retry Stop Confirmation Modal -->
             <div v-if="showRetryStopConfirmation" class="fixed z-[75] inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-4/5 md:w-2/3 lg:w-1/2 max-h-[95vh] overflow-hidden flex flex-col text-center p-6">
                     <h3 class="text-xl mb-4">تأكيد الإغلاق</h3>
@@ -1534,7 +1421,6 @@
                 </div>
             </div>
 
-            <!-- Limit Reached Modal -->
             <div v-if="showLimitModal" class="fixed z-[80] inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-4/5 md:w-2/3 lg:w-1/2 max-h-[95vh] overflow-hidden flex flex-col text-center p-6">
                     <h3 class="text-xl mb-4 text-red-400">عذرًا</h3>
@@ -1555,7 +1441,6 @@
                 </div>
             </div>
 
-            <!-- Manga Sent Log Modal -->
             <div v-if="showMangaSentLogModal" class="fixed z-[70] inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-11/12 md:w-2/3 lg:w-1/2 max-h-[85vh] overflow-hidden flex flex-col">
                     <div class="sticky top-0 bg-cyan-900 p-4 flex justify-between items-center border-b border-cyan-700">
@@ -1581,7 +1466,6 @@
                 </div>
             </div>
 
-            <!-- Tab Lock Modal -->
             <div 
                 v-if="tabLockModal" 
                 class="fixed inset-0 z-[130] bg-black/80 backdrop-blur-sm flex items-center justify-center"
@@ -1596,7 +1480,6 @@
                 </div>        
             </div>
 
-            <!-- Manga Failed Log Modal -->
             <div v-if="showMangaFailedLogModal" class="fixed z-[70] inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                 <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-11/12 md:w-5/6 lg:w-2/3 max-h-[85vh] overflow-hidden flex flex-col">
                     <div class="sticky top-0 bg-cyan-900 p-4 flex justify-between items-center border-b border-cyan-700">
@@ -1606,7 +1489,6 @@
                         </button>
                     </div>
                     <div class="p-4 overflow-y-auto flex-1 always-visible-scrollbar space-y-3">
-                        <!-- Current Retry Status -->
                         <div v-if="retryQueueCurrent && retryQueueCurrent.chapter !== null" class="bg-gray-800 p-3 rounded flex items-center justify-center">
                             <div class="flex items-center gap-3" dir="ltr">
                                 <span class="text-lg font-bold text-yellow-300">{{ retryQueueCurrent.chapter }}</span>
@@ -1631,7 +1513,6 @@
                                 <span v-else>إعادة إرسال الكل</span>
                             </button>
 
-                            <!-- Queue Controls -->
                              <button
                                 @click="startFailedQueue"
                                 :disabled="checkAnyRetryRunning() || failedMangaQueue.length === 0"
@@ -1715,7 +1596,6 @@
                 </div>
             </div>
 
-            <!-- Error Message with Retry Button -->
         <div v-if="error" class="text-center text-xl mb-4 text-red-500 font-bold py-4">
             <p class="mb-4">{{ error }}</p>
             <button 
@@ -1756,7 +1636,6 @@
                     <div class="mt-4 text-center text-white text-sm font-semibold tracking-wider animate-pulse">
                         <span class="inline-flex items-center gap-2">
                             <span>جاري تحميل البيانات...</span>
-                            <!-- <span class="animate-spin inline-block h-5 w-5 rounded-full border-2 border-black/30 border-t-black"></span> -->
                         </span>
                     </div>
                 </div>
@@ -1811,7 +1690,6 @@
         </div> -->
 
         <br>
-        <!-- Search and Filters -->
         <div v-if="!loading" class="flex flex-col gap-4 items-center">
             <div class="flex gap-3 w-full justify-center">
                 <select
@@ -1860,20 +1738,16 @@
                 </fieldset>
             </div>
             
-            <!-- Empty popup window -->
             <div v-if="showEmptyPopup" ref="emptyPopupRoot" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center z-50">
-                <div class="relative bg-sky-900 rounded shadow-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] overflow-hidden flex flex-col"> <!-- the defualt is 80vh in max-h-[95vh]-->
-                    <!-- Sticky Header Section -->
+                <div class="relative bg-sky-900 rounded shadow-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] overflow-hidden flex flex-col">
                     <div class="sticky top-0 z-50 bg-sky-900 p-4">
                         <h2 class="text-2xl font-bold text-green-400 relative">
-                            <!-- Close Button in the Top Left of the Title -->
                             <button 
                                 @click="closeEmptyPopup" 
                                 class="absolute top-0 left-0 text-yellow-300 hover:text-yellow-600 font-bold transition-all duration-100 active:scale-90">
                                 <img src="https://raw.githubusercontent.com/c7bb/6Y9//main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/close.png" alt="Close" class="h-9 w-9"/>
                             </button>
                             تصفية موسعة
-                            <!-- Reset Button (Refresh Icon with Image) -->
                             <button 
                             @click="resetFilters" 
                             class="absolute top-0 left-14 text-yellow-300 hover:text-yellow-600 font-bold transition-all duration-100 active:scale-90">
@@ -1886,10 +1760,8 @@
                         </span>
                     </div>                    
                     
-                    <!-- Scrollable Content -->
                     <div ref="emptyPopupScroll" class="overflow-y-auto p-4 flex-1 always-visible-scrollbar">
 
-                        <!-- User Guide Section -->
                         <div class="bg-gray-800 text-white p-4 rounded mb-4">
                             <h3 class="text-lg font-bold mb-2">الشرح التوضيحي</h3>
                             <ul class="list-disc pl-5 pr-2 text-base">
@@ -2013,12 +1885,9 @@
                 </div>
             </div>   
 
-                        <!-- Manga Announcement Box -->
                         <div class="relative w-full max-w-2xl p-4 mt-4 bg-black bg-opacity-85 rounded-lg shadow-lg border border-yellow-500 animate-borderMove">
-                            <!-- Set Grid to 3 Columns -->
                             <div class="grid grid-cols-3 gap-4">
                                 
-                                <!-- 1. Episode Column (Right or Left depending on page direction) -->
                                 <div class="flex flex-col items-center">
                                     <p class="text-white text-lg text-center font-bold mb-4">حلقة الأسبوع</p>
                                     <button 
@@ -2034,7 +1903,6 @@
                                     </p>
                                 </div>
 
-                                <!-- 2. Movie Column (MIDDLE POSITION) -->
                                 <div class="flex flex-col items-center">
                                     <p class="text-white text-lg text-center font-bold mb-4">فيلم السنة الماضية</p>
                                     <button 
@@ -2051,7 +1919,6 @@
                                     </p>
                                 </div>
 
-                                <!-- 3. Manga Column (Last position) -->
                                 <div class="flex flex-col items-center">
                                     <p class="text-white text-lg text-center font-bold mb-4">فصل المانغا</p>
                                     <button 
@@ -2073,7 +1940,6 @@
                                     الأحداث القادمة
                                 </legend>
 
-                                <!-- Upcoming Episode Notice -->
                                 <div
                                     v-if="nextEpisodeInfo && nextEpisodeInfo.Enable !== false && nextEpisodeStatus"
                                     class="text-center space-y-1"
@@ -2124,7 +1990,6 @@
                                     </p>
                                 </div>
 
-                                <!-- Upcoming Manga Notice -->
                                 <div
                                     v-if="nextMangaInfo && nextMangaInfo.Enable !== false && nextMangaStatus"
                                     class="text-center space-y-1"
@@ -2167,7 +2032,6 @@
                             </fieldset>
                         </div>
 
-                        <!-- Centered Description Box for Colors and Their Names with "معاني الألوان" Legend -->
                         <fieldset class="my-4 w-full font-bold p-4 rounded border relative">
                             <legend class="px-2 font-bold text-white-600">معاني الألوان</legend>
                             <div class="flex flex-wrap gap-4 justify-center">
@@ -2222,7 +2086,6 @@
                             </div>
                         </fieldset>
 
-                        <!-- Pagination Controls -->
                         <div class="flex flex-wrap justify-between items-center" id="pagination-buttons">
                             
                             <button @click="goToFirstPage" 
@@ -2308,11 +2171,9 @@
 
         </div>
 
-        <!-- Table -->
         <div v-if="!loading">
             <table class="min-w-full border-collapse border border-gray-300">
                 <thead>
-                    <!-- Top full-width row -->
                     <tr>
                         <th colspan="2" :class="['border border-gray-300 h-8', (isAnyFilterActive || searchQuery) ? 'bg-orange-500' : '']">
                             <span
@@ -2382,7 +2243,6 @@
                         </th>
                     </tr>
 
-                    <!-- Existing header row -->
                     <tr class="">
                         <th class="border border-gray-300 text-xl px-2 py-2 text-center w-1/6">
                             {{ episodeNumberHeader }}
@@ -2430,26 +2290,22 @@
             
                     <div v-if="showModal" class="fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
                         
-                        <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] flex flex-col"> <!-- the defualt is 80vh in max-h-[95vh]-->
+                        <div class="relative bg-cyan-900 text-slate-200 font-bold rounded-lg w-[100%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-h-[100vh] flex flex-col">
 
-                            <!-- Sticky Header Section -->
                             <div class="sticky top-0 bg-cyan-900 pt-4 pl-4 pr-4 pb-2">
                                 <div class="flex justify-between items-center h-10">
-                                    <!-- Middle: Sticky Title -->
                                     <div class="flex-1 flex items-center justify-center transition-opacity duration-300" :class="showStickyLabel ? 'opacity-100' : 'opacity-0'">
                                         <p v-if="selectedEpisode && showStickyLabel" class="text-lg font-bold truncate">
                                             <span>{{ parseEpisodeLabel(selectedEpisode.EpisodeNumber).cleanLabel }}</span>
                                             {{ parseEpisodeLabel(selectedEpisode.EpisodeNumber).cleanNum }}
                                         </p>
                                     </div>
-                                    <!-- Left Side: Close Modal Button -->
                                     <button @click="closeModal" class="text-red-600 hover:text-yellow-300 font-bold transition-all duration-100 active:scale-90">
                                         <img src="https://raw.githubusercontent.com/c7bb/6Y9//main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/close.png" alt="Close" class="h-8 w-8" />
                                     </button>
                                 </div>
                             </div>                          
                             
-                            <!-- Scrollable Content -->
                             <div 
                                 class="overflow-y-auto p-4 flex-1 always-visible-scrollbar" 
                                 @click="relatedEpisodeMenuOpen = false"
@@ -2512,7 +2368,6 @@
                                       <span v-else-if="selectedEpisode.EpisodeType === 'ث'">مانغا</span>
                                       <span v-else-if="selectedEpisode.EpisodeType === 'مف'">مانغا/فِلر</span>
                                       <span v-else>{{ selectedEpisode.EpisodeType }}</span>
-                                      <!-- Append (أوفا) if EpisodeNumber includes "قصة قصيرة" -->
                                       <span v-if="selectedEpisode.EpisodeNumber.includes('قصة قصيرة') || selectedEpisode.EpisodeNumber.includes('خاصة بالفيلم')"> (أوفا)</span>
                                     </span>
                                     
@@ -2539,7 +2394,6 @@
                                         'border p-2 rounded mb-2': selectedEpisode.EpisodeMangasIDs && selectedEpisode.EpisodeMangasIDs.length > 0
                                     }"
                                     >
-                                    <!-- Show legend only if EpisodeMangasIDs exists and is not empty -->
                                     <legend 
                                         v-if="selectedEpisode.EpisodeMangasIDs && selectedEpisode.EpisodeMangasIDs.length > 0" 
                                         class="font-bold text-lg"
@@ -2549,12 +2403,10 @@
                                         </p>
                                     </legend>
 
-                                    <!-- If EpisodeMangasIDs is empty/null, only show the text -->
                                     <p v-else class="text-lg mb-2">
                                         <span dir="ltr">:الفصول المقتبسة</span> {{ selectedEpisode.EpisodeMangaQuoted }}
                                     </p>
 
-                                    <!-- Manga download buttons -->
                                     <div 
                                         v-if="selectedEpisode.EpisodeMangasIDs && selectedEpisode.EpisodeMangasIDs.length > 0" 
                                         class="flex flex-col justify-center gap-4"
@@ -2757,13 +2609,10 @@
                                 <fieldset v-if="selectedEpisode && Array.isArray(selectedEpisode.EpisodeVideosIDs) && selectedEpisode.EpisodeVideosIDs.length > 0" class="border p-2 rounded mb-4">
                                     <legend class="font-bold text-lg">مشاهدة (عبر البوت)</legend>
                                     <div class="flex flex-col gap-4">
-                                        <!-- Videos without metadata (rendered directly under main legend) -->
                                         <template v-for="group in groupedVideos">
                                             <template v-if="!group.hasMetadata">
-                                                <!-- No metadata group - render directly under main legend -->
                                                 <div v-for="(video, index) in group.videos" :key="`no-md-${video.VideoID}`" class="relative">
                                                     <div class="relative w-full">
-                                                        <!-- The Button -->
                                                         <button
                                                             :disabled="video.status === 'success' || video.status === 'ratelimiting' || video.status === 'sending'"
                                                             @click="() => { sendEpisodeToBot(video.VideoID, video.Resolution, video.Size, video.originalIndex, video.IntroductionTime, video.StartStoryTime, video.EpisodeSuspenseTime, video.StartSongTime, video.ChapterOneTime, video.ChapterTwoTime, video.EndSongTime, video.ChapterThreeTime, video.NextEpisodeTeaserTime, video.NextEpisodeHintTime); }"
@@ -2773,7 +2622,6 @@
                                                             <span v-else>{{ video.Resolution }} ({{ formatFileSize(video.Size) }})</span>
                                                         </button>
 
-                                                        <!-- Status Images (Pinned to Top Right of the Button area) -->
                                                         <img 
                                                             v-if="video.status === 'success'" 
                                                             src="https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/true.png" 
@@ -2785,7 +2633,6 @@
                                                             class="absolute right-0 top-0 w-6 h-6 z-10 pointer-events-none"
                                                         />
 
-                                                        <!-- Sending Overlay (Centered over the Button only) -->
                                                         <div v-if="video.status === 'sending'" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded z-20">
                                                             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
                                                         </div>
@@ -2794,7 +2641,6 @@
                                             </template>
                                             <div v-else :key="group.key" class="relative">
                                                 <fieldset class="rounded relative border p-2">
-                                                    <!-- Group Legend -->
                                                     <legend class="px-1 text-sm">
                                                         <span v-if="group.EpisodeCategory">
                                                             {{ group.EpisodeCategory === 'S' ? 'مترجم' : (group.EpisodeCategory === 'D' ? 'مدبلج' : group.EpisodeCategory) }}
@@ -2808,11 +2654,9 @@
                                                         </span>
                                                     </legend>
                                                     
-                                                    <!-- Video buttons for this group -->
                                                     <div class="grid grid-cols-1 gap-2 mt-2">
                                                         <div v-for="(video, index) in group.videos" :key="video.VideoID" class="relative">
                                                             <div class="relative w-full">
-                                                                <!-- The Button -->
                                                                 <button
                                                                     :disabled="video.status === 'success' || video.status === 'ratelimiting' || video.status === 'sending'"
                                                                     @click="() => { sendEpisodeToBot(video.VideoID, video.Resolution, video.Size, video.originalIndex, video.IntroductionTime, video.StartStoryTime, video.EpisodeSuspenseTime, video.StartSongTime, video.ChapterOneTime, video.ChapterTwoTime, video.EndSongTime, video.ChapterThreeTime, video.NextEpisodeTeaserTime, video.NextEpisodeHintTime); }"
@@ -2822,7 +2666,6 @@
                                                                     <span v-else>{{ video.Resolution }} ({{ formatFileSize(video.Size) }})</span>
                                                                 </button>
 
-                                                                <!-- Status Images (Pinned to Top Right of the Button area) -->
                                                                 <img 
                                                                     v-if="video.status === 'success'" 
                                                                     src="https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/true.png" 
@@ -2834,7 +2677,6 @@
                                                                     class="absolute right-0 top-0 w-6 h-6 z-10 pointer-events-none"
                                                                 />
 
-                                                                <!-- Sending Overlay (Centered over the Button only) -->
                                                                 <div v-if="video.status === 'sending'" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded z-20">
                                                                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
                                                                 </div>
@@ -2853,7 +2695,6 @@
                             >
                                 <div class="w-full flex items-center justify-center gap-3 sm:gap-8">
                                     <div class="flex items-center gap-4 sm:gap-8">
-                                        <!-- Next Episode Button -->
                                         <button 
                                             v-if="selectedEpisode.EpisodeParts" 
                                             :disabled="!nextEpisodeExists || selectedEpisode.EpisodeVideosIDs?.some(video => video.status === 'success' || video.status === 'ratelimiting' || video.status === 'sending') || selectedEpisode.EpisodeMangasIDs?.some(manga => manga.status === 'success' || manga.status === 'ratelimiting' || manga.status === 'sending')" 
@@ -2887,7 +2728,6 @@
                                         >
                                             <img src="https://raw.githubusercontent.com/c7bb/6Y9//main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/res/previous-tb.png" alt="السابق" class="h-8 w-8" />
                                         </button>
-                                        <!-- Previous Episode Button -->
                                         <button 
                                             v-if="selectedEpisode.EpisodeParts" 
                                             :disabled="!previousEpisodeExists || selectedEpisode.EpisodeVideosIDs?.some(video => video.status === 'success' || video.status === 'ratelimiting' || video.status === 'sending') || selectedEpisode.EpisodeMangasIDs?.some(manga => manga.status === 'success' || manga.status === 'ratelimiting' || manga.status === 'sending')" 
@@ -3007,7 +2847,6 @@
                     </div>
             </table>
 
-            <!-- Pagination Controls -->
             <div class="flex justify-between items-center mt-4">
 
                 <button @click="nextPage" 
@@ -3019,7 +2858,6 @@
                 </button>
 
                 <div class="flex items-center gap-2 text-white font-bold">
-                    <!-- <span>صفحة</span> -->
                     <select v-model="currentPage" 
                             @change="handlePageSelect" 
                             :disabled="isCapturingEpisodeTableImages" 
@@ -3030,7 +2868,6 @@
                             {{ page }}
                         </option>
                     </select>
-                    <!-- <span>من {{ totalPages }}</span> -->
                 </div>
 
                 <button @click="prevPage" 
@@ -3046,7 +2883,6 @@
                 <span>{{ displayCurrentPage }}/{{ totalPages }}</span>
             </div>
 
-            <!-- Page Size Controls (Right) -->
             <div class="text-center font-bold justify-center">
                 <label class="inline-flex items-center mx-1 transition-all duration-100 active:scale-90">
                     <input type="radio" v-model="pageSize" :value="5" class="form-radio text-blue-500 mx-1" />
@@ -3070,7 +2906,6 @@
                 </label>
             </div>
         </div>
-        <!-- mainCommentPage -->
         <div class="w-full flex justify-center pt-10" v-if="!loading && userJoined">
              <button
                  @click="openComments('main')"
@@ -3081,7 +2916,6 @@
              </button>
         </div>
 
-        <!-- Global Comnto Widget (Singleton) -->
         <div
             v-if="comntoVisible"
             class="fixed inset-0 z-[99] bg-transparent"
@@ -3819,14 +3653,13 @@
                     showMangaFailedLogModal: false,
                     mangaQueueCurrent: {
                         chapter: null,
-                        status: null, // 'sending' | 'success' | 'failed'
+                        status: null,
                         error: null,
                     },
-                    mangaSentLog: [], // [{ chapter, fileId, sentAt }]
-                    mangaFailedLog: [], // [{ chapter, fileId, fileSize, error, status, attempts }]
+                    mangaSentLog: [],
+                    mangaFailedLog: [],
                     isRetryAllFailedRunning: false,
                     retryAllFailedProgress: { done: 0, total: 0 },
-                    // New Queue & Retry States
                     isRetryQueueRunning: false,
                     isRetryQueuePaused: false,
                     isRetryQueuePauseRequested: false,
@@ -3837,7 +3670,7 @@
                     sendCancelGeneration: 0,
                     captureCancelRequested: false,
                     captureEpisodeTableDelayRemainingMs: 0,
-                    failedMangaQueue: [], // Array of objects { chapter, ... } reference from mangaFailedLog
+                    failedMangaQueue: [],
                     failedQueueStats: {
                         total: 0,
                         sent: 0,
@@ -3848,7 +3681,7 @@
                     },
                     retryQueueCurrent: {
                         chapter: null,
-                        status: null, // 'sending' | 'success' | 'failed'
+                        status: null,
                         error: null,
                     },
                     mangaQueueStats: {
@@ -3901,10 +3734,8 @@
                     ep: 1194,
                     mangaCh: 1159,
                     jumpCycleState: null,
-                    // Ads Rows
                     showEpisodeAds: false,
                     episodeAdInterval: 5,
-                    // Daily Limit Data
                     dailyDownloads: 0,
                     dailyReady: false,
                     pendingDailyIncrements: 0,
@@ -3918,17 +3749,15 @@
                     maxDailyDownloads: 100,
                     now: Date.now(),
                     _db: null,
-                    userId: window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 'anonymous-user', // Fallback for testing if not in Telegram
+                    userId: window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 'anonymous-user',
                     testMinuteReset: false,
                     nowIntervalId: null,
                     
-                    // Time Synchronization
                     serverTimeOffset: 0,
                     lastServerSync: 0,
                     trustedToday: null,
                     unsubscribeDaily: null,
 
-                    // Tab Locking System
                     tabLockModal: false,
                     isTabOwner: false,
                     tabWorkerPort: null,
@@ -4141,14 +3970,14 @@
                     },
                     jsonUrl: "https://enc.mdccxxixix.workers.dev",
                     imageBaseUrl: "https://raw.githubusercontent.com/c7bb/6Y9/main/c28sdcm1jv977n4u63yccbty376l23p0xc38n0b2l4qgrje4d2xwjou9g76xdglsprhbpo1f5dhil392v5xeileb94p8g3le9f/",
-                    episodeNotesDebug: false,  // Enable for debugging episode notes processing
+                    episodeNotesDebug: false,
                     episodeLinkClickHandler: null,
                     episodeTypeFilter: 'All',
                     episodes: [],
-                    selectedMovie: null, // Track the selected movie for resolution/size view
-                    selectedManga: null, // Track the selected manga for file size view
-                    movies: [], // Movies will be populated separately
-                    mangas: [], // Declare mangas to avoid Vue render warn
+                    selectedMovie: null,
+                    selectedManga: null,
+                    movies: [],
+                    mangas: [],
                     loading: true,
                     loadingFromCache: false,
                     loadingModeResolved: false,
@@ -4160,11 +3989,11 @@
                     loadingPreviousManga: false,
                     loadingManga: false,
                     loadingEpisode: false,
-                    circumference: 2 * Math.PI * 45, // 2πr where r=45
+                    circumference: 2 * Math.PI * 45,
                     progressInterval: null,
                     error: null,
                     searchQuery: '',
-                    textNumberMatchMode: 'enabled', // Default to disabled
+                    textNumberMatchMode: 'enabled',
                     searchOpen: false,
                     selectedFilter: 'all',
                     currentPage: 1,
@@ -4190,7 +4019,6 @@
                     preserveSelectedEpisodeOnModalClose: false,
                     showMangaButtons: false,
                     ...FILTER_STATE_DEFAULTS,                    
-                    // Countdown properties
                     countdownInterval: null,
                     countdownArabic: '',
                     countdownEnglish: '',
@@ -4343,7 +4171,7 @@
                         let selectedItem = null;
                         let handlers = {};
                         let gridData = [];
-                        let listData = []; // For Episodes/Movies: groupedVideos
+                        let listData = [];
                         
                         if (isEpisodes) {
                             items = this.groupedEpisodes;
@@ -4366,7 +4194,7 @@
                             gridData = this.groupedMovies;
                             listData = this.groupedVideos;
                             activeTabIndex = this.activeTab.movies;
-                            selectedItem = this.selectedEpisode; // Movies use selectedEpisode
+                            selectedItem = this.selectedEpisode;
                             handlers = {
                                 groupChange: this.handleMovieGroupChange,
                                 resetView: this.resetMoviesView,
@@ -4380,7 +4208,6 @@
                         } else if (isMangas) {
                             items = this.groupedMangas;
                             gridData = this.groupedMangas;
-                            // Mangas don't use listData (groupedVideos) in the same way, handled separately or via single item
                             activeTabIndex = this.activeTab.mangas;
                             selectedItem = this.selectedManga;
                             handlers = {
@@ -4394,7 +4221,6 @@
                             };
                         }
 
-                        // Determine navigation flags
                         let showNextGroup = false;
                         let showPrevGroup = false;
                         let hasNext = false;
@@ -4564,8 +4390,6 @@
                     return 'فصل';
                 },
                 timeUntilReset() {
-                    // Calculate time until next UTC midnight (00:00 UTC)
-                    // Matches Cloudflare Workers & Pages Functions reset time (UTC+0)
                     const tick = this.now;
                     const now = this.getTrustedDate();
                     const target = new Date(now);
@@ -4573,10 +4397,10 @@
                         target.setUTCSeconds(0, 0);
                         target.setUTCMinutes(target.getUTCMinutes() + 1);
                     } else {
-                        target.setUTCHours(24, 0, 0, 0); // Sets to 00:00:00 UTC of the next day
+                        target.setUTCHours(24, 0, 0, 0);
                     }
                     const diff = target - now;
-                    if (diff < 0) return "00:00:00"; // Should not happen with setUTCHours(24)
+                    if (diff < 0) return "00:00:00";
 
                     const hours = Math.floor(diff / (1000 * 60 * 60));
                     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -4601,7 +4425,6 @@
                 },
 
                 groupedEpisodes() {
-                    // Sort episodes by EpisodeNumber numerically
                     const validEpisodes = this.episodes
                         .filter(e => 
                             e.EpisodeVideosIDs && e.EpisodeVideosIDs.length > 0 &&
@@ -4613,12 +4436,10 @@
                             !e.EpisodeNumber.includes('فيلم تعاوني') &&
                             !e.EpisodeNumber.includes('يوميات زيرو') &&
                             !e.EpisodeNumber.includes('المجرم هانزاوا') &&
-                            // Ensure EpisodeNumber is a valid number (including decimals)
                             !isNaN(parseFloat(e.EpisodeNumber)) && isFinite(parseFloat(e.EpisodeNumber))
                         )
                         .sort((a, b) => parseFloat(a.EpisodeNumber) - parseFloat(b.EpisodeNumber));
 
-                    // Manually defined episode ranges
                     const ranges = [
                         { start: 1, end: 99 },
                         { start: 100, end: 199 },
@@ -4636,7 +4457,6 @@
                     
                     const groups = [];
                     
-                    // Filter episodes into each range
                     for (const range of ranges) {
                         const groupEpisodes = validEpisodes.filter(ep => {
                             const epNum = parseFloat(ep.EpisodeNumber);
@@ -4679,7 +4499,6 @@
                         return [];
                     }
 
-                    // Remove duplicates by MangaNumber
                     const uniqueMangas = Array.from(new Set(allMangas.map(m => m.MangaNumber)))
                         .map(mangaNumber => allMangas.find(m => m.MangaNumber === mangaNumber));
 
@@ -4713,12 +4532,10 @@
                 },
 
                 sortedMangaSentLog() {
-                    // Sort by chapter number (ascending: lower to upper)
                     return [...this.mangaSentLog].sort((a, b) => {
                         const numA = parseFloat(a.chapter);
                         const numB = parseFloat(b.chapter);
                         if (isNaN(numA) || isNaN(numB)) {
-                            // Fallback to string comparison if not numeric
                             return String(a.chapter).localeCompare(String(b.chapter));
                         }
                         return numA - numB;
@@ -4833,16 +4650,13 @@
                         return [];
                     }
 
-                    // Create a map to group videos by their unique combination of properties
                     const groups = new Map();
                     const noMetadataVideos = [];
                     
                     this.selectedEpisode.EpisodeVideosIDs.forEach((video, index) => {
-                        // Check if video has any metadata
                         const hasMetadata = video.EpisodeCategory || video.EpisodeTranslator || video.EpisodeRemastered;
                         
                         if (!hasMetadata) {
-                            // Add to noMetadataVideos array with original index
                             noMetadataVideos.push({
                                 ...video,
                                 originalIndex: index
@@ -4850,11 +4664,9 @@
                             return;
                         }
                         
-                        // Create a unique key for the group
                         const groupKey = `${video.EpisodeCategory || ''}-${video.EpisodeTranslator || ''}-${video.EpisodeRemastered || ''}`;
                         
                         if (!groups.has(groupKey)) {
-                            // Create a new group
                             groups.set(groupKey, {
                                 key: groupKey,
                                 EpisodeCategory: video.EpisodeCategory,
@@ -4865,26 +4677,22 @@
                             });
                         }
                         
-                        // Add the video to its group with the original index
                         groups.get(groupKey).videos.push({
                             ...video,
-                            originalIndex: index // Store the original index for sendEpisodeToBot
+                            originalIndex: index
                         });
                     });
                     
-                    // Convert the map to an array and sort the videos within each group by resolution
                     const groupedVideos = Array.from(groups.values()).map(group => ({
                         ...group,
                         hasMetadata: true,
                         videos: group.videos.sort((a, b) => {
-                            // Extract numeric part of resolution for proper sorting
                             const resA = parseInt(a.Resolution) || 0;
                             const resB = parseInt(b.Resolution) || 0;
-                            return resB - resA; // Sort in descending order (highest resolution first)
+                            return resB - resA;
                         })
                     }));
                     
-                    // If there are videos without metadata, add them as a special group
                     if (noMetadataVideos.length > 0) {
                         const sortedNoMetadataVideos = noMetadataVideos.sort((a, b) => {
                             const resA = parseInt(a.Resolution) || 0;
@@ -5124,7 +4932,7 @@
                 },
 
                 episodeOfWeek() {
-                    const enableEpisodeDebug = false; // Set to true to enable debug logging
+                    const enableEpisodeDebug = false;
                     const episode = this.episodes.find(e => e.EpisodeNumber === String(this.ep));
                     if (enableEpisodeDebug) console.log('episodeOfWeek - ep:', this.ep, 'found episode:', episode);
                     return episode;
@@ -5156,33 +4964,26 @@
                     filteredByType = applyToggleFilters(filteredByType, this, EPISODE_TOGGLE_FILTERS);
                     filteredByType = applyCharacterFilters(filteredByType, this, FILTER_UI);
                     
-                    // Filter for FBI Episodes
                     if (this.filterFBI) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('ف'));
                     }
-                    // Filter for PSB Episodes
                     if (this.filterPSB) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('ع'));
                     }
-                    // Filter for New Character Episodes
                     if (this.filterNewCharacter) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('ج'));
                     }
-                    // Filter for Development Character Episodes
                     if (this.filterDevelopmentCharacter) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('ت'));
                     }
-                    // Filter for Flash Back Episodes
                     if (this.filterFlashBackEpisodes) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('م'));
                     }
 
-                    // Filter for Romance Episodes
                     if (this.filterRomanceEpisodes) {
                         filteredByType = filteredByType.filter(episode => episode.EpisodeEvents.includes('ر'));
                     }
 
-                    // Apply other filters (e.g., category and search query)
                     return filteredByType
                     .filter(episode => {
                         if (skipCategoryFilter) return true;
@@ -5214,18 +5015,15 @@
                         return true;
                     })
                     .filter(episode => {
-                        if (searchQuery === "") return true; // Show all episodes when search bar is empty
+                        if (searchQuery === "") return true;
                         
-                        // Build an array of conditions based on checked filters
                         const matchConditions = [];
                         
-                        // Number filter logic
                         if (this.searchFilters.number) {
                             const numberList = parsedNumberSearch ? parsedNumberSearch.numberList : [];
                             const textFragments = parsedNumberSearch ? parsedNumberSearch.textFragments : [];
                             const textFragmentRegexes = parsedNumberSearch ? parsedNumberSearch.textFragmentRegexes : [];
 
-                            // Extract number from episode.EpisodeNumber based on textNumberMatchMode
                             let numberConditionEvaluated = false;
                             let numberMatch = false;
 
@@ -5270,25 +5068,21 @@
                             }
                         }
                         
-                        // Title filter logic
                         if (this.searchFilters.title) {
                             const titleText = String(episode.EpisodeTitle || '');
                             matchConditions.push(searchRegex ? searchRegex.test(titleText) : titleText.toLowerCase().includes(rawSearchQuery));
                         }
                         
-                        // Story filter logic
                         if (this.searchFilters.story) {
                             const storyText = String(episode.EpisodeStory || '');
                             matchConditions.push(searchRegex ? searchRegex.test(storyText) : storyText.toLowerCase().includes(rawSearchQuery));
                         }
                         
-                        // Summary filter logic
                         if (this.searchFilters.summary) {
                             const summaryText = String(episode.EpisodeSummary || '');
                             matchConditions.push(searchRegex ? searchRegex.test(summaryText) : summaryText.toLowerCase().includes(rawSearchQuery));
                         }
                         
-                        // Return true if ANY condition is true (OR logic)
                         return matchConditions.length > 0 && matchConditions.some(condition => condition);
                     });
                 },
@@ -5309,7 +5103,7 @@
                     return this.filteredEpisodes.slice(start, start + this.pageSize);
                 },
                 totalEpisodes() {
-                    return this.filteredEpisodes.length; // Calculates based on the filtered episodes
+                    return this.filteredEpisodes.length;
                 },
                 episodeCountText() {
                     const count = this.totalEpisodes;
@@ -5535,10 +5329,9 @@
                             console.log('selectedEpisode change:', newVal && newVal.EpisodeNumber);
                         }
                         this.comntoTopic = 'episode-' + newVal.EpisodeNumber;
-                        // this.comntoVisible = true; // Let user open it manually
                     } else {
                         this.comntoTopic = 'mainPageCD';
-                        this.comntoVisible = false; // Auto-close when leaving episode
+                        this.comntoVisible = false;
                     }
                 },
                 jumpTargetMode(newVal) {
@@ -5648,14 +5441,12 @@
                     }, 300);
                 },
                 selectedEpisode() {
-                    // When episode changes, recalculate the countdown
                     this.relatedEpisodeMenuOpen = false;
                     this.$nextTick(() => {
                         this.calculateCountdown();
                     });
                 },
                 loading(newValue) {
-                    // Stop zikr rotation when loading finishes
                     if (!newValue && this.intervalZikrId) {
                         clearInterval(this.intervalZikrId);
                         this.intervalZikrId = null;
@@ -5665,7 +5456,6 @@
                     const trimmed = newQuery.trim();
 
                     if (trimmed.endsWith('+')) {
-                        // Normalize digits so quick-jump works for Arabic-Indic/Persian numbers
                         const targetValue = this.normalizeDigits(trimmed.slice(0, -1).trim());
 
                         if (!targetValue) {
@@ -5727,7 +5517,6 @@
                 },
 
                 jsonUrl() {
-                    // Automatically refetch data when jsonUrl changes (only if tab owner)
                     if (this.isTabOwner) {
                         this.loadData();
                     }
@@ -5757,7 +5546,6 @@
                     const containerRect = container.getBoundingClientRect();
                     const labelRect = label.getBoundingClientRect();
 
-                    // If the bottom of the label is above the top of the container
                     this.showStickyLabel = labelRect.top <= containerRect.top;
                 },
                 ensureComntoLoaded(onReady) {
@@ -5828,21 +5616,16 @@
                         const topicChanged = (this.comntoTopic !== desiredTopic);
                         if (topicChanged) this.comntoTopic = desiredTopic;
 
-                        // Show immediately so user can close it if they want
                         this.comntoVisible = true;
 
                         this.ensureComntoLoaded(() => {
-                            // Check if user closed the modal while loading
                             if (!this.comntoVisible) return;
 
-                            // Initialize if not exists
                             if (!this.comntoWidget) {
                                 this.initComntoWidget();
                                 return;
                             }
 
-                            // If topic changed, the watcher will handle the update.
-                            // If topic is same, we do nothing (just show existing iframe) to save pageviews.
                         });
                     } catch (e) {
                         this.comntoVisible = true;
@@ -5969,12 +5752,9 @@
                     } catch (e) {}
                     this.activeFilterHighlightedEl = label;
                 },
-                // InstantDB Methods
                 async syncServerTime() {
                     try {
                         const start = performance.now();
-                        // Try current origin first (likely to have Date header)
-                        // Or use a lightweight HEAD request to a reliable public server if local fails
                         const response = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' });
                         const dateHeader = response.headers.get('date');
                         
@@ -5982,12 +5762,6 @@
                             const serverTime = new Date(dateHeader).getTime();
                             const end = performance.now();
                             const latency = (end - start) / 2;
-                            // Calculate offset: Server Time - (Local Time at request start + latency)
-                            // But simpler: Server Time - (Date.now() roughly)
-                            // More precise: 
-                            // trustedNow = Date.now() + offset
-                            // offset = serverTime - Date.now()
-                            // We adjust for latency to be slightly more accurate
                             this.serverTimeOffset = serverTime - (Date.now() + latency);
                             this.lastServerSync = Date.now();
                             console.log('Time synced with server. Offset:', this.serverTimeOffset, 'ms');
@@ -5996,7 +5770,6 @@
                         }
                     } catch (e) {
                         console.error('Failed to sync time:', e);
-                        // Fallback: try worldtimeapi if origin fails (e.g. file://)
                         try {
                              const r = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
                              const data = await r.json();
@@ -6293,7 +6066,6 @@
                 },
 
                 initInstantDB() {
-                    // Block InstantDB initialization if this tab is not the owner
                     if (!this.isTabOwner) {
                         console.warn('InstantDB initialization blocked: Tab is not the owner');
                         return;
@@ -6302,7 +6074,6 @@
                     const APP_ID = '4c54b210-15b2-4e56-9d0b-85a9ce2aa6e3';
                     const getInstantDB = () => window.InstantDB || window.instantdb;
 
-                    // Sync time immediately
                     this.syncServerTime();
 
                     const initialize = () => {
@@ -6312,12 +6083,9 @@
                             this._db = markRaw(instantDB.init({ appId: APP_ID }));
                             this.subscribeToDailyDownloads();
 
-                            // Update timer for reset every second and check for date change
                             setInterval(() => {
                                 this.now = Date.now();
                                 
-                                // Check for reset time (UTC midnight or test reset)
-                                // Use the same logic as timeUntilReset calculation
                                 const tick = this.now;
                                 const now = this.getTrustedDate();
                                 const target = new Date(now);
@@ -6329,12 +6097,8 @@
                                 }
                                 const diff = target - now;
                                 
-                                // Check if we hit the reset moment (diff is 0 or very close to it, or we just crossed it)
-                                // Also robustly check if the date string has changed
                                 const currentToday = this.getTrustedTodayISO();
                                 
-                                // Trigger if date changed OR if we hit the explicit timer (for minute tests)
-                                // And avoid duplicate triggers by checking if we already handled this date
                                 if (this.trustedToday !== currentToday || (this.testMinuteReset && Math.floor(diff / 1000) === 0)) {
                                     console.log('Reset trigger: Date changed or timer hit zero. Old:', this.trustedToday, 'New:', currentToday);
                                     this.resetDailyLimitForNewDay();
@@ -6349,7 +6113,6 @@
                 },
 
                 subscribeToDailyDownloads() {
-                    // Block subscription if this tab is not the owner
                     if (!this.isTabOwner) {
                         console.warn('InstantDB subscription blocked: Tab is not the owner');
                         return;
@@ -6357,14 +6120,13 @@
                     
                     if (!this._db) return;
                     
-                    // Unsubscribe previous if exists
                     if (this.unsubscribeDaily) {
                         this.unsubscribeDaily();
                         this.unsubscribeDaily = null;
                     }
 
                     const today = this.getTrustedTodayISO();
-                    this.trustedToday = today; // Track current subscription date
+                    this.trustedToday = today;
 
                     const query = { 
                         dailyLimitDownloadsMangas: { 
@@ -6440,8 +6202,6 @@
                                 } else {
                                     this.syncDailyLimitLocalDay();
                                     this.dailyDownloads = 0;
-                                    // Do NOT reset dailyLimitRowId here, as we might have just generated it 
-                                    // and it hasn't synced yet.
                                     this.dailyReady = true;
                                 }
                             });
@@ -6455,7 +6215,6 @@
 
                 async checkDailyLimit() {
                     this.syncDailyLimitLocalDay();
-                    // Check local state first for immediate feedback
                     if ((this.dailyDownloads + this.pendingDailyIncrements) >= this.maxDailyDownloads) {
                         return false;
                     }
@@ -6496,7 +6255,6 @@
                         return true;
                     } catch (e) {
                         console.error('DB Update Error', e);
-                        // retry with backoff, up to 5 attempts
                         this.dailyLimitRetryAttempts = Math.min(this.dailyLimitRetryAttempts + 1, 5);
                         const delay = Math.min(1000 * this.dailyLimitRetryAttempts, 5000);
                         if (this.dailyLimitRetryTimer) {
@@ -6599,7 +6357,6 @@
                         this.inactivityListeners.push({ target: window, eventName, handler });
                     });
 
-                    // Handle tab visibility/focus to catch throttled timers
                     const visibilityHandler = () => {
                         if (document.visibilityState === 'visible' && !this.inactivityModal) {
                             this.lastActivityAt = Date.now();
@@ -6990,7 +6747,6 @@
                     }
                     this.showEnglishNextEpisodeCountdown = !this.showEnglishNextEpisodeCountdown;
                 },
-                // Get episode type tooltip based on episode properties
                 getEpisodeTypeTooltip(episode) {
                     if (episode.EpisodeNumber.includes("خاصة بالفيلم")) {
                         return "خاصة بالفيلم";
@@ -7019,9 +6775,8 @@
                     }
                 },
                 
-                // Countdown methods
                 calculateCountdown() {
-                    const enableCountdownDebug = false; // Set to true to enable debug logging
+                    const enableCountdownDebug = false;
                     
                     if (!this.selectedEpisode || !this.selectedEpisode.EpisodeBCDate) {
                         this.hasCountdown = false;
@@ -7029,12 +6784,10 @@
                     }
                     
                     try {
-                        // Create date with 12:00 PM time
                         const bcDate = new Date(this.selectedEpisode.EpisodeBCDate);
-                        bcDate.setHours(12, 0, 0, 0); // Set to 12:00 PM
+                        bcDate.setHours(12, 0, 0, 0);
                         const now = new Date();
                         
-                        // If date is invalid or in the past, don't show countdown
                         if (isNaN(bcDate) || bcDate <= now) {
                             this.hasCountdown = false;
                             if (enableCountdownDebug) console.log('Countdown: Date invalid or in the past', bcDate);
@@ -7045,24 +6798,17 @@
                         
                         const diff = bcDate.getTime() - now.getTime();
 
-                        // Decimal values for precise calculation
                         const diffDaysDecimal = diff / (1000 * 60 * 60 * 24);
                         const diffDays = Math.floor(diffDaysDecimal);
                         const remainingHours = Math.floor((diffDaysDecimal - diffDays) * 24);
                         const remainingMinutes = Math.floor(((diffDaysDecimal - diffDays) * 24 - remainingHours) * 60);
 
-                        // ----------------------
-                        // English format
-                        // ----------------------
                         const parts = [];
                         if (diffDays > 0) parts.push(`${diffDays}d`);
                         if (remainingHours > 0) parts.push(`${remainingHours}h`);
                         if (remainingMinutes > 0) parts.push(`${remainingMinutes}min`);
                         this.countdownEnglish = parts.join('');
 
-                        // ----------------------
-                        // Arabic format
-                        // ----------------------
                         let countdownArabic = '';
                         const moreThan = 'متبقي أكثر من ';
                         const lessThan = 'متبقي أقل من ';
@@ -7329,16 +7075,13 @@
                 },
                 
                 shuffleZikr() {
-                    // If all zikrs have been shown, refill the pool
                     if (this.remainingAdhkar.length === 0) {
                         this.remainingAdhkar = [...this.adhkar];
                     }
                     
-                    // Pick a random zikr from the remaining ones
                     const randomIndex = Math.floor(Math.random() * this.remainingAdhkar.length);
                     this.currentZikr = this.remainingAdhkar[randomIndex];
                     
-                    // Remove the shown zikr from the pool
                     this.remainingAdhkar.splice(randomIndex, 1);
                 },
                 updateEpisodeTimeAgo() {
@@ -7363,7 +7106,6 @@
 				    
 				    let episodeDate;
 				
-				    // YYYY-MM-DD
 				    if (bcDate.includes('-')) {
 				        const dateParts = bcDate.split('-');
 				        if (dateParts.length !== 3) {
@@ -7373,11 +7115,9 @@
 				        const [year, month, day] = dateParts.map(Number);
 				        episodeDate = new Date(year, month - 1, day);
 				
-				        // FIXED: set to 12:00 PM
 				        episodeDate.setHours(12, 0, 0, 0);
 				
 				    } 
-				    // DD/MM/YYYY
 				    else if (bcDate.includes('/')) {
 				        const dateParts = bcDate.split('/');
 				        if (dateParts.length !== 3) {
@@ -7387,7 +7127,6 @@
 				        const [day, month, year] = dateParts.map(Number);
 				        episodeDate = new Date(year, month - 1, day);
 				
-				        // FIXED: set to 12:00 PM
 				        episodeDate.setHours(12, 0, 0, 0);
 				
 				    } 
@@ -7519,19 +7258,19 @@
 				},
 
                 toggleTimeFormat() {
-                    const enableTimeAgoDebug = false; // Set to true to enable debug logging
+                    const enableTimeAgoDebug = false;
                     this.showEnglishTimeFormat = !this.showEnglishTimeFormat;
                     if (enableTimeAgoDebug) console.log('Toggled time format, showEnglish:', this.showEnglishTimeFormat);
                 },
                 
                 toggleTimeFormatManga() {
-                    const enableTimeAgoDebug = false; // Set to true to enable debug logging
+                    const enableTimeAgoDebug = false;
                     this.showEnglishTimeFormatManga = !this.showEnglishTimeFormatManga;
                     if (enableTimeAgoDebug) console.log('Toggled manga time format, showEnglish:', this.showEnglishTimeFormatManga);
                 },
 
                 async loadMangaUpdateDate() {
-                    const enableTimeAgoDebug = false; // Set to true to enable debug logging
+                    const enableTimeAgoDebug = false;
                     try {
                         const response = await fetch('./lmcud.txt');
                         const text = await response.text();
@@ -7544,7 +7283,7 @@
                 },
 
                 updateMangaTimeAgo() {
-                    const enableTimeAgoDebug = false; // Set to true to enable debug logging
+                    const enableTimeAgoDebug = false;
                     
                     if (enableTimeAgoDebug) console.log('updateMangaTimeAgo called - mangaUpdateDate:', this.mangaUpdateDate);
                     
@@ -7559,7 +7298,6 @@
                     
                     let mangaDate;
                     
-                    // Check if date format is YYYY-MM-DD (with dashes)
                     if (dateText.includes('-')) {
                         const dateParts = dateText.split('-');
                         if (dateParts.length !== 3) {
@@ -7571,7 +7309,6 @@
                         mangaDate = new Date(year, month - 1, day);
                         if (enableTimeAgoDebug) console.log('Parsed manga date (YYYY-MM-DD):', mangaDate);
                     } 
-                    // Check if date format is DD/MM/YYYY (with slashes)
                     else if (dateText.includes('/')) {
                         const dateParts = dateText.split('/');
                         if (dateParts.length !== 3) {
@@ -7598,7 +7335,6 @@
                     const diffMonths = Math.floor(diffDays / 30);
                     const diffYears = Math.floor(diffDays / 365);
 
-                    // Check for remainders to determine if we need "أكثر من"
                     const hasExtraSeconds = diffSeconds % 60 > 0;
                     const hasExtraMinutes = diffMinutes % 60 > 0;
                     const hasExtraHours = diffHours % 24 > 0;
@@ -7675,16 +7411,14 @@
                     this.mangaOfWeekTimeAgo = timeAgoText;
                     if (enableTimeAgoDebug) console.log('Final manga timeAgoText:', timeAgoText, 'mangaOfWeekTimeAgo:', this.mangaOfWeekTimeAgo);
                     
-                    // Also calculate English format
                     this.updateMangaTimeAgoEnglish(mangaDate);
                 },
 
                 updateMangaTimeAgoEnglish(mangaDate) {
-                    const enableTimeAgoDebug = false; // Set to true to enable debug logging
+                    const enableTimeAgoDebug = false;
                     const now = new Date();
                     const diffMs = now - mangaDate;
                     
-                    // Calculate each time unit
                     const totalSeconds = Math.floor(diffMs / 1000);
                     const totalMinutes = Math.floor(totalSeconds / 60);
                     const totalHours = Math.floor(totalMinutes / 60);
@@ -7692,7 +7426,6 @@
                     const totalMonths = Math.floor(totalDays / 30);
                     const totalYears = Math.floor(totalDays / 365);
                     
-                    // Calculate remainders
                     const years = totalYears;
                     const months = totalMonths - (years * 12);
                     const weeks = Math.floor((totalDays - (totalYears * 365) - (months * 30)) / 7);
@@ -7700,7 +7433,6 @@
                     const hours = totalHours - (totalDays * 24);
                     const minutes = totalMinutes - (totalHours * 60);
                     
-                    // Build compact format string
                     let parts = [];
                     if (years > 0) parts.push(`${years}y`);
                     if (months > 0) parts.push(`${months}m`);
@@ -7709,7 +7441,6 @@
                     if (hours > 0) parts.push(`${hours}h`);
                     if (minutes > 0) parts.push(`${minutes}min`);
                     
-                    // If less than a minute, show seconds
                     if (parts.length === 0) {
                         const seconds = totalSeconds;
                         parts.push(`${seconds}s`);
@@ -7772,23 +7503,20 @@
                     this.clearJumpHighlight();
                     let pageInput = event.target.value;
 
-                    // If the value is empty or invalid, set it to 1
                     if (isNaN(parseInt(pageInput, 10))) {
                         pageInput = 1;
                     }
 
                     let pageNumber = parseInt(pageInput, 10);
 
-                    // Ensure the page number is within the valid range
                     if (pageNumber < 1) {
                         pageNumber = 1;
                     } else if (pageNumber > this.totalPages) {
                         pageNumber = this.totalPages;
                     }
 
-                    // Update the current page and adjust the select value
                     this.currentPage = pageNumber;
-                    event.target.value = pageNumber; // Reset the value of the dropdown to the corrected page number
+                    event.target.value = pageNumber;
                     this.trackLastPage();
                 },
 
@@ -7935,7 +7663,6 @@
                     const normalizedNoBraces = normalizedInput.replace(/\{\s*ج\s*[12]\s*\}/g, '').replace(/\(\s*ج\s*[12]\s*\)/g, '').trim();
                     const dataset = Array.isArray(this.filteredEpisodes) ? this.filteredEpisodes : [];
 
-                    // Film cycling: الفيلم/فيلم/الفلم/فلم/الفليم/فليم
                     const filmMatch = normalizedNoBraces.match(/^(?:الفيلم|فيلم|الفلم|فلم|الفليم|فليم)(?:\s+(\d+(?:\.\d+)?))?$/i);
                     if (filmMatch) {
                         const movieEpisodes = dataset
@@ -7956,7 +7683,6 @@
                             if (startIdx > -1) {
                                 queue = queue.slice(startIdx).concat(queue.slice(0, startIdx));
                             } else {
-                                // If specific movie number not found, keep queue as is
                             }
                         }
                         if (queue.length) {
@@ -7973,7 +7699,6 @@
                         }
                     }
 
-                    // Magic Kaito cycling: ماجيك كايتو / ماجيك كايتو n
                     const mkMatch = normalizedNoBraces.match(/^\s*ماجيك\s+كايتو(?:\s+(\d+(?:\.\d+)?))?$/i);
                     if (mkMatch) {
                         const nStr = mkMatch[1] ? String(mkMatch[1]) : null;
@@ -8005,7 +7730,6 @@
                         }
                     }
 
-                    // Default behavior with cycling across multiple exact matches
                     const target = this.buildEpisodeJumpTarget(raw);
                     if (!target) return;
                     const normalizedTarget = this.normalizeEpisodeIdentifier(target);
@@ -8038,7 +7762,6 @@
                     this.pendingJumpOpenModal = false;
                     this.executePendingJump();
                 },
-                // Update page size and recalculate total pages
                 handlePageSizeChange() {
                     const startIndex = (this.currentPage - 1) * this.oldPageSize;
                     this.currentPage = Math.floor(startIndex / this.pageSize) + 1;
@@ -8054,7 +7777,6 @@
                     this.trackLastPage();
                 },
 
-                // Convert Eastern-Arabic / Persian numerals to Western numerals
                 normalizeDigits(text) {
                     if (!text) return '';
                     const digitMap = {
@@ -8403,14 +8125,12 @@
                     });
                 },
 
-                    // Reset the current page to 1
                 resetPageToOne() {
                     this.currentPage = 1;
                     if (this.totalPages < 1) return;
                     this.handlePageSelect({ target: { value: 1 } });
                 },
 
-                // IDB Helper
                 getDB() {
                     return new Promise((resolve, reject) => {
                         try {
@@ -8458,7 +8178,6 @@
                         });
                     });
                 },
-                // Method to load data version metadata
                 async checkDataVersion() {
                     try {
                         const url = `./version.json?t=${Date.now()}`;
@@ -8494,7 +8213,6 @@
                         .catch(() => false);
                 },
 
-                // Method to load data from JSON
                 loadData(force = false) {
                     return new Promise(async (resolve, reject) => {
                         if (this.loading && !force) {
@@ -8510,7 +8228,6 @@
                         this.loadProgress = 0;
 
                         if (this.userJoined) {
-                            // Try cache-first using IndexedDB if version matches
                             this.error = null;
                             let remoteVersion = null;
                             try { remoteVersion = await this.checkDataVersion(); } catch (e) { remoteVersion = null; }
@@ -8546,26 +8263,23 @@
                                     this.loadingFromCache = false;
                                 }
                             }
-                            // Reset states before attempting to fetch
                             this.loadingFromCache = false;
                             this.episodes = [];
                             this.mangas = [];
                             this.error = null;
                             this.loading = true;
 
-                            // Check if a rate-limit countdown is stored
                             const storedWaitTime = localStorage.getItem('waitTime');
                             if (storedWaitTime) {
                                 this.waitTime = parseInt(storedWaitTime, 10);
                                 this.error = `لقد تجاوزت الحد المسموح به من الطلبات. يُرجى الانتظار ${this.waitTime} ثانية.`;
-                                this.startTimer(); // Continue the countdown
-                                clearInterval(this.progressInterval); // Stop progress animation
-                                this.loadProgress = 0; // Reset progress
+                                this.startTimer();
+                                clearInterval(this.progressInterval);
+                                this.loadProgress = 0;
                                 reject('Rate limit exceeded');
                                 return;
                             }
 
-                            // Append a cache-busting query parameter
                             const urlWithCacheBust = `${this.jsonUrl}?t=${new Date().getTime()}`;
 
                             fetch(urlWithCacheBust, { cache: 'no-store' })
@@ -8618,11 +8332,9 @@
                                 })
                                 .then(async data => {
                                     if (data) {
-                                        // Data fetched successfully
-                                        clearInterval(this.progressInterval); // Stop progress animation
-                                        this.loadProgress = 100; // Set progress to 100%
+                                        clearInterval(this.progressInterval);
+                                        this.loadProgress = 100;
                                         
-                                        // Persist cache and version metadata
                                         try {
                                             await this.saveToIDB('dataset-cache', data);
                                         } catch (e) {
@@ -8638,7 +8350,6 @@
                                         } catch (e) {}
 
                                         setTimeout(() => {
-                                            // Only update data and set loading = false if this tab is the owner
                                             if (this.isTabOwner) {
                                                 this.episodes = data.Episodes || [];
                                                 this.mangas = data.Mangas || [];
@@ -8646,23 +8357,20 @@
                                                 this.loading = false;
                                                 localStorage.removeItem('waitTime');
                                                 
-                                                // Update episode time ago after data loads
                                                 this.updateEpisodeTimeAgo();
                                             }
                                             
                                             resolve();
-                                        }, 300); // Delay to show 100% progress
+                                        }, 300);
                                     }
                                 })
                                 .catch(async error => {
-                                    clearInterval(this.progressInterval); // Stop progress animation
-                                    this.loadProgress = 0; // Reset progress
-                                    // Only set loading = false if this tab is the owner
+                                    clearInterval(this.progressInterval);
+                                    this.loadProgress = 0;
                                     if (this.isTabOwner) {
                                         this.loading = false;
                                     }
 
-                                    // Fallback: try using cached dataset even if version mismatched
                                     try {
                                         const cached = await this.loadFromIDB('dataset-cache');
                                         if (this.validateDataset(cached)) {
@@ -8687,9 +8395,8 @@
                                     reject(error);
                                 });
                         } else {
-                            clearInterval(this.progressInterval); // Stop progress animation
-                            this.loadProgress = 0; // Reset progress
-                            // Only set loading = false if this tab is the owner
+                            clearInterval(this.progressInterval);
+                            this.loadProgress = 0;
                             if (this.isTabOwner) {
                                 this.loading = false;
                             }
@@ -8703,31 +8410,28 @@
                         const timerInterval = setInterval(() => {
                             if (this.waitTime > 0) {
                                 this.waitTime -= 1;
-                                // Update the error message with the remaining wait time
                                 this.error = `لقد تجاوزت الحد المسموح به من الطلبات. يُرجى الانتظار ${this.waitTime} ثانية.`;
                                 
-                                // Update the stored waitTime in localStorage
                                 localStorage.setItem('waitTime', this.waitTime);
                             } else {
-                                clearInterval(timerInterval); // Stop the timer when waitTime reaches 0
-                                this.error = ''; // Reset the error message
-                                this.loadData(); // Retry fetching data
-                                localStorage.removeItem('waitTime'); // Clear stored waitTime after retry
-                                this.reloadPage(); // Refresh the page after countdown ends
+                                clearInterval(timerInterval);
+                                this.error = '';
+                                this.loadData();
+                                localStorage.removeItem('waitTime');
+                                this.reloadPage();
                             }
-                        }, 1000); // Update every second
+                        }, 1000);
                     }
                 },
 
                 reloadPage() {
-                    location.reload(); // Reloads the page
+                    location.reload();
                     //localStorage.clear();
                     localStorage.removeItem('waitTime');
                 },
 
                 getBackgroundColor(episode) {
                         if ((this.selectedFilter === 'all' || this.selectedFilter === 'anime') && this.episodeTypeFilter === 'All') {
-                        // Check for special cases first
                         if (episode.EpisodeNumber.includes("خاصة بالفيلم")) {
                             return 'bg-cyan-500';
                         } else if (episode.EpisodeNumber.includes("الفيلم")) {
@@ -8750,14 +8454,12 @@
                             return 'bg-stone-600';
                         }
 
-                        // Check for EpisodeType after exceptions
                         if (episode.EpisodeType === 'م' || episode.EpisodeType === 'ث') {
                             return 'bg-teal-900';
                         } else if (episode.EpisodeType === 'ف') {
                             return 'bg-red-900';
                         }
                     } else if (this.selectedFilter === 'all' && (this.episodeTypeFilter === 'Manga' || this.episodeTypeFilter === 'Filler')) {
-                        // Check for special cases first
                         if (episode.EpisodeNumber.includes("خاصة بالفيلم")) {
                             return 'bg-cyan-500';
                         } else if (episode.EpisodeNumber.includes("الفيلم")) {
@@ -8780,60 +8482,53 @@
                             return 'bg-stone-600';
                         }
                     } else if (this.selectedFilter === 'anime' && (this.episodeTypeFilter === 'Manga' || this.episodeTypeFilter === 'Filler')) {
-                        // Check for special cases first
                         if (episode.EpisodeSpecial === '1') {
                             return 'bg-sky-800';
                         } else if (episode.EpisodeSpecial === '2') {
                             return 'bg-orange-600';
                         }
                     } else if (this.selectedFilter === 'movies' && this.episodeTypeFilter === 'All') {
-                        // Check for special cases first
                         if (episode.EpisodeType === 'م' || episode.EpisodeType === 'ث') {
                             return 'bg-teal-900';
                         } else if (episode.EpisodeType === 'ف') {
                             return 'bg-red-900';
                         }
                     } else if ((this.selectedFilter === 'hourly_special' || this.selectedFilter === 'two_hour_special') && this.episodeTypeFilter === 'All') {
-                        // Check for special cases first
                         if (episode.EpisodeType === 'م' || episode.EpisodeType === 'ث') {
                             return 'bg-teal-900';
                         } else if (episode.EpisodeType === 'ف') {
                             return 'bg-red-900';
                         }
                     }
-                    return ''; // Default case
+                    return '';
                 },
                 openModal(episode) { 
                     this.selectedEpisode = episode;
                     this.comntoVisible = false;
                     this.showModal = true;
-                    document.body.style.overflow = 'hidden'; // Block background scrolling
+                    document.body.style.overflow = 'hidden';
 
                     const currentIndex = this.episodes.findIndex(
                         (ep) => ep.EpisodeNumber === episode.EpisodeNumber
                     );
 
-                    // Check if there are more episodes with the same EpisodeParts
                     if (episode.EpisodeParts) {
-                        // Check for next episode existence
                         this.nextEpisodeExists = this.episodes.some(
                             (ep, index) =>
                                 index > currentIndex &&
                                 ep.EpisodeParts === episode.EpisodeParts
                         );
 
-                        // Check for previous episode existence
                         this.previousEpisodeExists = this.episodes.some(
                             (ep, index) =>
                                 index < currentIndex &&
                                 ep.EpisodeParts === episode.EpisodeParts
                         );
                     } else {
-                        this.nextEpisodeExists = false; // Hide button if EpisodeParts is null/undefined
+                        this.nextEpisodeExists = false;
                         this.previousEpisodeExists = false;
                     }
 
-                    // Check for next/previous episode by number order
                     this.nextEpisodeByNumberExists = currentIndex < this.episodes.length - 1;
                     this.previousEpisodeByNumberExists = currentIndex > 0;
                 },
@@ -9123,13 +8818,13 @@
 
                 openEmptyPopup() {
                     if (this.guardIfCapturing()) return;
-                    this.showEmptyPopup = true; // Show the popup
-                    document.body.style.overflow = 'hidden'; // Block background scrolling
+                    this.showEmptyPopup = true;
+                    document.body.style.overflow = 'hidden';
                     this.comntoVisible = false;
                 },
                 closeEmptyPopup() {
-                    this.showEmptyPopup = false; // Hide the popup
-                    document.body.style.overflow = ''; // Restore background scrolling
+                    this.showEmptyPopup = false;
+                    document.body.style.overflow = '';
                     this.clearActiveFilterHighlight();
                 },
 
@@ -9144,24 +8839,21 @@
                 },
 
                 toggleSpoiler() {
-                    this.spoilerVisible = !this.spoilerVisible; // Toggle visibility
+                    this.spoilerVisible = !this.spoilerVisible;
                 },
 
                 highlightSpoilerText() {
                     const text = this.spoilerVisible ? "إخفاء الملخص" : "الملخص (حرق)";
                     
-                    // Highlight "حرق" in red
                     return text.replace('حرق', '<span class="text-red-500 font-bold">حرق</span>');
                 },
 
                 fetchNextEpisode() {
                     this.spoilerVisible = false;
-                    // Find the current episode's index
                     const currentIndex = this.episodes.findIndex(
                         (ep) => ep.EpisodeNumber === this.selectedEpisode.EpisodeNumber
                     );
 
-                    // Find the next episode with the same EpisodeParts
                     const nextEpisode = this.episodes.find(
                         (ep, index) =>
                             index > currentIndex &&
@@ -9169,20 +8861,18 @@
                     );
 
                     if (nextEpisode) {
-                        this.openModal(nextEpisode); // Open the modal for the next episode
+                        this.openModal(nextEpisode);
                     } else {
-                        this.nextEpisodeExists = false; // Hide the button
+                        this.nextEpisodeExists = false;
                     }
                 },
 
                 fetchPreviousEpisode() {
                     this.spoilerVisible = false;
-                    // Find the current episode's index
                     const currentIndex = this.episodes.findIndex(
                         (ep) => ep.EpisodeNumber === this.selectedEpisode.EpisodeNumber
                     );
 
-                    // Find the previous episode with the same EpisodeParts
                     const previousEpisode = [...this.episodes].reverse().find(
                         (ep, index) =>
                             index > this.episodes.length - 1 - currentIndex &&
@@ -9190,49 +8880,43 @@
                     );
 
                     if (previousEpisode) {
-                        this.openModal(previousEpisode); // Open the modal for the previous episode
+                        this.openModal(previousEpisode);
                     } else {
-                        this.previousEpisodeExists = false; // Hide the button
+                        this.previousEpisodeExists = false;
                     }
                 },
 
                 fetchNextEpisodeByNumber() {
                     this.spoilerVisible = false;
-                    // Get the filtered episodes based on current filter
                     const filteredEps = this.filteredEpisodes;
                     
-                    // Find the current episode's index in the filtered array
                     const currentIndex = filteredEps.findIndex(
                         (ep) => ep.EpisodeNumber === this.selectedEpisode.EpisodeNumber
                     );
 
-                    // Find the next episode by filtered array order
                     const nextEpisode = filteredEps[currentIndex + 1];
 
                     if (nextEpisode) {
-                        this.openModal(nextEpisode); // Open the modal for the next episode
+                        this.openModal(nextEpisode);
                     } else {
-                        this.nextEpisodeByNumberExists = false; // Hide the button
+                        this.nextEpisodeByNumberExists = false;
                     }
                 },
 
                 fetchPreviousEpisodeByNumber() {
                     this.spoilerVisible = false;
-                    // Get the filtered episodes based on current filter
                     const filteredEps = this.filteredEpisodes;
                     
-                    // Find the current episode's index in the filtered array
                     const currentIndex = filteredEps.findIndex(
                         (ep) => ep.EpisodeNumber === this.selectedEpisode.EpisodeNumber
                     );
 
-                    // Find the previous episode by filtered array order
                     const previousEpisode = filteredEps[currentIndex - 1];
 
                     if (previousEpisode) {
-                        this.openModal(previousEpisode); // Open the modal for the previous episode
+                        this.openModal(previousEpisode);
                     } else {
-                        this.previousEpisodeByNumberExists = false; // Hide the button
+                        this.previousEpisodeByNumberExists = false;
                     }
                 },
 
@@ -9487,7 +9171,6 @@
                 },
 
                 async sendTelegramMedia(payloadData) {
-                    // Block API request if this tab is not the owner
                     if (!this.isTabOwner) {
                         console.warn('sendTelegramMedia blocked: Tab is not the owner');
                         throw new Error('This tab is not the active tab. Please close other tabs and refresh.');
@@ -9563,7 +9246,6 @@
 
                     const sendGen = this.sendCancelGeneration;
 
-                    // Resolve size if not provided
                     let mediaSize = size;
                     if (!mediaSize) {
                         if (type === 'video') mediaSize = itemRef.Size;
@@ -10217,24 +9899,22 @@
                     if (this.guardIfCapturing()) return;
                     if (!this.episodes || this.episodes.length === 0) {
                         console.log('Episodes data is not loaded yet!');
-                        return; // Exit early if episodes data is not loaded
+                        return;
                     }
 
                     const direct = this.episodes.find(ep => ep.EpisodeNumber === episodeCode);
                     const episode = direct || this.episodes.find((ep) => this.normalizeEpisodeIdentifier(ep.EpisodeNumber) === this.normalizeEpisodeIdentifier(episodeCode));
 
                     if (episode) {
-                        this.openModal(episode); // Open the modal for the found episode
+                        this.openModal(episode);
                     } else {
                         console.log("Episode not found!", { requested: episodeCode, totalLoaded: this.episodes.length });
                     }
                 },
 
                 clearError() {
-                    // Reset ALL statuses for episode mangas (not just errors)
                     if (this.selectedEpisode?.EpisodeMangasIDs) {
                         this.selectedEpisode.EpisodeMangasIDs.forEach((manga) => {
-                            // Clear countdown interval if it exists
                             if (manga.countdownInterval) {
                                 clearInterval(manga.countdownInterval);
                                 manga.countdownInterval = null;
@@ -10244,10 +9924,8 @@
                         });
                     }
 
-                    // Reset ALL statuses for episode videos (not just errors)
                     if (this.selectedEpisode?.EpisodeVideosIDs) {
                         this.selectedEpisode.EpisodeVideosIDs.forEach((video) => {
-                            // Clear countdown interval if it exists
                             if (video.countdownInterval) {
                                 clearInterval(video.countdownInterval);
                                 video.countdownInterval = null;
@@ -10269,9 +9947,7 @@
                         });
                     }
 
-                    // Reset the status of selectedManga
                     if (this.selectedManga) {
-                        // Clear countdown interval if it exists
                         if (this.selectedManga.countdownInterval) {
                             clearInterval(this.selectedManga.countdownInterval);
                             this.selectedManga.countdownInterval = null;
@@ -10280,12 +9956,10 @@
                         this.selectedManga.status = null;
                     }
 
-                    // Reset the status of selectedEpisode
                     if (this.selectedEpisode) {
                         this.selectedEpisode.status = null;
                     }
 
-                    // Always reset ratelimiting flag
                     this.ratelimiting = false;
                     this.errorMessage = "";
                 },
@@ -10626,7 +10300,6 @@
                 processEpisodeNotes(notes) {
                     if (this.episodeNotesDebug) console.log('processEpisodeNotes called with notes:', notes);
                     
-                    // Skip processing for 'ماجيك كايتو2'
                     if (notes && notes.includes('ماجيك كايتو2')) {
                         if (this.episodeNotesDebug) console.log('Skipping processing for ماجيك كايتو2');
                         return notes;
@@ -10637,11 +10310,8 @@
                         return '';
                     }
                     
-                    // First, handle 'بالفيلم n' and 'الفيلم n' patterns
-                    // Match patterns like: "الفيلم 1", "بالفيلم 1", "الفيلم1", "بالفيلم1", "الفيلم 1.5", etc.
                     let processed = notes;
                     
-                    // Process "بالفيلم n" patterns first (more specific, to avoid matching it as "الفيلم")
                     processed = processed.replace(/(بالفيلم)\s*(\d+(?:\.\d+)?)/g, (match, filmWord, number) => {
                         if (this.episodeNotesDebug) console.log('Processing بالفيلم pattern:', { match, number });
                         const isDisabled = (this.selectedEpisode?.EpisodeVideosIDs?.some(video => 
@@ -10657,12 +10327,10 @@
                         return html;
                     });
                     
-                    // Then process "الفيلم n" patterns (Safari-compatible: check context manually)
                     processed = processed.replace(/(الفيلم)\s*(\d+(?:\.\d+)?)/g, (match, filmWord, number, offset, string) => {
-                        // Safari-compatible check: make sure it's not "بالفيلم" (already processed)
                         const beforeMatch = string.substring(Math.max(0, offset - 5), offset);
                         if (beforeMatch.endsWith('ب')) {
-                            return match; // This is part of "بالفيلم" which was already processed, skip
+                            return match;
                         }
                         
                         if (this.episodeNotesDebug) console.log('Processing الفيلم pattern:', { match, number });
@@ -10679,49 +10347,36 @@
                         return html;
                     });
                     
-                    // Then handle standalone numbers that weren't part of 'الفيلم n' or 'بالفيلم n'
-                    // Using a Safari-compatible approach without variable-length lookbehinds
                     processed = processed.replace(/(\d+(?:\.\d+)?)/g, (match, number, offset, string) => {
-                        // Check if this number is inside an HTML tag (already processed)
-                        // Simple and reliable: if there's a < before us with no > between it and us, we're inside a tag
                         const textBefore = string.substring(0, offset);
                         const lastOpenTag = textBefore.lastIndexOf('<');
                         const lastCloseTag = textBefore.lastIndexOf('>');
                         
-                        // If last < is after last >, we might be inside a tag
                         if (lastOpenTag > lastCloseTag) {
-                            // Check if the tag closes after our position
                             const tagEnd = string.indexOf('>', lastOpenTag);
                             if (tagEnd > offset) {
-                                return match; // Inside a tag, skip
+                                return match;
                             }
                         }
                         
-                        // Skip if part of "الفيلم n" or "بالفيلم n" (already processed)
                         const beforeContext = string.substring(Math.max(0, offset - 30), offset);
                         if (/الفيلم\s*\d*$/.test(beforeContext) || /ب\s*الفيلم\s*\d*$/.test(beforeContext) || /بالفيلم\s*\d*$/.test(beforeContext)) {
-                            return match; // Already processed
+                            return match;
                         }
                         
-                        // Skip if part of a larger alphanumeric string (but allow punctuation after numbers)
                         const charBefore = offset > 0 ? string[offset - 1] : ' ';
                         const charAfter = offset + match.length < string.length ? string[offset + match.length] : ' ';
                         
-                        // Define punctuation and spaces (these are allowed around numbers)
                         const punctuationOrSpace = /[\s،.\-:;!?،。、\u060C\u061B\u061F\u0640\u200C\u200D]/;
                         
-                        // Word characters (letters, digits, underscore) - but exclude punctuation
                         const wordCharRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-zA-Z0-9_]/;
                         
-                        // Skip if character before is a word character (and not punctuation/space)
                         if (!punctuationOrSpace.test(charBefore) && wordCharRegex.test(charBefore)) {
-                            return match; // Part of larger alphanumeric
+                            return match;
                         }
                         
-                        // Skip if character after is a word character (and not punctuation/space)
-                        // This allows numbers followed by punctuation like "1160،"
                         if (!punctuationOrSpace.test(charAfter) && wordCharRegex.test(charAfter)) {
-                            return match; // Part of larger alphanumeric
+                            return match;
                         }
                         
                         if (this.episodeNotesDebug) console.log('Processing standalone number:', match);
@@ -10737,18 +10392,14 @@
                         return '<span data-episode-type="number" data-episode-number="' + match + '"' + disabledAttr + ' class="episode-link text-lg font-bold underline text-yellow-300 bg-transparent border-0 ' + disabledClass + ' transition-all duration-100" style="pointer-events: ' + pointerEvents + '">' + match + '</span>';
                     });
                     
-                    // Add event delegation in the next tick after the DOM is updated
                     this.$nextTick(() => {
                         if (this.episodeNotesDebug) console.log('Setting up event delegation for episode links');
                         
-                        // Clean up any existing event listeners
                         if (this.episodeLinkClickHandler) {
                             document.removeEventListener('click', this.episodeLinkClickHandler);
                         }
                         
-                        // Create new handler
                         this.episodeLinkClickHandler = (e) => {
-                            // Only handle clicks on episode links
                             const link = e.target.closest('.episode-link:not([disabled])');
                             if (!link) return;
                             
@@ -10770,7 +10421,6 @@
                             this.openEpisodeModal(episodeNumber);
                         };
                         
-                        // Attach the event listener to the document
                         document.addEventListener('click', this.episodeLinkClickHandler);
                         if (this.episodeNotesDebug) console.log('Event listener added to document');
                     });
@@ -10781,17 +10431,17 @@
                 openEpisodeModal(episodeNumber) {
                     if (this.guardIfCapturing()) return;
                     if (!this.episodes || this.episodes.length === 0) {
-                        console.log('Episodes data is not loaded yet in openEpisodeModal!'); // Keeping this one, as it's a potential error case
+                        console.log('Episodes data is not loaded yet in openEpisodeModal!');
                         return;
                     }
 
-                    const episodeNumberString = String(episodeNumber); // Convert episodeNumber to string
+                    const episodeNumberString = String(episodeNumber);
                     const episode = this.episodes.find(ep => ep.EpisodeNumber === episodeNumberString);
 
                     if (episode) {
                         this.openModal(episode);
                     } else {
-                        console.log("Episode not found in episodes array in openEpisodeModal!"); // Keeping this one for error case
+                        console.log("Episode not found in episodes array in openEpisodeModal!");
                     }
                 },
 
@@ -10818,7 +10468,6 @@
                     if (this.menuOpen) {
                         this.comntoVisible = false;
                     }
-                    // Close search popup when menu is opened
                     if (this.menuOpen && this.searchOpen) {
                         this.searchOpen = false;
                         document.removeEventListener("click", this.closeSearchOutside);
@@ -10826,7 +10475,6 @@
                 },
 
                 closeMenu(event) {
-                    // Check if the click is outside the menu
                     if (!event.target.closest(".menu-container")) {
                         this.menuOpen = false;
                     }
@@ -10890,7 +10538,7 @@
                 },
 
                 openDirectWindow(category) {
-                    document.body.style.overflow = 'hidden'; // Block background scrolling
+                    document.body.style.overflow = 'hidden';
                     this.selectedCategory = category;
                     this.showDirectWindow = true;
                     this.menuOpen = false;
@@ -10931,7 +10579,6 @@
                             navigator.clipboard.writeText(value);
                             return;
                         }
-                        // Fallback
                         const textarea = document.createElement('textarea');
                         textarea.value = value;
                         textarea.style.position = 'fixed';
@@ -10942,7 +10589,6 @@
                         document.execCommand('copy');
                         document.body.removeChild(textarea);
                     } catch (e) {
-                        // best-effort copy
                     }
                 },
 
@@ -10961,14 +10607,12 @@
                     if (!chapter) return;
                     const fileId = manga?.MangaFileID;
 
-                    // Mark failed row as success (if exists)
                     const failedEntry = this.mangaFailedLog.find(e => e.chapter === chapter);
                     if (failedEntry) {
                         failedEntry.status = 'success';
                         failedEntry.error = '';
                     }
 
-                    // Add to sent log (unique by chapter)
                     const existing = this.mangaSentLog.find(e => e.chapter === chapter);
                     if (!existing) {
                         this.mangaSentLog.push({ chapter, fileId, sentAt: Date.now() });
@@ -10984,7 +10628,7 @@
 
                     const existing = this.mangaFailedLog.find(e => e.chapter === chapter);
                     if (existing) {
-                        existing.error = message; // overwrite error
+                        existing.error = message;
                         existing.fileId = fileId ?? existing.fileId;
                         existing.fileSize = fileSize ?? existing.fileSize;
                         existing.status = 'failed';
@@ -11005,7 +10649,6 @@
                     if (this.checkAnyRetryRunning()) {
                         this.showRetryStopConfirmation = true;
                     } else {
-                        // Remove successful rows from failed log before closing
                         this.mangaFailedLog = this.mangaFailedLog.filter(e => e.status !== 'success');
                         this.failedMangaQueue = [];
                         this.failedQueueStats = {
@@ -11025,7 +10668,6 @@
                     if (!entry || entry.status === 'success' || entry.status === 'retrying') return;
                     entry.status = 'retrying';
                     
-                    // Update Current Status
                     this.retryQueueCurrent = {
                         chapter: entry.chapter,
                         status: 'sending',
@@ -11033,7 +10675,6 @@
                     };
                     
                     try {
-                        // Check daily limit before attempting resend
                         const canDownload = await this.checkDailyLimit();
                         if (!canDownload) {
                             entry.status = 'failed';
@@ -11049,7 +10690,6 @@
                             file_id: entry.fileId,
                             caption: this.buildMangaCaption(entry.chapter, entry.fileSize)
                         });
-                        // Increment daily limit only on success
                         await this.incrementDailyLimit();
                         
                         entry.status = 'success';
@@ -11057,30 +10697,26 @@
                         this.retryQueueCurrent.status = 'success';
                         this.showSuccessHint('تم إرسال الفصل للخاص');
                         
-                        // Move this chapter from failed → sent in the aggregate stats (MAIN stats)
                         if (this.mangaQueueStats.failed > 0) {
                             this.mangaQueueStats.failed -= 1;
                         }
                         this.mangaQueueStats.sent += 1;
                         
-                        // also record as success
                         this.recordMangaSuccess({ MangaNumber: entry.chapter, MangaFileID: entry.fileId });
                     } catch (error) {
                         entry.status = 'failed';
-                        entry.error = String(error?.message ?? error ?? 'Unknown error'); // overwrite
+                        entry.error = String(error?.message ?? error ?? 'Unknown error');
                         this.retryQueueCurrent.status = 'failed';
                         this.retryQueueCurrent.error = entry.error;
                     }
                 },
 
                 async retryAllFailedMangas() {
-                    // Block API request if this tab is not the owner
                     if (!this.isTabOwner) {
                         console.warn('retryAllFailedMangas blocked: Tab is not the owner');
                         return;
                     }
                     
-                    // Prevent starting if main queue is running
                     if (this.isMangaQueueRunning && !this.isMangaQueuePaused) return;
                     if (this.isRetryAllFailedRunning) return;
                     const retryables = this.mangaFailedLog.filter(e => e.status !== 'success');
@@ -11090,14 +10726,13 @@
                     this.retryAllFailedProgress = { done: 0, total: retryables.length };
                     try {
                         for (const entry of retryables) {
-                            if (!this.isRetryAllFailedRunning) break; // Check stop flag
+                            if (!this.isRetryAllFailedRunning) break;
                             
                             await this.retryFailedManga(entry);
                             this.retryAllFailedProgress.done += 1;
                             
-                            if (!this.isRetryAllFailedRunning) break; // Check stop flag
+                            if (!this.isRetryAllFailedRunning) break;
                             
-                            // delay between retries (queue-style)
                             await new Promise(resolve => setTimeout(resolve, this.fastingStatusClearTimeout));
                         }
                     } finally {
@@ -11105,8 +10740,6 @@
                         this.retryQueueCurrent = { chapter: null, status: null, error: null };
                     }
                 },
-
-                // --- Retry Queue & Enhanced Logic ---
 
                 toggleFailedQueue(entry) {
                     const index = this.failedMangaQueue.findIndex(e => e.chapter === entry.chapter);
@@ -11135,14 +10768,12 @@
                     this.isRetryQueueRunning = false;
                     this.isRetryQueuePaused = false;
                     this.isRetryQueuePauseRequested = false;
-                    this.failedMangaQueue = []; // Clear queue as requested
+                    this.failedMangaQueue = [];
                     this.retryQueueCurrent = { chapter: null, status: null, error: null };
                 },
                 
                 async startFailedQueue() {
                     if (this.isRetryQueueRunning || this.isRetryAllFailedRunning) return;
-                    // If main queue is running and NOT paused, we cannot start.
-                    // BUT if it IS paused, we CAN start.
                     if (this.isMangaQueueRunning && !this.isMangaQueuePaused) return;
 
                     if (this.failedMangaQueue.length === 0) {
@@ -11150,7 +10781,6 @@
                          return;
                     }
 
-                    // Check daily limit
                     if (this.failedMangaQueue.length > this.remainingDownloads) {
                         this.showLimitModal = true;
                         return;
@@ -11160,7 +10790,6 @@
                     this.isRetryQueuePaused = false;
                     this.isRetryQueuePauseRequested = false;
                     
-                    // Reset stats for this run
                     this.failedQueueStats = {
                         total: this.failedMangaQueue.length,
                         sent: 0,
@@ -11176,7 +10805,6 @@
                 async processFailedQueue() {
                      let i = 0;
                      while (i < this.failedMangaQueue.length && this.isRetryQueueRunning) {
-                         // Check Pause
                          if (this.isRetryQueuePauseRequested) {
                              this.isRetryQueuePaused = true;
                              this.isRetryQueuePauseRequested = false;
@@ -11184,12 +10812,11 @@
                          
                          if (this.isRetryQueuePaused) {
                              await new Promise(r => setTimeout(r, 100));
-                             continue; // Retry loop to check pause again
+                             continue;
                          }
 
                          const entry = this.failedMangaQueue[i];
                          
-                         // Check daily limit again
                          const canDownload = await this.checkDailyLimit();
                          if (!canDownload) {
                              this.showLimitModal = true;
@@ -11216,7 +10843,6 @@
                              this.recordMangaSuccess({ MangaNumber: entry.chapter });
                              
                              this.failedQueueStats.sent++;
-                             // Update main stats too
                              if (this.mangaQueueStats.failed > 0) this.mangaQueueStats.failed--;
                              this.mangaQueueStats.sent++;
                             
@@ -11236,7 +10862,6 @@
                          i++;
                          this.failedQueueStats.waiting = this.failedMangaQueue.length - i;
                          
-                         // Delay
                          if (i < this.failedMangaQueue.length && this.isRetryQueueRunning) {
                              await new Promise(r => setTimeout(r, this.fastingStatusClearTimeout));
                          }
@@ -11269,7 +10894,6 @@
                     this.showMangaFailedLogModal = false;
                 },
 
-                // Modified retryFailedManga to check concurrency
                 async retryFailedMangaWrapped(entry) {
                     if (this.isRetryAllFailedRunning || this.isRetryQueueRunning) return;
                     if (this.isMangaQueueRunning && !this.isMangaQueuePaused) return;
@@ -11278,7 +10902,6 @@
                 },
 
                 handleMangaNumberFocus(field) {
-                    // When focusing on empty field, set to min value
                     if (this[field] === null || this[field] === undefined || this[field] === '') {
                         this.$nextTick(() => {
                             this[field] = this.minMangaNumber;
@@ -11323,14 +10946,12 @@
                 },
 
                 startMangaQueue() {
-                    // Block API request if this tab is not the owner
                     if (!this.isTabOwner) {
                         console.warn('startMangaQueue blocked: Tab is not the owner');
                         this.tabLockModal = true;
                         return;
                     }
                     
-                    // Prevent starting if retry queue is running
                     if (this.isRetryAllFailedRunning) {
                         return;
                     }
@@ -11340,10 +10961,8 @@
                         return;
                     }
 
-                    // Get all mangas
                     const allMangas = this.groupedMangas.flatMap(group => group.items);
                     
-                    // Filter mangas in range (handles "0" as valid manga number)
                     this.mangaQueue = allMangas.filter(manga => {
                         const num = parseFloat(manga.MangaNumber);
                         return !isNaN(num) && num >= this.mangaStartNumber && num <= this.mangaEndNumber;
@@ -11354,13 +10973,11 @@
                         return;
                     }
 
-                    // Check daily limit
                     if (this.mangaQueue.length > this.remainingDownloads) {
                         this.showLimitModal = true;
                         return;
                     }
 
-                    // Initialize queue
                     this.mangaQueueIndex = 0;
                     this.isMangaQueueRunning = true;
                     this.isMangaQueuePaused = false;
@@ -11378,49 +10995,40 @@
                         remainingTime: this.mangaQueue.length * (this.fastingStatusClearTimeout / 1000)
                     };
 
-                    // Clear any existing process
                     if (this.mangaQueueTimeoutId !== null) {
                         clearTimeout(this.mangaQueueTimeoutId);
                         this.mangaQueueTimeoutId = null;
                     }
                     this.mangaQueueProcessId = null;
 
-                    // Start timer
                     this.mangaQueueInterval = setInterval(() => {
                         if (this.isMangaQueueRunning && !this.isMangaQueuePaused) {
                             const now = Date.now();
                             const elapsed = Math.floor((now - this.mangaQueueStartTime - this.mangaQueueTotalPausedTime) / 1000);
-                            // Calculate remaining time based on actual remaining items
                             const remainingItems = this.mangaQueueStats.waiting;
                             const estimatedTimePerItem = this.fastingStatusClearTimeout / 1000;
-                            // If no items waiting, remaining time should be 0
                             const remaining = remainingItems > 0 ? Math.max(0, remainingItems * estimatedTimePerItem) : 0;
                             this.mangaQueueStats.elapsedTime = elapsed;
                             this.mangaQueueStats.remainingTime = remaining;
                         } else if (!this.isMangaQueueRunning && this.mangaQueueStats.total > 0) {
-                            // When finished, ensure remaining time is 0
                             if (this.mangaQueueStats.waiting === 0) {
                                 this.mangaQueueStats.remainingTime = 0;
                             }
                         }
                     }, 1000);
 
-                    // Start processing
                     this.processMangaQueue();
                 },
 
                 async processMangaQueue() {
-                    // Generate unique process ID to prevent duplicate processing
                     const currentProcessId = Date.now() + Math.random();
                     this.mangaQueueProcessId = currentProcessId;
 
                     const processNext = async (processId) => {
-                        // Verify this is still the active process
                         if (this.mangaQueueProcessId !== processId) {
-                            return; // Another process has started, exit
+                            return;
                         }
 
-                        // Check if we should continue
                         if (!this.isMangaQueueRunning || this.mangaQueueIndex >= this.mangaQueue.length) {
                             if (this.mangaQueueIndex >= this.mangaQueue.length) {
                                 this.finishMangaQueue();
@@ -11428,35 +11036,29 @@
                             return;
                         }
 
-                        // Check if pause was requested - wait for current send to complete
                         if (this.isMangaQueuePauseRequested && !this.isMangaQueueSending) {
                             this.isMangaQueuePaused = true;
                             this.isMangaQueuePauseRequested = false;
-                            this.mangaQueuePausedTime = Date.now(); // Record when pause started
+                            this.mangaQueuePausedTime = Date.now();
                             this.mangaQueueTimeoutId = setTimeout(() => processNext(processId), 100);
                             return;
                         }
 
-                        // Wait if paused (but not if pause is just being requested)
                         if (this.isMangaQueuePaused && !this.isMangaQueuePauseRequested) {
                             this.mangaQueueTimeoutId = setTimeout(() => processNext(processId), 100);
                             return;
                         }
 
-                        // Mark as sending
                         this.isMangaQueueSending = true;
                         const currentIndex = this.mangaQueueIndex;
                         const manga = this.mangaQueue[currentIndex];
-                        // Show only the current chapter status
                         this.mangaQueueCurrent.chapter = manga?.MangaNumber ?? null;
                         this.mangaQueueCurrent.status = 'sending';
                         this.mangaQueueCurrent.error = null;
                         
-                        // Update waiting count before sending
                         this.mangaQueueStats.waiting = this.mangaQueue.length - currentIndex - 1;
 
                         try {
-                            // Check daily limit before sending
                             const canDownload = await this.checkDailyLimit();
                             if (!canDownload) {
                                 throw new Error(`Daily download limit of ${this.maxDailyDownloads} reached.`);
@@ -11467,9 +11069,7 @@
                                 file_id: manga.MangaFileID,
                                 caption: this.buildMangaCaption(manga.MangaNumber, manga.MangaFileSize)
                             });
-                            // Only increment if we're still on the same index (prevent duplicates)
                             if (this.mangaQueueIndex === currentIndex) {
-                                // Increment daily limit on success
                                 await this.incrementDailyLimit();
 
                                 this.mangaQueueCurrent.status = 'success';
@@ -11477,43 +11077,32 @@
                                 this.recordMangaSuccess(manga);
                                 this.mangaQueueStats.sent++;
                                 this.mangaQueueIndex++;
-                                // Update waiting count after increment
                                 this.mangaQueueStats.waiting = this.mangaQueue.length - this.mangaQueueIndex;
-                                // If no more items, set remaining time to 0 immediately
                                 if (this.mangaQueueStats.waiting === 0) {
                                     this.mangaQueueStats.remainingTime = 0;
                                 }
                             }
                         } catch (error) {
-                            // console.error(error);
-                            // Only increment if we're still on the same index
                             if (this.mangaQueueIndex === currentIndex) {
                                 this.mangaQueueCurrent.status = 'failed';
                                 this.mangaQueueCurrent.error = String(error?.message ?? error ?? 'Unknown error');
                                 this.recordMangaFailure(manga, error);
                                 this.mangaQueueStats.failed++;
                                 this.mangaQueueIndex++;
-                                // Update waiting count after increment
                                 this.mangaQueueStats.waiting = this.mangaQueue.length - this.mangaQueueIndex;
-                                // If no more items, set remaining time to 0 immediately
                                 if (this.mangaQueueStats.waiting === 0) {
                                     this.mangaQueueStats.remainingTime = 0;
                                 }
                             }
                         }
-
-                        // Mark as not sending
                         this.isMangaQueueSending = false;
 
-                        // Check if pause was requested during send
                         if (this.isMangaQueuePauseRequested) {
                             this.isMangaQueuePaused = true;
                             this.isMangaQueuePauseRequested = false;
-                            this.mangaQueuePausedTime = Date.now(); // Record when pause started
+                            this.mangaQueuePausedTime = Date.now();
                             return;
                         }
-
-                        // Wait before next send
                         if (this.isMangaQueueRunning && this.mangaQueueIndex < this.mangaQueue.length) {
                             this.mangaQueueTimeoutId = setTimeout(() => processNext(processId), this.fastingStatusClearTimeout);
                         } else if (this.mangaQueueIndex >= this.mangaQueue.length) {
@@ -11526,7 +11115,6 @@
 
                 toggleMangaQueuePause() {
                     if (this.isMangaQueuePaused) {
-                        // Resume - calculate paused time and add to total
                         if (this.mangaQueuePausedTime > 0) {
                             const pausedDuration = Date.now() - this.mangaQueuePausedTime;
                             this.mangaQueueTotalPausedTime += pausedDuration;
@@ -11535,7 +11123,6 @@
                         this.isMangaQueuePaused = false;
                         this.isMangaQueuePauseRequested = false;
                     } else {
-                        // Request pause - will wait for current send to complete
                         this.isMangaQueuePauseRequested = true;
                     }
                 },
@@ -11568,7 +11155,6 @@
                     this.mangaQueueStartTime = null;
                     this.mangaQueuePausedTime = 0;
                     this.mangaQueueTotalPausedTime = 0;
-                    // Clear UI/log state
                     this.mangaQueueCurrent = { chapter: null, status: null, error: null };
                     this.mangaSentLog = [];
                     this.mangaFailedLog = [];
@@ -11580,12 +11166,10 @@
                 },
 
                 finishMangaQueue() {
-                    // Called when queue finishes naturally - don't reset stats
                     this.isMangaQueueRunning = false;
                     this.isMangaQueuePaused = false;
                     this.isMangaQueueSending = false;
                     this.isMangaQueuePauseRequested = false;
-                    // Ensure waiting is 0 and remaining time is 0
                     this.mangaQueueStats.waiting = 0;
                     this.mangaQueueStats.remainingTime = 0;
                     if (this.mangaQueueInterval) {
@@ -11597,19 +11181,17 @@
                         this.mangaQueueTimeoutId = null;
                     }
                     this.mangaQueueProcessId = null;
-                    // Keep stats visible, just stop the process
                 },
 
                 resetMangaQueue() {
                     this.dismissSuccessHint();
-                    // Reset everything for a new queue
                     this.stopMangaQueue();
                     this.mangaStartNumber = null;
                     this.mangaEndNumber = null;
                 },
 
                 resetEpisodesView() {
-                    this.selectedEpisode = null; // Reset to show episodes list
+                    this.selectedEpisode = null;
                 },
 
                 resetMoviesView() {
@@ -11617,7 +11199,7 @@
                 },
 
                 resetMangasView() {
-                    this.selectedManga = null; // Reset to show mangas list
+                    this.selectedManga = null;
                 },
 
                 closeDirectWindow() {
@@ -11720,11 +11302,9 @@
                 },
 
                 resetStatusForEpisodeManga() {
-                    // Reset status for all videos and episode mangas when closing modal 
                     if (this.selectedEpisode) {
                         if (this.selectedEpisode.EpisodeVideosIDs) {
                         this.selectedEpisode.EpisodeVideosIDs.forEach((video, index) => {
-                            // Clear countdown interval if it exists
                             if (video.countdownInterval) {
                                 clearInterval(video.countdownInterval);
                                 video.countdownInterval = null;
@@ -11735,7 +11315,6 @@
                         }
                         if (this.selectedEpisode.EpisodeMangasIDs) {
                         this.selectedEpisode.EpisodeMangasIDs.forEach((manga, index) => {
-                            // Clear countdown interval if it exists
                             if (manga.countdownInterval) {
                                 clearInterval(manga.countdownInterval);
                                 manga.countdownInterval = null;
@@ -11745,7 +11324,6 @@
                         });
                         }
                     }
-                    // Reset ratelimiting flag
                     this.ratelimiting = false;
                 },
 
@@ -11892,9 +11470,8 @@
 
                 openMangaModal(chapterNumber) {
                     if (this.guardIfCapturing()) return;
-                    document.body.style.overflow = 'hidden'; // Block background scrolling
+                    document.body.style.overflow = 'hidden';
                     const chapterString = String(chapterNumber);
-                    // Search through all available mangas
                     const allMangas = this.groupedMangas.flatMap(group => group.items);
                     const manga = allMangas.find(m => m.MangaNumber === chapterString);
                     
@@ -11903,7 +11480,6 @@
                         this.selectedCategory = 'mangas';
                         this.showDirectWindow = true;
                         
-                        // Find which group contains this manga
                         const groupIndex = this.groupedMangas.findIndex(group => 
                             group.items.some(m => m.MangaNumber === chapterString)
                         );
@@ -11911,7 +11487,7 @@
                             this.activeTab.mangas = groupIndex;
                         }
                     } else {
-                        const enableDebug = false; // Set to true to enable debug logging
+                        const enableDebug = false;
                         if (enableDebug) console.log("Manga chapter not found");
                     }
                 },
@@ -11925,7 +11501,7 @@
                     const checkedFilters = Object.keys(this.searchFilters).filter(key => this.searchFilters[key]);
 
                     if (checkedFilters.length === 0) {
-                        this.searchFilters[changedKey] = true; // Prevent unchecking the last one
+                        this.searchFilters[changedKey] = true;
                     }
                 },
 
@@ -11935,7 +11511,6 @@
                     if (this.searchOpen) {
                         this.comntoVisible = false;
                     }
-                    // Close menu when search is opened
                     if (this.searchOpen && this.menuOpen) {
                         this.menuOpen = false;
                     }
@@ -11948,16 +11523,12 @@
                     }
                 },
                 closeSearchOutside(e) {
-                    // Check if click is outside the search popup
                     const popup = document.querySelector("[class*='absolute'][class*='bg-gray-800']");
                     
-                    // Check if click is on the search indicator text
                     const searchIndicator = e.target.closest('span.inline-block.text-base.text-black.cursor-pointer');
                     
-                    // Check if click is on the search button
                     const searchButton = e.target.closest('button[class*="bg-gray-700"][class*="rounded-full"]');
                     
-                    // If popup exists and click is outside both popup, search indicator, and search button
                     if (popup && !popup.contains(e.target) && !searchIndicator && !searchButton) {
                         this.searchOpen = false;
                         document.removeEventListener("click", this.closeSearchOutside);
@@ -11993,27 +11564,21 @@
                 },
 
                 startCountdown(index) {
-                    // Safety check - ensure selectedEpisode and EpisodeVideosIDs exist
                     if (!this.selectedEpisode || !this.selectedEpisode.EpisodeVideosIDs || !this.selectedEpisode.EpisodeVideosIDs[index]) {
                         console.warn('Cannot start countdown: selectedEpisode or EpisodeVideosIDs is null/undefined');
                         return;
                     }
                     
-                    // Initialize countdown value from statusClearTimeout (converted to seconds)
                     const countdownSeconds = Math.ceil(this.statusClearTimeout / 1000);
                     this.selectedEpisode.EpisodeVideosIDs[index].countdown = countdownSeconds;
                     
-                    // Clear any existing interval for this video
                     if (this.selectedEpisode.EpisodeVideosIDs[index].countdownInterval) {
                         clearInterval(this.selectedEpisode.EpisodeVideosIDs[index].countdownInterval);
                     }
                     
-                    // Store a reference to selectedEpisode for use in the interval closure
                     const episodeRef = this.selectedEpisode;
                     
-                    // Start the countdown interval
                     this.selectedEpisode.EpisodeVideosIDs[index].countdownInterval = setInterval(() => {
-                        // Check if selectedEpisode and its properties still exist
                         if (!episodeRef || !episodeRef.EpisodeVideosIDs || !episodeRef.EpisodeVideosIDs[index]) {
                             clearInterval(this.selectedEpisode?.EpisodeVideosIDs?.[index]?.countdownInterval);
                             console.warn('Cleared interval because selectedEpisode or EpisodeVideosIDs no longer exists');
@@ -12023,7 +11588,6 @@
                         if (episodeRef.EpisodeVideosIDs[index].countdown > 0) {
                             episodeRef.EpisodeVideosIDs[index].countdown--;
                         } else {
-                            // Clear the interval when countdown reaches 0
                             clearInterval(episodeRef.EpisodeVideosIDs[index].countdownInterval);
                             episodeRef.EpisodeVideosIDs[index].countdownInterval = null;
                         }
@@ -12031,27 +11595,21 @@
                 },
 
                 startCountdownForManga(index) {
-                    // Safety check - ensure selectedEpisode and EpisodeMangasIDs exist
                     if (!this.selectedEpisode || !this.selectedEpisode.EpisodeMangasIDs || !this.selectedEpisode.EpisodeMangasIDs[index]) {
                         console.warn('Cannot start countdown for manga: selectedEpisode or EpisodeMangasIDs is null/undefined');
                         return;
                     }
                     
-                    // Initialize countdown value from statusClearTimeout (converted to seconds)
                     const countdownSeconds = Math.ceil(this.statusClearTimeout / 1000);
                     this.selectedEpisode.EpisodeMangasIDs[index].countdown = countdownSeconds;
                     
-                    // Clear any existing interval for this manga
                     if (this.selectedEpisode.EpisodeMangasIDs[index].countdownInterval) {
                         clearInterval(this.selectedEpisode.EpisodeMangasIDs[index].countdownInterval);
                     }
                     
-                    // Store a reference to selectedEpisode for use in the interval closure
                     const episodeRef = this.selectedEpisode;
                     
-                    // Start the countdown interval
                     this.selectedEpisode.EpisodeMangasIDs[index].countdownInterval = setInterval(() => {
-                        // Check if selectedEpisode and its properties still exist
                         if (!episodeRef || !episodeRef.EpisodeMangasIDs || !episodeRef.EpisodeMangasIDs[index]) {
                             clearInterval(this.selectedEpisode?.EpisodeMangasIDs?.[index]?.countdownInterval);
                             console.warn('Cleared interval because selectedEpisode or EpisodeMangasIDs no longer exists');
@@ -12061,7 +11619,6 @@
                         if (episodeRef.EpisodeMangasIDs[index].countdown > 0) {
                             episodeRef.EpisodeMangasIDs[index].countdown--;
                         } else {
-                            // Clear the interval when countdown reaches 0
                             clearInterval(episodeRef.EpisodeMangasIDs[index].countdownInterval);
                             episodeRef.EpisodeMangasIDs[index].countdownInterval = null;
                         }
@@ -12069,27 +11626,21 @@
                 },
 
                 startCountdownForMangaD() {
-                    // Safety check - ensure selectedManga exists
                     if (!this.selectedManga) {
                         console.warn('Cannot start countdown for mangaD: selectedManga is null/undefined');
                         return;
                     }
                     
-                    // Initialize countdown value from statusClearTimeout (converted to seconds)
                     const countdownSeconds = Math.ceil(this.statusClearTimeout / 1000);
                     this.selectedManga.countdown = countdownSeconds;
                     
-                    // Clear any existing interval for this manga
                     if (this.selectedManga.countdownInterval) {
                         clearInterval(this.selectedManga.countdownInterval);
                     }
                     
-                    // Store a reference to selectedManga for use in the interval closure
                     const mangaRef = this.selectedManga;
                     
-                    // Start the countdown interval
                     this.selectedManga.countdownInterval = setInterval(() => {
-                        // Check if selectedManga still exists
                         if (!mangaRef) {
                             clearInterval(this.selectedManga?.countdownInterval);
                             console.warn('Cleared interval because selectedManga no longer exists');
@@ -12099,19 +11650,15 @@
                         if (mangaRef.countdown > 0) {
                             mangaRef.countdown--;
                         } else {
-                            // Clear the interval when countdown reaches 0
                             clearInterval(mangaRef.countdownInterval);
                             mangaRef.countdownInterval = null;
                         }
                     }, 1000);
                 },
 
-                // Tab Locking System Methods
                 initTabLocking() {
-                    // Generate unique tab ID
                     this.tabId = `tab-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
                     
-                    // Try SharedWorker first
                     try {
                         if (typeof SharedWorker !== 'undefined') {
                             const worker = new SharedWorker('./tab-shared-worker.js', { name: 'dcrefbot-tab-worker' });
@@ -12125,7 +11672,6 @@
                                         this.isTabOwner = true;
                                         this.tabLockModal = false;
                                         console.log('Tab ownership granted');
-                                        // Initialize InstantDB and load data when ownership is granted
                                         if (this.userJoined && !this._db) {
                                             this.initInstantDB();
                                         }
@@ -12159,7 +11705,6 @@
                                         break;
                                         
                                     case 'heartbeat-request':
-                                        // Respond to heartbeat request
                                         if (this.tabWorkerPort) {
                                             this.tabWorkerPort.postMessage({
                                                 type: 'heartbeat',
@@ -12173,13 +11718,11 @@
                             
                             this.tabWorkerPort.start();
                             
-                            // Request ownership
                             this.tabWorkerPort.postMessage({
                                 type: 'init',
                                 tabId: this.tabId
                             });
                             
-                            // Start heartbeat
                             this.tabHeartbeatInterval = setInterval(() => {
                                 if (this.tabWorkerPort) {
                                     this.tabWorkerPort.postMessage({
@@ -12196,7 +11739,6 @@
                         console.warn('SharedWorker not supported, using BroadcastChannel + Web Locks:', e);
                     }
                     
-                    // Fallback: Use BroadcastChannel API
                     try {
                         if (typeof BroadcastChannel !== 'undefined') {
                             this.tabBroadcastChannel = new BroadcastChannel('dcrefbot-tab-broadcast');
@@ -12209,7 +11751,6 @@
                                         if (tabId === this.tabId) {
                                             this.isTabOwner = true;
                                             this.tabLockModal = false;
-                                            // Initialize InstantDB and load data when ownership is granted
                                             if (this.userJoined && !this._db) {
                                                 this.initInstantDB();
                                             }
@@ -12244,7 +11785,6 @@
                                         break;
                                         
                                     case 'ownership-released':
-                                        // Try to claim ownership
                                         this.tabBroadcastChannel.postMessage({
                                             type: 'request-ownership',
                                             tabId: this.tabId,
@@ -12254,7 +11794,6 @@
                                 }
                             };
                             
-                            // Request ownership via BroadcastChannel
                             this.tabBroadcastChannel.postMessage({
                                 type: 'request-ownership',
                                 tabId: this.tabId,
@@ -12499,14 +12038,11 @@
                 } catch (e) {}
                 this.loadingModeResolved = true;
                 
-                // Initialize tab locking system FIRST
                 this.initTabLocking();
                 
-                // Run the Telegram check before mounting the app.
                 await this.checkTelegram();
                 this.loadRelatedEpisodesData();
                 this.startDailyLimitRowIdResync();
-                // If the user is valid, immediately load data.
                 if (this.userJoined && this.isTabOwner) {
                     if (!this._db) {
                         this.initInstantDB();
@@ -12516,16 +12052,12 @@
             },
 
             mounted() {
-                // 1. Clean URL and set Canonical to prevent Comnto 400 errors
-                // Remove Telegram's huge hash to fix "preload id must be UUID" and "page_url too big"
                 if (window.location.hash.includes('tgWebAppData') || window.location.hash.includes('tgWebApp')) {
                     console.log('Full URL before cleaning:', window.location.href);
-                    // Use replaceState to clean the URL without reloading
                     const cleanUrl = window.location.origin + window.location.pathname + window.location.search;
                     window.history.replaceState(null, null, cleanUrl);
                 }
 
-                // Ensure Canonical Link exists and points to clean URL
                 let canonical = document.querySelector("link[rel='canonical']");
                 if (!canonical) {
                     canonical = document.createElement('link');
@@ -12534,15 +12066,10 @@
                 }
                 canonical.href = window.location.origin + window.location.pathname;
 
-                // Comnto script will be loaded on-demand when user opens the comments
-
-                // Existing mounted logic
-                // Initialize InstantDB only if this tab is the owner
                 if (this.isTabOwner && !this._db) {
                     this.initInstantDB();
                 }
                 
-                // Cleanup on unmount
                 window.addEventListener('beforeunload', () => {
                     this.stopDailyLimitRowIdResync();
                     this.releaseTabLock();
@@ -12552,19 +12079,16 @@
                     this.releaseTabLock();
                 });
 
-                const enableDebug = false; // Set to true to enable debug logging
+                const enableDebug = false;
                 
                 this.nowIntervalId = setInterval(() => {
                     this.now = Date.now();
                 }, 1000);
                 
-                // Hide loading spinner when Vue is ready
                 document.body.classList.add('vue-ready');
 
-                // Start inactivity tracking and countdown
                 this.setupInactivityTracking();
                 
-                // Initialize zikr rotation
                 this.shuffleZikr();
                 this.intervalZikrId = setInterval(this.shuffleZikr, 3000);
                 
@@ -12580,7 +12104,6 @@
                     this.guardEventIfCapturing(event);
                 };
                 document.addEventListener('click', this._captureInteractionGuardHandler, true);
-                // Ensure data is loaded before calling openSpecificEpisode
                 const urlParams = new URLSearchParams(window.location.search);
                 const episodeCode = urlParams.get("code");
                 const filterParam = urlParams.get("filter");
@@ -12588,9 +12111,8 @@
                 if (filterParam) console.log('filter-param-init:', { filter: filterParam });
 
                 if (episodeCode && this.episodes && this.episodes.length > 0) {
-                    this.openSpecificEpisode(episodeCode); // Open the episode if data is loaded
+                    this.openSpecificEpisode(episodeCode);
                 } else {
-                    // If the data isn't loaded yet, watch for changes
                     if (episodeCode) {
                         this.$watch('episodes', (newEpisodes) => {
                             if (newEpisodes && newEpisodes.length > 0) {
@@ -12607,18 +12129,15 @@
                 this.updateFontSize();
                 window.addEventListener('resize', this.updateFontSize);
 
-                // Initialize episode time ago and set up interval to update it
                 if (enableDebug) {
                     console.log('mounted - Setting up episode time ago timer');
                     console.log('mounted - ep value:', this.ep);
                     console.log('mounted - episodes length:', this.episodes.length);
                 }
                 
-                // Only call if episodes are already loaded
                 if (this.episodes && this.episodes.length > 0) {
                     this.updateEpisodeTimeAgo();
                 } else {
-                    // If episodes aren't loaded yet, watch for changes
                     this.$watch('episodes', (newEpisodes) => {
                         if (newEpisodes && newEpisodes.length > 0) {
                             if (enableDebug) console.log('Episodes loaded, updating time ago');
@@ -12630,28 +12149,25 @@
                 this.episodeTimeInterval = setInterval(() => {
                     if (enableDebug) console.log('Timer tick - updating episode time ago');
                     this.updateEpisodeTimeAgo();
-                }, 60000); // Update every minute
+                }, 60000);
                 if (enableDebug) console.log('mounted - Timer set up complete');
                 
-                // Load manga update date and set up interval
                 if (enableDebug) console.log('mounted - Loading manga update date');
                 this.loadMangaUpdateDate();
                 
                 this.mangaTimeInterval = setInterval(() => {
                     if (enableDebug) console.log('Timer tick - updating manga time ago');
                     this.updateMangaTimeAgo();
-                }, 60000); // Update every minute
+                }, 60000);
                 if (enableDebug) console.log('mounted - Manga timer set up complete');
                 
-                // Initialize countdown timer for episode broadcast date
                 this.calculateCountdown();
                 this.episodeBroadcastCountdownInterval = setInterval(() => {
                     if (enableDebug) console.log('Timer tick - updating countdown');
                     this.calculateCountdown();
-                }, 60000); // Update every minute
+                }, 60000);
                 if (enableDebug) console.log('mounted - Countdown timer set up complete');
 
-                // Load movie release date and set up interval for countdown/time-ago
                 this.loadMovieReleaseDate();
                 this.movieTimingInterval = setInterval(() => {
                     this.updateMovieTiming();
@@ -12672,7 +12188,6 @@
                     this.refreshNextEpisodeState();
                 }, 60000);
 
-                // Already loaded via loadUpcomingDates()
                 this.$watch(
                     'nextMangaInfo',
                     () => {
@@ -12694,7 +12209,6 @@
 
             unmounted() {
 
-                // Clear any app-specific intervals/timeouts
                 if (this.intervalId) clearInterval(this.intervalId);
                 if (this.intervalZikrId) clearInterval(this.intervalZikrId);
                 if (this.episodeTimeInterval) clearInterval(this.episodeTimeInterval);
@@ -12708,7 +12222,6 @@
                 if (this.nextMangaIntervalId) clearInterval(this.nextMangaIntervalId);
                 this.clearInactivityTracking();
 
-                // Clean up event listener to prevent memory leaks
                 document.removeEventListener("click", this.closeMenu);
                 if (this._captureInteractionGuardHandler) {
                     document.removeEventListener('click', this._captureInteractionGuardHandler, true);
@@ -12784,4 +12297,3 @@
     </style>
 </body>
 </html>
-
