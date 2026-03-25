@@ -784,10 +784,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(line, index) in paginatedLines" :key="index"
+                                    <tr v-for="(line, index) in paginatedLines" :key="line.originalIndex"
                                         class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
                                         @click="goToLine(line.originalIndex); showLinesModalOpen = false">
-                                        <td class="py-2 px-2">{{ line.originalIndex + 1 }}</td>
+                                        <td class="py-2 px-2">{{ ((currentPage - 1) * pageSize) + index + 1 }}</td>
                                         <td v-if="showColTime" class="py-2 px-2">{{ line.Start }} - {{ line.End }}</td>
                                         <td v-if="showColStyle" class="py-2 px-2">{{ line.Style }}</td>
                                         <td v-if="showColStatus" class="py-2 px-2">
