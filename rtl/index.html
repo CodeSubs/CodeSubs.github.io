@@ -140,7 +140,7 @@
                 border-radius: 4px;
             }
         </style>
-      <script type="module" crossorigin src="./assets/index-DOl1ncJJ.js"></script>
+      <script type="module" crossorigin src="./assets/index-BwDRmlHi.js"></script>
     </head>
     <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-theme font-sans">
         <div id="app" v-cloak class="min-h-screen flex flex-col">
@@ -1278,7 +1278,7 @@
                         <div v-if="exportIgnoreEmptyLines && bulkConvertRemoveEmptyTotal > 0"
                             class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 mt-4">
                             <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">تقدم حذف الأسطر الفارغة (تصدير)</h3>
+                                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">تقدم حذف الأسطر الفارغة</h3>
                                 <span class="text-sm text-gray-500 dark:text-gray-400">
                                     {{ bulkConvertRemoveEmptyTotal ? Math.round((bulkConvertRemoveEmptyProgress / bulkConvertRemoveEmptyTotal) * 100) : 0 }}%
                                 </span>
@@ -1288,7 +1288,7 @@
                                     :style="{ width: (bulkConvertRemoveEmptyTotal ? (bulkConvertRemoveEmptyProgress / bulkConvertRemoveEmptyTotal) * 100 : 0) + '%' }"></div>
                             </div>
                             <div class="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
-                                تم تجهيز حذف {{ bulkConvertRemoveEmptyProgress }} من {{ bulkConvertRemoveEmptyTotal }} سطر فارغ
+                                تم حذف {{ bulkConvertRemoveEmptyProgress }} من {{ bulkConvertRemoveEmptyTotal }} سطر
                             </div>
                         </div>
                     </div>
@@ -1339,7 +1339,7 @@
                                         سطر/ثانية</span>
                                 </div>
                                 <div v-if="exportIgnoreEmptyLines && bulkConvertRemovedEmptyCount > 0" class="flex justify-between text-sm">
-                                    <span class="text-gray-600 dark:text-gray-400">الأسطر الفارغة المحذوفة من التصدير:</span>
+                                    <span class="text-gray-600 dark:text-gray-400">الأسطر الفارغة المحذوفة:</span>
                                     <span class="font-semibold text-gray-900 dark:text-white">{{ bulkConvertRemovedEmptyCount }}</span>
                                 </div>
                             </div>
@@ -1363,7 +1363,7 @@
                             سيتم تطبيق الإجراء على جميع واجهات المحرر
                         </p>
                         <p class="text-sm text-center text-gray-600 dark:text-gray-400 mt-2">
-                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ في قسم <span class="font-mono">[Events]</span>.
+                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ.
                         </p>
 
                         <div v-if="emptyDialogueLinesPreviewStrings.length > 0"
@@ -1394,13 +1394,13 @@
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-center text-gray-900 dark:text-white mb-2">
-                            أسطر فارغة في ملف التصدير
+                            تم العثور على أسطر فارغة
                         </h3>
                         <p class="text-sm text-center text-gray-600 dark:text-gray-400">
-                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ في قسم <span class="font-mono">[Events]</span>.
+                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ.
                         </p>
                         <p class="text-sm text-center text-gray-600 dark:text-gray-400 mt-2">
-                            هل تريد حذف هذه الأسطر من الملف المُصدّر بعد التحويل؟
+                            هل تريد حذف هذه الأسطر من الملف المُصدّر؟
                         </p>
 
                         <div v-if="emptyDialogueLinesPreviewStrings.length > 0"
