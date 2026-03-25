@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>محرر تحويل RTL/LTR</title>
         <meta name="description" content="أداة لتصحيح اتجاه النصوص العربية في ملفات الترجمة من اليسار إلى اليمين والعكس">
-        <!-- Open Graph Metadata -->
         <meta property="og:title" content="محرر تحويل RTL/LTR">
         <meta property="og:description" content="أداة لتصحيح اتجاه النصوص العربية في ملفات الترجمة من اليسار إلى اليمين والعكس">
         <meta property="og:type" content="website">
@@ -58,11 +57,11 @@
                                 dark: 'rgb(34, 197, 94)'
                             },
                             rtl: {
-                                light: 'rgb(22, 163, 74)', // Green for RTL/Convert
+                                light: 'rgb(22, 163, 74)',
                                 dark: 'rgb(34, 197, 94)'
                             },
                             ltr: {
-                                light: 'rgb(239, 68, 68)', // Red for LTR/Unconverted
+                                light: 'rgb(239, 68, 68)',
                                 dark: 'rgb(248, 113, 113)'
                             },
                             error: {
@@ -128,7 +127,6 @@
                 overflow-y: auto;
             }
 
-            /* Custom Scrollbar for line selector */
             .line-selector::-webkit-scrollbar {
                 width: 8px;
             }
@@ -142,15 +140,13 @@
                 border-radius: 4px;
             }
         </style>
-      <script type="module" crossorigin src="./assets/index-BGUTvKHG.js"></script>
+      <script type="module" crossorigin src="./assets/index-BXWI8NsB.js"></script>
     </head>
     <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-theme font-sans">
         <div id="app" v-cloak class="min-h-screen flex flex-col">
-            <!-- Header -->
             <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm transition-theme">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
                     <div class="flex items-center justify-between gap-4">
-                        <!-- Logo & Title -->
                         <div class="flex items-center gap-3">
                             <img src="./icon-192.svg" alt="Logo" class="w-11 h-11 cursor-pointer"
                                 @dblclick="showDebugButton = !showDebugButton">
@@ -270,7 +266,6 @@
                         <input ref="fileInput" type="file" accept=".ass" @change="handleFileUpload" class="hidden">
                     </div>
 
-                    <!-- Disclaimer / Important Notes Section -->
                     <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-red-200 dark:border-red-700">
                         <div class="flex items-start gap-4">
                             <div class="flex-1 space-y-4">
@@ -282,7 +277,7 @@
                                     <ul class="list-disc list-inside space-y-4 marker:text-gray-400">
                                         <li>
                                             <span class="font-semibold text-gray-800 dark:text-gray-200">الأداة لا تزال في مرحلة التطوير التجريبي:</span>
-                                            <br>تم اختبار المحرر داخليًا على 8 ملفات ترجمة مختلفة، وتم تحويل النصوص فيها بنجاح وبشكل صحيح.
+                                            <br>تم اختبار المحرر داخليًا على 10 ملفات ترجمة مختلفة، وتم تحويل النصوص فيها بنجاح وبشكل صحيح.
                                         </li>
                                         
                                         <li>
@@ -384,10 +379,20 @@
                             <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">
                                تم تحويل {{ rtlCount }} من {{ totalLines }} سطر إلى RTL
                             </div>
+                            <div class="mt-3">
+                                <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+                                    <input type="checkbox" v-model="ignoreEmptyLines"
+                                        @change="handleIgnoreEmptyLinesCheckboxChange"
+                                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600">
+                                    <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                                        تجاهل الأسطر الفارغة
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
-                    <div v-if="lines.length === 0" class="text-center py-12 text-gray-500 dark:text-gray-400">
+                    <div v-if="visibleLines.length === 0" class="text-center py-12 text-gray-500 dark:text-gray-400">
                         <p class="text-lg">لم يتم العثور على أسطر حوار في الملف</p>
                     </div>
 
@@ -525,8 +530,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- Line Details Box removed -->
                         </div>
 
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -550,7 +553,7 @@
                             </div>
                             <div class="flex justify-center">
                                 <span class="text-sm text-gray-500 dark:text-gray-400">
-                                    السطر {{ currentIndex + 1 }} من {{ totalLines }}
+                                    السطر {{ currentVisibleIndex + 1 }} من {{ totalLines }}
                                 </span>
                             </div>
                             <div>
@@ -728,7 +731,7 @@
                 </div>
             </footer>
 
-            <!-- Line List Modal (Updated with Filter) -->
+            <!-- Line List Modal -->
             <div v-if="showLinesModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div
                     class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-4xl w-full modal-content flex flex-col max-h-[90vh]">
@@ -886,7 +889,7 @@
             </div>
         </div>
 
-        <!-- Script Info Modal (Translated) -->
+        <!-- Script Info Modal -->
             <div v-if="showScriptInfoModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full modal-content">
                     <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
@@ -1239,7 +1242,7 @@
                             </p>
                         </div>
                         <div class="flex gap-3 justify-center">
-                            <button @click="performBulkConversion"
+                            <button @click="onBulkConvertConfirmClick"
                                 class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-theme font-medium">
                                 نعم
                             </button>
@@ -1322,6 +1325,79 @@
                             class="w-full px-4 py-2 bg-rtl-light dark:bg-rtl-dark text-white rounded-lg hover:opacity-90 transition-theme font-medium">
                             إغلاق
                         </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Ignore Empty Lines Confirmation Modal -->
+            <div v-if="showIgnoreEmptyLinesConfirmModal"
+                class="fixed inset-0 z-60 flex items-center justify-center p-4 modal-overlay">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-center text-gray-900 dark:text-white mb-2">
+                            تأكيد تجاهل الأسطر الفارغة
+                        </h3>
+                        <p class="text-sm text-center text-gray-600 dark:text-gray-400">
+                            سيتم تطبيق الإجراء على جميع واجهات المحرر
+                        </p>
+                        <p class="text-sm text-center text-gray-600 dark:text-gray-400 mt-2">
+                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ في قسم <span class="font-mono">[Events]</span>.
+                        </p>
+
+                        <div v-if="emptyDialogueLinesPreviewStrings.length > 0"
+                            class="mt-4 max-h-40 overflow-y-auto bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-3 font-mono text-[11px] whitespace-pre-wrap"
+                            dir="ltr">
+                            <div v-for="(s, idx) in emptyDialogueLinesPreviewStrings" :key="idx">
+                                {{ s }}
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 justify-center mt-5">
+                            <button @click="confirmIgnoreEmptyLines"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-theme font-medium">
+                                نعم
+                            </button>
+                            <button @click="cancelIgnoreEmptyLines"
+                                class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:opacity-90 transition-theme font-medium">
+                                إلغاء
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bulk Convert: Empty Lines Export Confirmation Modal -->
+            <div v-if="showBulkConvertEmptyLinesExportConfirmModal"
+                class="fixed inset-0 z-70 flex items-center justify-center p-4 modal-overlay">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-center text-gray-900 dark:text-white mb-2">
+                            أسطر فارغة في ملف التصدير
+                        </h3>
+                        <p class="text-sm text-center text-gray-600 dark:text-gray-400">
+                            يوجد {{ emptyDialogueLinesCount }} سطر فارغ في قسم <span class="font-mono">[Events]</span>.
+                        </p>
+                        <p class="text-sm text-center text-gray-600 dark:text-gray-400 mt-2">
+                            هل تريد حذف هذه الأسطر من الملف المُصدّر بعد التحويل؟
+                        </p>
+
+                        <div v-if="emptyDialogueLinesPreviewStrings.length > 0"
+                            class="mt-4 max-h-40 overflow-y-auto bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-3 font-mono text-[11px] whitespace-pre-wrap"
+                            dir="ltr">
+                            <div v-for="(s, idx) in emptyDialogueLinesPreviewStrings" :key="idx">
+                                {{ s }}
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 justify-center mt-5">
+                            <button @click="confirmBulkConvertEmptyLinesExport(true)"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-theme font-medium">
+                                نعم
+                            </button>
+                            <button @click="confirmBulkConvertEmptyLinesExport(false)"
+                                class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:opacity-90 transition-theme font-medium">
+                                لا
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
