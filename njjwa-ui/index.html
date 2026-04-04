@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نَجْوَى | Najwa</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?61"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Expo Arabic Light';
+            src: url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.woff2') format('woff2'),
+                url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.woff') format('woff'),
+                url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.ttf') format('truetype'),
+                url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.otf') format('opentype'),
+                url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.eot') format('embedded-opentype'),
+                url('https://raw.githubusercontent.com/Ailuro-Poda/ExpoArabicLightFont/main/ExpoArabicLight.svg#ExpoArabicLight') format('svg');
+        }
+
+        * {
+        font-family: "Expo Arabic Light", "Cairo", "Almarai", sans-serif;
+        line-height: 1.5;
+        }
+
+        .almarai-light { font-weight: 300; }
+        .almarai-regular { font-weight: 400; }
+        .almarai-bold { font-weight: 700; }
+        .almarai-extrabold { font-weight: 800; }
+        .cairo { font-family: "Cairo", sans-serif; }
+        .expo-light { font-family: "Expo Arabic Light", sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen text-white/90">
+    <div id="app" class="hidden flex min-h-screen w-full items-start justify-center p-4">
+        <div class="w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+            <div class="flex items-center justify-center gap-3 border-b border-white/10 px-4 pb-3 pt-4">
+                <div class="flex flex-col gap-0.5">
+                    <div class="text-lg font-extrabold tracking-[0.2px]">واجهة إنشاء النَجْوَى</div>
+                </div>
+            </div>
+
+            <div class="grid gap-4 p-4">
+                <div class="grid gap-2">
+                    <div class="text-sm font-bold text-white/85">نوع النَجْوَى:</div>
+                    <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-3" role="radiogroup" aria-label="نوع النَجْوَى">
+                        <label class="relative cursor-pointer select-none overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-center transition active:scale-[0.985]" title="نَجْوَى عادية">
+                            <input type="checkbox" name="mode" value="n" checked class="peer sr-only">
+                            <span class="relative z-10 text-sm font-extrabold text-white/80 peer-checked:text-white">عادية</span>
+                            <span class="pointer-events-none absolute inset-0 rounded-xl border border-green-400/30 bg-green-800 opacity-0 transition peer-checked:opacity-80"></span>
+                        </label>
+                        <label class="relative cursor-pointer select-none overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-center transition active:scale-[0.985]" title="نَجْوَى مؤقتة (تنتهي بعد مدة)">
+                            <input type="checkbox" name="mode" value="t" class="peer sr-only">
+                            <span class="relative z-10 text-sm font-extrabold text-white/80 peer-checked:text-white">مؤقتة</span>
+                            <span class="pointer-events-none absolute inset-0 rounded-xl border border-green-400/30 bg-green-800 opacity-0 transition peer-checked:opacity-80"></span>
+                        </label>
+                        <label class="relative cursor-pointer select-none overflow-hidden rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-center transition active:scale-[0.985]" title="تُقرأ مرة واحدة فقط">
+                            <input type="checkbox" name="mode" value="o" class="peer sr-only">
+                            <span class="relative z-10 text-sm font-extrabold text-white/80 peer-checked:text-white">قراءة لمرة واحدة</span>
+                            <span class="pointer-events-none absolute inset-0 rounded-xl border border-green-400/30 bg-green-800 opacity-0 transition peer-checked:opacity-80"></span>
+                        </label>
+                    </div>
+                    <!-- <div class="text-xs leading-relaxed text-white/60">المؤقتة تحتاج تحديد مدة (بالدقائق). مرة واحدة تُحذف بعد أول قراءة.</div> -->
+                </div>
+
+                <div class="grid gap-2">
+                    <div class="grid gap-2">
+                        <div class="text-sm font-bold text-white/85">معرّف أو آيدي المستلم:</div>
+                        <div class="flex items-stretch gap-2">
+                            <input id="recipient" class="w-full flex-1 rounded-xl border border-white/10 bg-black/20 px-3 py-3 text-sm text-white/90 outline-none placeholder:text-white/35 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-500/20" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@username OR @123456789" title="@user1 @user2 أو @all :يمكن كتابة أكثر من مستلم مثل" dir="ltr">
+                            <button id="favoritesBtn" class="inline-flex h-[46px] w-[46px] flex-none items-center justify-center rounded-xl border-2 border-teal-300/100 px-0 text-lg font-extrabold text-white/90 transition hover:bg-yellow-900/40 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20" type="button" title="إدارة المفضلة">📌</button>
+                        </div>
+                        <div class="text-yellow-300 font-bold text-sm leading-relaxed text-white/60">ملاحظة: يمكنك كتابة عدة مستلمين أو all@.</div>
+                    </div>
+                </div>
+
+                <div class="grid gap-2">
+                    <div class="text-sm font-bold text-white/85">الرسالة:</div>
+                    <textarea id="message" class="min-h-[110px] w-full resize-y rounded-xl border border-white/10 bg-black/20 px-3 py-3 text-sm text-white/90 outline-none placeholder:text-white/35 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-500/20" maxlength="200" placeholder="اكتب نَجْوَاك هنا..." title="اكتب الرسالة ثم اختر المجموعة"></textarea>
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="text-xs leading-relaxed text-white/60"></div>
+                        <div id="counter" class="text-xs tabular-nums text-white/60">0/200</div>
+                    </div>
+                </div>
+
+                <div id="timeRow" class="overflow-hidden max-h-0 -translate-y-1 opacity-0 transition-all duration-200">
+                    <div class="grid gap-2">
+                        <div class="text-sm font-bold text-white/85">المدة بالدقائق:</div>
+                        <input id="minutes" class="w-full rounded-xl border border-white/10 bg-black/20 px-3 py-3 text-sm text-white/90 outline-none placeholder:text-white/35 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-500/20" type="number" inputmode="numeric" min="5" max="1440" step="1" placeholder="30" title="المدة بالدقائق">
+                        <div class="text-sm font-bold leading-relaxed text-yellow-300">الحد الأدنى 5 دقائق والحد الأقصى 1440 دقيقة (24 ساعة).</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <button id="sendCurrent" class="inline-flex items-center justify-center rounded-xl border border-sky-400/30 bg-gradient-to-b from-sky-500/30 to-sky-500/15 px-4 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_rgba(76,154,255,0.18)] transition hover:border-sky-400/50 hover:from-sky-500/35 hover:to-sky-500/20 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20" type="button" title="إرسال في المجموعة الحالية">إرسال في المجموعة الحالية</button>
+                    <button id="sendChoose" class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-extrabold text-white/90 transition hover:bg-white/10 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20" type="button" title="اختيار مجموعة أخرى لنشر النَجْوَى">اختيار مجموعة أخرى</button>
+                </div>
+            </div>
+
+            <div class="text-center font-bold text-[rgb(2,255,0)] border-t border-white/10 px-4 py-3 text-base leading-relaxed">سيتم تحويلك لوضع الإنلاين لإرسال النَجْوَى</div>
+        </div>
+    </div>
+
+    <div id="backdrop" class="hidden fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-5 backdrop-blur-sm" role="dialog" aria-modal="true"></div>
+    <div id="toast" class="hidden fixed inset-x-4 bottom-4 z-[60] flex justify-center pointer-events-none">
+        <div id="toastInner" class="w-full max-w-2xl translate-y-2 rounded-xl border-2 border-yellow-300/30 bg-black px-4 py-3 text-sm text-teal-300/100 shadow-[0_16px_50px_rgba(0,0,0,0.55)] transition duration-200"></div>
+    </div>
+
+    <script>
+        (() => {
+            const inlinePlaceholder = "اكتب نَجْوَاك هنا";
+            const minMinutes = 5;
+            const maxMinutes = 1440;
+            const favoritesKey = "favorites";
+            const favoritesLimit = 10;
+            const requiredBotApiVersion = "6.9";
+            const maxRecipientCount = 5;
+            const enableVersionCheck = true;
+            const debugVersionOk = null;
+
+            const webApp = window.Telegram && window.Telegram.WebApp;
+            const appEl = document.getElementById("app");
+            const backdropEl = document.getElementById("backdrop");
+            const toastEl = document.getElementById("toast");
+            const toastInnerEl = document.getElementById("toastInner");
+            const btnBaseClass = "bg-yellow-950 inline-flex items-center justify-center text-center rounded-xl border border-white/10 px-4 py-3 text-sm font-extrabold text-white/90 transition hover:bg-yellow-900/40 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20";
+            const btnAddClass = "bg-teal-900 inline-flex items-center justify-center text-center rounded-xl border border-white/10 px-4 py-3 text-sm font-extrabold text-white/90 transition hover:bg-teal-800/70 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20";
+            const btnPrimaryClass = "inline-flex items-center justify-center text-center rounded-xl border border-sky-400/30 bg-gradient-to-b from-sky-500/30 to-sky-500/15 px-4 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_rgba(76,154,255,0.18)] transition hover:border-sky-400/50 hover:from-sky-500/35 hover:to-sky-500/20 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-sky-500/20";
+            const btnDangerClass = "inline-flex items-center justify-center text-center rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm font-extrabold text-red-100 transition hover:bg-red-500/15 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-red-500/20";
+
+            const recipientEl = document.getElementById("recipient");
+            const messageEl = document.getElementById("message");
+            const counterEl = document.getElementById("counter");
+            const timeRowEl = document.getElementById("timeRow");
+            const minutesEl = document.getElementById("minutes");
+            const favoritesBtnEl = document.getElementById("favoritesBtn");
+            const sendCurrentEl = document.getElementById("sendCurrent");
+            const sendChooseEl = document.getElementById("sendChoose");
+
+            function getThemeParam(name, fallback) {
+                if (!webApp || !webApp.themeParams) return fallback;
+                const value = webApp.themeParams[name];
+                return value != null && value !== "" ? value : fallback;
+            }
+
+            function applyTheme() {
+                const bg = getThemeParam("bg_color", null);
+                const text = getThemeParam("text_color", null);
+                if (bg) document.body.style.backgroundColor = bg;
+                if (text) document.body.style.color = text;
+            }
+
+            function lockScroll(lock) {
+                if (lock) {
+                    document.documentElement.style.overflow = "hidden";
+                    document.body.style.overflow = "hidden";
+                    document.body.style.touchAction = "none";
+                } else {
+                    document.documentElement.style.overflow = "";
+                    document.body.style.overflow = "";
+                    document.body.style.touchAction = "";
+                }
+            }
+
+            function showToast(message) {
+                toastEl.classList.remove("hidden");
+                toastInnerEl.textContent = message;
+
+                toastInnerEl.classList.add("font-bold");
+
+                requestAnimationFrame(() => {
+                    toastInnerEl.classList.remove("translate-y-2");
+                    toastInnerEl.classList.add("translate-y-0");
+                });
+
+                setTimeout(() => {
+                    toastInnerEl.classList.add("translate-y-2");
+                    toastInnerEl.classList.remove("translate-y-0");
+                    setTimeout(() => toastEl.classList.add("hidden"), 230);
+                }, 4000);
+            }
+
+            function setBackdrop(node, options) {
+                while (backdropEl.firstChild) backdropEl.removeChild(backdropEl.firstChild);
+                backdropEl.appendChild(node);
+                backdropEl.classList.remove("hidden");
+                const shouldLockScroll = !!(options && options.lockScroll);
+                const shouldCenter = !!(options && options.centered);
+                backdropEl.classList.toggle("items-center", shouldCenter);
+                backdropEl.classList.toggle("items-start", !shouldCenter);
+                backdropEl.dataset.lockScroll = shouldLockScroll ? "1" : "0";
+                lockScroll(shouldLockScroll);
+            }
+
+            function closeBackdrop() {
+                backdropEl.classList.add("hidden");
+                while (backdropEl.firstChild) backdropEl.removeChild(backdropEl.firstChild);
+                backdropEl.classList.remove("items-center");
+                backdropEl.classList.add("items-start");
+                backdropEl.dataset.lockScroll = "0";
+                lockScroll(false);
+            }
+
+            function padBase64(value) {
+                return value + "=".repeat((4 - (value.length % 4)) % 4);
+            }
+
+            function decodeBase64Url(value) {
+                const normalized = padBase64(String(value || "").replace(/-/g, "+").replace(/_/g, "/"));
+                return atob(normalized);
+            }
+
+            function getParamFromHash(name) {
+                const rawHash = window.location.hash.replace(/^#/, "");
+                if (!rawHash) return "";
+                const queryIndex = rawHash.indexOf("?");
+                const queryString = queryIndex >= 0 ? rawHash.slice(queryIndex + 1) : rawHash;
+                return new URLSearchParams(queryString).get(name) || "";
+            }
+
+            function getStartParam() {
+                const searchParams = new URLSearchParams(window.location.search);
+                return searchParams.get("tgWebAppStartParam")
+                    || searchParams.get("startapp")
+                    || getParamFromHash("tgWebAppStartParam")
+                    || (webApp && webApp.initDataUnsafe && webApp.initDataUnsafe.start_param)
+                    || "";
+            }
+
+            function parseStartPayload(decodedValue) {
+                const raw = String(decodedValue || "").trim();
+                if (!raw) throw new Error("Empty payload");
+
+                if (/^\d+$/.test(raw)) {
+                    return { mode: "n", target: "@" + raw, order: "default" };
+                }
+
+                if (raw.startsWith("v2|")) {
+                    const parts = raw.split("|");
+                    if (parts.length >= 4) {
+                        const mode = parts[1] === "o" ? "o" : (parts[1] === "t" ? "t" : "n");
+                        const order = parts[2] === "known_single" ? "known_single" : "default";
+                        const target = parts.slice(3).join("|").trim();
+                        if (!target) throw new Error("Invalid target");
+                        return { mode, target, order };
+                    }
+                }
+
+                if (raw.startsWith("v1|")) {
+                    const parts = raw.split("|");
+                    if (parts.length >= 3) {
+                        const mode = parts[1] === "o" ? "o" : (parts[1] === "t" ? "t" : "n");
+                        const target = parts.slice(2).join("|").trim();
+                        if (!target) throw new Error("Invalid target");
+                        return { mode, target, order: "default" };
+                    }
+                }
+
+                throw new Error("Invalid payload");
+            }
+
+            function applyStartParamPrefill() {
+                const startParam = getStartParam();
+                if (!startParam) return;
+                try {
+                    const parsed = parseStartPayload(decodeBase64Url(startParam));
+                    if (parsed && parsed.target) {
+                        recipientEl.value = parsed.target;
+                    }
+                    const nextMode = parsed && parsed.mode ? parsed.mode : "n";
+                    const modeInput = document.querySelector(`input[name="mode"][value="${nextMode}"]`);
+                    if (modeInput) modeInput.checked = true;
+                    if (nextMode === "t" && !String(minutesEl.value || "").trim()) {
+                        minutesEl.value = "30";
+                    }
+                } catch {}
+            }
+
+            function normalizeRecipientToken(token) {
+                const raw = String(token || "").trim();
+                if (!raw) return null;
+                const clean = raw.replace(/^@+/, "");
+                if (!clean) return null;
+                if (/^all$/i.test(clean)) return "@all";
+                if (/^\d{5,20}$/.test(clean)) return "@" + clean;
+                if (/^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(clean)) return "@" + clean;
+                return null;
+            }
+
+            function validateRecipientToken(token) {
+                const raw = String(token || "").trim();
+                if (!raw) return { ok: false, error: "صيغة المستلم غير صحيحة." };
+                const clean = raw.replace(/^@+/, "");
+                if (!clean) return { ok: false, error: "صيغة المستلم غير صحيحة." };
+                if (/@/.test(clean)) return { ok: false, error: "صيغة المستلم غير صحيحة، أضف مسافة بين المستلمين" };
+                if (/^all$/i.test(clean)) return { ok: true, value: "@all" };
+                if (/^\d{5,20}$/.test(clean)) return { ok: true, value: "@" + clean };
+                if (/^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(clean)) return { ok: true, value: "@" + clean };
+                return { ok: false, error: "المعرّف يجب أن يكون 32-5 (أحرف إنجليزية/أرقام/_) أو آيدي رقمي." };
+            }
+
+            function parseRecipients(rawInput) {
+                const raw = String(rawInput || "").trim();
+                if (!raw) return { ok: true, list: [] };
+                const tokens = raw.split(/\s+/).filter(Boolean);
+                const out = [];
+                const seen = new Set();
+                for (const token of tokens) {
+                    const check = validateRecipientToken(token);
+                    if (!check.ok) return { ok: false, error: check.error };
+                    const normalized = check.value;
+                    const key = normalized.toLowerCase();
+                    if (seen.has(key)) return { ok: false, error: "لا يمكن تكرار نفس المستلم أكثر من مرة." };
+                    seen.add(key);
+                    out.push(normalized);
+                    if (out.length > maxRecipientCount) {
+                        return { ok: false, error: `الحد الأقصى للمستلمين هو ${maxRecipientCount}.` };
+                    }
+                }
+                const hasAll = out.some((v) => String(v).toLowerCase() === "@all");
+                if (hasAll && out.length > 1) {
+                    return { ok: false, error: "عند كتابة all لا يمكن إضافة مستلمين آخرين." };
+                }
+                return { ok: true, list: out };
+            }
+
+            let recipientSanitizeTimer = null;
+            let lastRecipientToastAt = 0;
+
+            function showToastThrottled(message) {
+                const now = Date.now();
+                if (now - lastRecipientToastAt < 900) return;
+                lastRecipientToastAt = now;
+                showToast(message);
+            }
+
+            function sanitizeRecipientInput() {
+                const raw = String(recipientEl.value || "").trim();
+                if (!raw) return;
+                const tokens = raw.split(/\s+/).filter(Boolean);
+                if (!tokens.length) return;
+
+                const normalizedTokens = [];
+                for (const token of tokens) {
+                    const check = validateRecipientToken(token);
+                    if (!check.ok) return;
+                    const normalized = check.value;
+                    normalizedTokens.push(normalized);
+                }
+
+                const hasAll = normalizedTokens.some((v) => String(v).toLowerCase() === "@all");
+                if (hasAll) {
+                    if (normalizedTokens.length > 1) showToastThrottled("all لا تقبل مستلمين إضافيين.");
+                    recipientEl.value = "@all";
+                    return;
+                }
+
+                const seen = new Set();
+                const unique = [];
+                let hadDuplicate = false;
+                for (const normalized of normalizedTokens) {
+                    const key = normalized.toLowerCase();
+                    if (seen.has(key)) {
+                        hadDuplicate = true;
+                        continue;
+                    }
+                    seen.add(key);
+                    unique.push(normalized);
+                }
+
+                let trimmed = false;
+                if (unique.length > maxRecipientCount) {
+                    unique.length = maxRecipientCount;
+                    trimmed = true;
+                }
+
+                const nextValue = unique.join(" ");
+                if (nextValue !== recipientEl.value.trim()) {
+                    recipientEl.value = nextValue;
+                }
+                if (hadDuplicate) showToastThrottled("تم منع تكرار نفس المستلم.");
+                if (trimmed) showToastThrottled(`تم الاكتفاء بـ ${maxRecipientCount} مستلمين.`);
+            }
+
+            function getMode() {
+                const checked = document.querySelector('input[name="mode"]:checked');
+                const value = checked ? checked.value : "n";
+                return value === "t" ? "t" : (value === "o" ? "o" : "n");
+            }
+
+            function buildInlineQuery() {
+                const mode = getMode();
+                const recipientsRes = parseRecipients(recipientEl.value);
+                if (!recipientsRes.ok) return { ok: false, error: recipientsRes.error };
+                const recipients = recipientsRes.list;
+                if (!recipients.length) return { ok: false, error: "اكتب معرّف أو آيدي المستلم." };
+
+                const message = String(messageEl.value || "").trim();
+                if (!message) return { ok: false, error: "اكتب الرسالة أولًا." };
+                if (message.length > 200) return { ok: false, error: "تجاوزت 200 حرف." };
+
+                let prefix = "";
+                if (mode === "o") prefix = "-o ";
+                if (mode === "t") {
+                    const minutes = Math.floor(Number(minutesEl.value));
+                    if (!Number.isFinite(minutes) || minutes < minMinutes || minutes > maxMinutes) {
+                        return { ok: false, error: "مدة غير صالحة (المسموح 5 - 1440 دقيقة)." };
+                    }
+                    prefix = `-t${minutes} `;
+                }
+
+                const isAll = recipients.length === 1 && recipients[0].toLowerCase() === "@all";
+                const isKnownSingle = recipients.length === 1 && !isAll;
+
+                const query = isKnownSingle
+                    ? `${prefix}${recipients[0]} ${message}`.trim()
+                    : `${prefix}${message} ${recipients.join(" ")}`.trim();
+
+                return { ok: true, query };
+            }
+
+            function cloudGetItem(key) {
+                return new Promise((resolve) => {
+                    if (!webApp || !webApp.CloudStorage || typeof webApp.CloudStorage.getItem !== "function") {
+                        resolve({ ok: false, value: null });
+                        return;
+                    }
+                    webApp.CloudStorage.getItem(key, (a, b) => {
+                        if (b === undefined) resolve({ ok: true, value: a });
+                        else resolve({ ok: !a, value: b });
+                    });
+                });
+            }
+
+            function cloudSetItem(key, value) {
+                return new Promise((resolve) => {
+                    if (!webApp || !webApp.CloudStorage || typeof webApp.CloudStorage.setItem !== "function") {
+                        resolve(false);
+                        return;
+                    }
+                    webApp.CloudStorage.setItem(key, value, (a) => resolve(!a));
+                });
+            }
+
+            function safeParseJson(value, fallback) {
+                try {
+                    const parsed = JSON.parse(String(value || ""));
+                    return parsed == null ? fallback : parsed;
+                } catch {
+                    return fallback;
+                }
+            }
+
+            function normalizeFavoriteEntry(entry) {
+                const rawLabel = entry && entry.label != null ? String(entry.label) : "";
+                const label = rawLabel.trim().slice(0, 40);
+
+                const rawMention = entry && entry.mention != null ? String(entry.mention) : "";
+                const rawId = entry && entry.id != null ? String(entry.id) : "";
+
+                const mentionToken = rawMention.trim();
+                const mentionNormalized = mentionToken ? normalizeRecipientToken(mentionToken) : null;
+                const idToken = rawId.trim();
+                const idNormalized = idToken && /^\d{5,20}$/.test(idToken) ? idToken : "";
+
+                if (mentionNormalized && mentionNormalized.toLowerCase() !== "@all") {
+                    const username = mentionNormalized.replace(/^@/, "");
+                    const isDigits = /^\d+$/.test(username);
+                    return {
+                        label,
+                        id: isDigits ? username : idNormalized,
+                        username: !isDigits ? username : "",
+                        mention: "@" + username,
+                    };
+                }
+
+                if (idNormalized) {
+                    return { label, id: idNormalized, username: "", mention: "" };
+                }
+
+                return null;
+            }
+
+            function normalizeFavoritesList(list) {
+                const rawList = Array.isArray(list) ? list : [];
+                const out = [];
+                const seen = new Set();
+                for (const item of rawList) {
+                    const normalized = normalizeFavoriteEntry(item);
+                    if (!normalized) continue;
+                    const key = normalized.mention ? normalized.mention.toLowerCase() : (normalized.id ? ("id:" + normalized.id) : "");
+                    if (!key || seen.has(key)) continue;
+                    seen.add(key);
+                    out.push(normalized);
+                    if (out.length >= favoritesLimit) break;
+                }
+                return out;
+            }
+
+            async function loadFavorites() {
+                const res = await cloudGetItem(favoritesKey);
+                const list = normalizeFavoritesList(safeParseJson(res.value, []));
+                return list;
+            }
+
+            async function saveFavorites(list) {
+                const normalized = normalizeFavoritesList(list);
+                return cloudSetItem(favoritesKey, JSON.stringify(normalized));
+            }
+
+            function buildConfirmModal({ title, message, confirmText, danger }) {
+                const wrap = document.createElement("div");
+                wrap.className = "w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0f1115]/90 shadow-[0_20px_60px_rgba(0,0,0,0.55)]";
+
+                const header = document.createElement("div");
+                header.className = "flex items-center justify-center gap-3 border-b border-white/10 px-4 py-3";
+                const h = document.createElement("div");
+                h.className = "text-lg font-extrabold text-white/90";
+                h.textContent = title;
+                header.appendChild(h);
+                wrap.appendChild(header);
+
+                const body = document.createElement("div");
+                body.className = "grid gap-3 px-4 py-4";
+                const p = document.createElement("div");
+                p.className = danger ? "text-base leading-relaxed text-red-200" : "text-base leading-relaxed text-white/60";
+                p.textContent = message;
+                body.appendChild(p);
+                wrap.appendChild(body);
+
+                const footer = document.createElement("div");
+                footer.className = "flex flex-wrap justify-center gap-14 border-t border-white/10 px-4 py-3";
+                const cancelBtn = document.createElement("button");
+                cancelBtn.type = "button";
+                cancelBtn.className = btnBaseClass;
+                cancelBtn.textContent = "إلغاء";
+                const okBtn = document.createElement("button");
+                okBtn.type = "button";
+                okBtn.className = danger ? btnDangerClass : btnPrimaryClass;
+                okBtn.textContent = confirmText || "تأكيد";
+                footer.appendChild(cancelBtn);
+                footer.appendChild(okBtn);
+                wrap.appendChild(footer);
+
+                return { node: wrap, cancelBtn, okBtn };
+            }
+
+            function buildFavoritesModal(initialList, onPick) {
+                const modal = document.createElement("div");
+                modal.className = "my-auto flex w-full max-w-2xl max-h-[calc(100dvh-2.5rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f1115]/90 shadow-[0_20px_60px_rgba(0,0,0,0.55)]";
+
+                const header = document.createElement("div");
+                header.className = "flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3";
+                const title = document.createElement("div");
+                title.className = "text-xl font-extrabold text-white/90";
+                title.textContent = "المفضلة";
+                const closeBtn = document.createElement("button");
+                closeBtn.type = "button";
+                closeBtn.className = btnBaseClass;
+                closeBtn.textContent = "إغلاق";
+                header.appendChild(title);
+                header.appendChild(closeBtn);
+                modal.appendChild(header);
+
+                const body = document.createElement("div");
+                body.className = "min-h-0 flex-1 overflow-y-auto px-4 py-4";
+
+                const hint = document.createElement("div");
+                hint.className = "text-sm mb-4 font-bold text-yellow-300 leading-relaxed text-white/60";
+                hint.textContent = "أضف حتى 10 مستلمين. يتم الحفظ تلقائيًا.";
+                body.appendChild(hint);
+
+                const listEl = document.createElement("div");
+                listEl.className = "grid gap-3";
+                body.appendChild(listEl);
+
+                const errorEl = document.createElement("div");
+                errorEl.className = "hidden text-sm font-bold leading-relaxed text-red-200";
+                body.appendChild(errorEl);
+
+                modal.appendChild(body);
+
+                const footer = document.createElement("div");
+                footer.className = "flex flex-wrap justify-center gap-14 border-t border-white/10 px-4 py-3";
+                const addBtn = document.createElement("button");
+                addBtn.type = "button";
+                addBtn.className = btnAddClass;
+                addBtn.textContent = "إضافة";
+                const pickBtn = document.createElement("button");
+                pickBtn.type = "button";
+                pickBtn.className = btnPrimaryClass;
+                pickBtn.textContent = "اختيار";
+                footer.appendChild(pickBtn);
+                footer.appendChild(addBtn);
+                modal.appendChild(footer);
+
+                let list = Array.isArray(initialList) ? initialList.slice(0) : [];
+                let saveTimer = null;
+                let selectedIndexes = new Set(list.length ? [0] : []);
+
+                function showError(msg) {
+                    if (!msg) {
+                        errorEl.classList.add("hidden");
+                        errorEl.textContent = "";
+                        return;
+                    }
+                    errorEl.textContent = msg;
+                    errorEl.classList.remove("hidden");
+                }
+
+                function scheduleSave() {
+                    if (saveTimer) clearTimeout(saveTimer);
+                    saveTimer = setTimeout(async () => {
+                        await saveFavorites(list);
+                    }, 450);
+                }
+
+                function validateRowValue(value) {
+                    const raw = String(value || "").trim();
+                    if (!raw) return { ok: false, error: "القيمة فارغة." };
+                    const clean = raw.replace(/^@+/, "");
+                    if (/^all$/i.test(clean)) return { ok: false, error: "لا يمكن حفظ all@ ضمن المفضلة." };
+                    if (/^\d{5,20}$/.test(clean)) {
+                        const n = Number(clean);
+                        if (!Number.isSafeInteger(n)) return { ok: false, error: "آيدي غير صالح." };
+                        return { ok: true, kind: "id", value: clean };
+                    }
+                    if (/^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(clean)) return { ok: true, kind: "mention", value: "@" + clean };
+                    return { ok: false, error: "المعرّف يجب أن يكون 32-5 (أحرف إنجليزية/أرقام/_) أو آيدي رقمي." };
+                }
+
+                function shiftSelectedIndexesAfterDelete(deletedIdx) {
+                    const nextSelected = new Set();
+                    selectedIndexes.forEach((selectedIdx) => {
+                        if (selectedIdx === deletedIdx) return;
+                        nextSelected.add(selectedIdx > deletedIdx ? selectedIdx - 1 : selectedIdx);
+                    });
+                    selectedIndexes = nextSelected;
+                }
+
+                function render() {
+                    while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+
+                    if (!list.length) {
+                        pickBtn.classList.add("hidden");
+                        const empty = document.createElement("div");
+                        empty.className = "text-sm font-bold leading-relaxed text-green-300/100";
+                        empty.textContent = "لا توجد مفضلة بعد. اضغط “إضافة”.";
+                        listEl.appendChild(empty);
+                        return;
+                    }
+                    pickBtn.classList.remove("hidden");
+
+                    list.forEach((entry, idx) => {
+                        const row = document.createElement("div");
+                        row.className = "grid gap-2 rounded-xl border border-white/10 bg-white/5 p-3 sm:grid-cols-[auto_1fr_1fr_auto] sm:items-center sm:gap-3";
+                        const hasInitialValue = String(entry && (entry.mention || entry.id || "")).trim().length > 0;
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "favPick";
+                        checkbox.className = "h-5 w-5 accent-sky-500";
+                        checkbox.value = String(idx);
+                        checkbox.checked = hasInitialValue && selectedIndexes.has(idx);
+                        checkbox.disabled = !hasInitialValue;
+                        checkbox.addEventListener("change", () => {
+                            if (checkbox.checked) {
+                                const currentValue = String(valueInput.value || "").trim();
+                                if (!currentValue) {
+                                    checkbox.checked = false;
+                                    selectedIndexes.delete(idx);
+                                    showToast("لا يمكن تحديد عنصر فارغ.");
+                                    return;
+                                }
+                                if (selectedIndexes.size >= maxRecipientCount) {
+                                    checkbox.checked = false;
+                                    showToast(`يمكن اختيار ${maxRecipientCount} مستلمين كحد أقصى.`);
+                                    return;
+                                }
+                                selectedIndexes.add(idx);
+                                return;
+                            }
+                            selectedIndexes.delete(idx);
+                        });
+
+                        const labelInput = document.createElement("input");
+                        labelInput.className = "w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/90 outline-none placeholder:text-white/35 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-500/20";
+                        labelInput.placeholder = "وصف (اختياري)";
+                        labelInput.value = entry.label || "";
+
+                        const valueInput = document.createElement("input");
+                        valueInput.className = "w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/90 outline-none placeholder:text-white/35 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-500/20";
+                        valueInput.placeholder = "@username OR @123456789";
+                        valueInput.value = entry.mention || entry.id || "";
+                        valueInput.autocapitalize = "off";
+                        valueInput.autocomplete = "off";
+                        valueInput.spellcheck = false;
+                        valueInput.dir = "ltr";
+
+                        const delBtn = document.createElement("button");
+                        delBtn.type = "button";
+                        delBtn.className = "inline-flex items-center justify-center rounded-xl border border-red-400/40 bg-red-500/10 px-3 py-2 text-sm font-extrabold text-red-100 transition hover:bg-red-500/15 active:translate-y-px focus:outline-none focus:ring-4 focus:ring-red-500/20";
+                        delBtn.textContent = "حذف";
+
+                        labelInput.addEventListener("input", () => {
+                            list[idx] = { ...list[idx], label: String(labelInput.value || "").trim() };
+                            scheduleSave();
+                        });
+
+                        valueInput.addEventListener("input", () => {
+                            const v = String(valueInput.value || "").trim();
+                            if (!v) {
+                                checkbox.checked = false;
+                                checkbox.disabled = true;
+                                selectedIndexes.delete(idx);
+                                showError("");
+                                list[idx] = { ...list[idx], id: "", mention: "", username: "" };
+                                scheduleSave();
+                                return;
+                            }
+                            const check = validateRowValue(v);
+                            if (!check.ok) {
+                                showError(check.error);
+                                return;
+                            }
+                            showError("");
+                            checkbox.disabled = false;
+                            if (check.kind === "mention") {
+                                const username = check.value.replace(/^@/, "");
+                                list[idx] = { ...list[idx], mention: check.value, username, id: list[idx].id || "" };
+                            } else {
+                                list[idx] = { ...list[idx], id: check.value, mention: "", username: "" };
+                            }
+                            scheduleSave();
+                        });
+
+                        delBtn.addEventListener("click", async () => {
+                            const currentValue = String(valueInput.value || "").trim();
+                            if (!currentValue) {
+                                list.splice(idx, 1);
+                                shiftSelectedIndexesAfterDelete(idx);
+                                await saveFavorites(list);
+                                render();
+                                return;
+                            }
+                            const modalConfirm = buildConfirmModal({
+                                title: "تأكيد الحذف",
+                                message: "هل تريد حذف هذا السجل من المفضلة؟",
+                                confirmText: "حذف",
+                                danger: true
+                            });
+                            setBackdrop(modalConfirm.node, { lockScroll: true, centered: true });
+                            modalConfirm.cancelBtn.addEventListener("click", () => setBackdrop(modal, { lockScroll: true }));
+                            modalConfirm.okBtn.addEventListener("click", async () => {
+                                list.splice(idx, 1);
+                                shiftSelectedIndexesAfterDelete(idx);
+                                await saveFavorites(list);
+                                setBackdrop(modal, { lockScroll: true });
+                                render();
+                            });
+                        });
+
+                        row.appendChild(checkbox);
+                        row.appendChild(labelInput);
+                        row.appendChild(valueInput);
+                        row.appendChild(delBtn);
+                        listEl.appendChild(row);
+                    });
+                }
+
+                addBtn.addEventListener("click", () => {
+                    if (list.length >= favoritesLimit) {
+                        showToast("وصلت للحد الأقصى للمفضلة (10).");
+                        return;
+                    }
+                    const hasEmptyRow = list.some((entry) => {
+                        const value = entry && (entry.mention || entry.id) ? String(entry.mention || entry.id) : "";
+                        return value.trim().length === 0;
+                    });
+                    if (hasEmptyRow) {
+                        showToast("أكمل السطر السابق أولًا.");
+                        return;
+                    }
+                    list.push({ id: "", username: "", mention: "", label: "" });
+                    render();
+                });
+
+                pickBtn.addEventListener("click", () => {
+                    const pickedValues = [];
+                    const seen = new Set();
+                    for (const idx of selectedIndexes) {
+                        const entry = list[idx] || null;
+                        if (!entry) continue;
+                        const rawValue = String(entry.mention || entry.id || "").trim();
+                        if (!rawValue) continue;
+                        const normalizedValue = normalizeRecipientToken(rawValue);
+                        if (!normalizedValue || normalizedValue.toLowerCase() === "@all") {
+                            showToast("يوجد عنصر غير صالح ضمن الاختيارات.");
+                            return;
+                        }
+                        const key = normalizedValue.toLowerCase();
+                        if (seen.has(key)) continue;
+                        seen.add(key);
+                        pickedValues.push(normalizedValue);
+                    }
+                    if (!pickedValues.length) {
+                        showToast("اختر مستلمًا واحدًا على الأقل.");
+                        return;
+                    }
+                    if (pickedValues.length > maxRecipientCount) {
+                        showToast(`يمكن اختيار ${maxRecipientCount} مستلمين كحد أقصى.`);
+                        return;
+                    }
+                    onPick(pickedValues.join(" "));
+                });
+
+                closeBtn.addEventListener("click", () => {
+                    closeBackdrop();
+                });
+
+                render();
+                return { node: modal, getList: () => list.slice(0) };
+            }
+
+            function updateCounter() {
+                const len = String(messageEl.value || "").length;
+                counterEl.textContent = `${len}/200`;
+                if (len > 200) {
+                    counterEl.classList.add("text-red-200");
+                    counterEl.classList.remove("text-white/60");
+                } else {
+                    counterEl.classList.remove("text-red-200");
+                    counterEl.classList.add("text-white/60");
+                }
+            }
+
+            function updateModeUi() {
+                const mode = getMode();
+                const isTimed = mode === "t";
+                if (isTimed) {
+                    timeRowEl.classList.remove("max-h-0", "opacity-0", "-translate-y-1");
+                    timeRowEl.classList.add("mt-1", "max-h-40", "opacity-100", "translate-y-0");
+                } else {
+                    timeRowEl.classList.remove("mt-1", "max-h-40", "opacity-100", "translate-y-0");
+                    timeRowEl.classList.add("max-h-0", "opacity-0", "-translate-y-1");
+                }
+                if (!isTimed) minutesEl.value = "";
+            }
+
+            async function openFavorites() {
+                const list = await loadFavorites();
+                const modal = buildFavoritesModal(list, async (pickedValue) => {
+                    recipientEl.value = pickedValue;
+                    closeBackdrop();
+                    recipientEl.focus();
+                    if (webApp && webApp.HapticFeedback && typeof webApp.HapticFeedback.impactOccurred === "function") {
+                        webApp.HapticFeedback.impactOccurred("light");
+                    }
+                });
+                setBackdrop(modal.node, { lockScroll: true });
+            }
+
+            function runSwitchInlineQuery(chooseGroups) {
+                if (!webApp || typeof webApp.switchInlineQuery !== "function") {
+                    showToast("هذه الميزة تعمل داخل تيليجرام فقط.");
+                    return;
+                }
+                const built = buildInlineQuery();
+                if (!built.ok) {
+                    showToast(built.error);
+                    return;
+                }
+                if (chooseGroups) webApp.switchInlineQuery(built.query, ["groups"]);
+                else webApp.switchInlineQuery(built.query);
+            }
+
+            function buildUnsupportedModal() {
+                const modal = document.createElement("div");
+                modal.className = "w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0f1115]/90 shadow-[0_20px_60px_rgba(0,0,0,0.55)]";
+                const header = document.createElement("div");
+                header.className = "flex items-center justify-center gap-3 border-b border-white/10 px-4 py-3";
+                const t = document.createElement("div");
+                t.className = "text-lg font-extrabold text-white/90";
+                t.textContent = "إصدار تيليجرام قديم";
+                header.appendChild(t);
+                modal.appendChild(header);
+                const body = document.createElement("div");
+                body.className = "grid gap-3 px-4 py-4";
+                const msg = document.createElement("div");
+                msg.className = "text-base font-bold leading-relaxed text-yellow-300";
+                msg.textContent = "يرجى تحديث تيليجرام إلى آخر إصدار لتتمكن من استخدام واجهة إنشاء النَجْوَى.";
+                body.appendChild(msg);
+                modal.appendChild(body);
+                const footer = document.createElement("div");
+                footer.className = "flex flex-wrap justify-center gap-3 border-t border-white/10 px-4 py-3";
+                const ok = document.createElement("button");
+                ok.type = "button";
+                ok.className = btnPrimaryClass;
+                ok.textContent = "حسنًا";
+                ok.addEventListener("click", () => {
+                    if (webApp && typeof webApp.close === "function") {
+                        webApp.close();
+                    }
+                });
+                footer.appendChild(ok);
+                modal.appendChild(footer);
+                return modal;
+            }
+
+            function init() {
+                if (!webApp) {
+                    setBackdrop(buildUnsupportedModal(), { lockScroll: true });
+                    return;
+                }
+
+                try {
+                    webApp.ready();
+                    if (typeof webApp.expand === "function") webApp.expand();
+                } catch {}
+
+                applyTheme();
+                if (typeof webApp.onEvent === "function") {
+                    webApp.onEvent("themeChanged", applyTheme);
+                }
+
+                const computedVersionOk = typeof webApp.isVersionAtLeast === "function" && webApp.isVersionAtLeast(requiredBotApiVersion);
+                const versionOk = debugVersionOk === null ? computedVersionOk : !!debugVersionOk;
+                if (enableVersionCheck && !versionOk) {
+                    setBackdrop(buildUnsupportedModal(), { lockScroll: true });
+                    return;
+                }
+
+                appEl.classList.remove("hidden");
+
+                applyStartParamPrefill();
+                updateModeUi();
+                updateCounter();
+
+                const modeBoxes = Array.from(document.querySelectorAll('input[name="mode"]'));
+                modeBoxes.forEach((el) => {
+                    el.addEventListener("change", () => {
+                        if (el.checked) {
+                            modeBoxes.forEach((other) => {
+                                if (other !== el) other.checked = false;
+                            });
+                        } else {
+                            const anyChecked = modeBoxes.some((box) => box.checked);
+                            if (!anyChecked) el.checked = true;
+                        }
+                        updateModeUi();
+                    });
+                });
+                messageEl.addEventListener("input", updateCounter);
+                recipientEl.addEventListener("input", () => {
+                    if (recipientSanitizeTimer) clearTimeout(recipientSanitizeTimer);
+                    recipientSanitizeTimer = setTimeout(sanitizeRecipientInput, 260);
+                });
+                recipientEl.addEventListener("blur", sanitizeRecipientInput);
+                favoritesBtnEl.addEventListener("click", openFavorites);
+                sendCurrentEl.addEventListener("click", () => runSwitchInlineQuery(false));
+                sendChooseEl.addEventListener("click", () => runSwitchInlineQuery(true));
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
