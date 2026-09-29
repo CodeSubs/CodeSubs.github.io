@@ -13,7 +13,7 @@
         <meta property="og:image" content="https://i.ibb.co/QvNHK333/icon-512.png">
         <meta property="og:site_name" content="RTL/LTR Converter & Editor">
         <link rel="manifest" href="./manifest.json">
-        <meta name="theme-color" content="#4f46e5">
+        <meta name="theme-color" content="#2563eb">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -139,20 +139,43 @@
                 background-color: rgba(156, 163, 175, 0.5);
                 border-radius: 4px;
             }
+
+            /* WCAG 2.4.7 / 2.4.11: visible keyboard focus indicator */
+            :focus-visible {
+                outline: 2px solid rgb(37, 99, 235);
+                outline-offset: 2px;
+            }
+
+            html.dark :focus-visible {
+                outline-color: rgb(59, 130, 246);
+            }
+
+            /* Respect users who prefer reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    transition-duration: 0.01ms !important;
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    scroll-behavior: auto !important;
+                }
+            }
         </style>
-      <script type="module" crossorigin src="./assets/index-Bgo3qLEc.js"></script>
+      <script type="module" crossorigin src="./assets/index-B1ZerlqQ.js"></script>
     </head>
-    <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-theme font-sans">
+    <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-theme font-sans antialiased">
         <div id="app" v-cloak class="min-h-screen flex flex-col">
             <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm transition-theme">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
                     <div class="flex items-center justify-between gap-4">
                         <div class="flex items-center gap-3">
-                            <img src="./icon-192.svg" alt="Logo" class="w-11 h-11 cursor-pointer"
+                            <img src="./icon-192.svg" alt="شعار المحرر" width="44" height="44"
+                                class="w-11 h-11 cursor-pointer"
                                 @dblclick="showDebugButton = !showDebugButton">
                             <h1 class="text-lg sm:text-xl font-bold text-primary-light dark:text-white truncate">محرر تحويل
                                 RTL/LTR</h1>
-                            <span class="w-9 h-9 sm:w-10 sm:h-10 bg-[#00d4aa]/10 text-[#00d4aa] dark:bg-[#00d4aa]/10 dark:text-[#00d4aa] rounded-md flex items-center justify-center text-[10px] sm:text-xs font-bold">تجريبي</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 bg-emerald-500/10 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-400 rounded-md flex items-center justify-center text-[10px] sm:text-xs font-bold">تجريبي</span>
                         </div>
 
                         <!-- Desktop Menu -->
@@ -196,7 +219,8 @@
                                 <span v-if="isDarkMode" class="text-xl">☀️</span>
                                 <span v-else class="text-xl">🌙</span>
                             </button> -->
-                            <button @click="mobileMenuOpen = !mobileMenuOpen"
+                            <button @click="mobileMenuOpen = !mobileMenuOpen" :aria-expanded="mobileMenuOpen"
+                                aria-label="القائمة"
                                 class="touch-target p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -210,15 +234,6 @@
                     <!-- Mobile Dropdown -->
                     <div v-if="mobileMenuOpen"
                         class="md:hidden mt-4 pb-2 border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
-                        <button v-if="assFile" @click="resetFile(); mobileMenuOpen = false"
-                            class="w-full text-right px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:opacity-90 transition-theme flex items-center gap-2 justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            ملف جديد
-                        </button>
                         <button v-if="assFile" @click="showScriptInfoModal = true; mobileMenuOpen = false"
                             class="w-full text-right px-4 py-2 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-theme flex items-center gap-2 justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -235,30 +250,40 @@
                             </svg>
                             تثبيت المحرر
                         </button>
+                        <button v-if="assFile" @click="resetFile(); mobileMenuOpen = false"
+                            class="w-full text-right px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:opacity-90 transition-theme flex items-center gap-2 justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            ملف جديد
+                        </button>
                     </div>
                 </div>
             </header>
 
-            <main :class="[
-                'flex-1 w-full',
-                assFile && viewMode === 'dummy-video'
-                    ? 'max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4'
-                    : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'
-            ]">
+            <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div v-if="!assFile" class="upload-section">
                     <div @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false"
-                        @drop.prevent="handleDrop" @click="$refs.fileInput.click()" :class="[
+                        @drop.prevent="handleDrop" @click="$refs.fileInput.click()"
+                        @keydown.enter.prevent="$refs.fileInput.click()" role="button" tabindex="0" :class="[
                             'border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all',
                             isDragging 
                                 ? 'border-primary-light dark:border-primary-dark bg-blue-50 dark:bg-blue-900/20' 
                                 : 'border-gray-300 dark:border-gray-600 hover:border-primary-light dark:hover:border-primary-dark'
                         ]">
                         <div class="flex flex-col items-center gap-4">
-                            <div class="text-6xl">📁</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-primary-light dark:text-primary-dark"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                            </svg>
                             <div>
                                 <p class="text-lg font-medium">انقر للاستعراض</p>
                                 <p class="text-gray-500 dark:text-gray-400 mt-1">أو اسحب ملف ASS. وأفلته هنا</p>
-                                <p class="text-yellow-300 mt-4 text-base" dir="rtl">
+                                <p class="text-amber-600 dark:text-amber-400 mt-4 text-base" dir="rtl">
                                     الامتدادات المدعومة: <code class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded" dir="ltr">.ass</code>
                                 </p>
                             </div>
@@ -266,10 +291,10 @@
                         <input ref="fileInput" type="file" accept=".ass" @change="handleFileUpload" class="hidden">
                     </div>
 
-                    <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-red-200 dark:border-red-700">
+                    <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-amber-300/70 dark:border-amber-600/40">
                         <div class="flex items-start gap-4">
                             <div class="flex-1 space-y-4">
-                                <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">⚠️ تنبيهات هامة ⚠️</h3>
+                                <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">تنبيهات هامة</h3>
                                 
                                 <div class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
                                     <p>يرجى الانتباه إلى النقاط التالية لضمان الحصول على أفضل نتيجة:</p>
@@ -287,12 +312,12 @@
                                         
                                         <li>
                                             <span class="font-semibold text-gray-800 dark:text-gray-200">المراجعة والإبلاغ عن الأخطاء:</span>
-                                            <br>يُنصح دائمًا بإلقاء نظرة سريعة على الملف الناتج للتأكد من أن جميع الأسطر ظهرت بالاتجاه الصحيح، وفي حال واجهت أي خطأ أو لاحظت أن سطرًا معيّنًا لم يتم تعديله بشكل سليم، يمكنك إصلاحه عبر مربع التعديل أو <a href="https://t.me/CodeIII" target="_blank" rel="noopener noreferrer" class="text-green-400 dark:text-green-400 hover:underline">التواصل معي عبر تيليجرام</a> لمعالجة المشكلة.
+                                            <br>يُنصح دائمًا بإلقاء نظرة سريعة على الملف الناتج للتأكد من أن جميع الأسطر ظهرت بالاتجاه الصحيح، وفي حال واجهت أي خطأ أو لاحظت أن سطرًا معيّنًا لم يتم تعديله بشكل سليم، يمكنك إصلاحه عبر مربع التعديل أو <a href="https://t.me/CodeIII" target="_blank" rel="noopener noreferrer" class="text-green-700 dark:text-green-400 hover:underline font-medium">التواصل معي عبر تيليجرام</a> لمعالجة المشكلة.
                                         </li>
                                     </ul>
 
-                                    <div class="bg-red-600/40 text-center dark:bg-red-600/40 p-4 rounded-lg border border-yellow-300 dark:border-yellow-300 mt-4">
-                                        <p class="text-blue-800 dark:text-blue-200">
+                                    <div class="bg-amber-50 dark:bg-amber-900/30 text-center p-4 rounded-lg border border-amber-300 dark:border-amber-600/60 mt-4">
+                                        <p class="text-amber-800 dark:text-amber-200">
                                             عند الإبلاغ، يرجى إرسال ملف الترجمة مع تحديد رقم السطر الذي ظهرت فيه المشكلة، وسيتم العمل على إصلاحها وإضافة هذا السلوك إلى برمجة المحرر لضمان حله للجميع في التحديثات القادمة.
                                         </p>
                                     </div>
@@ -329,40 +354,45 @@
                         <div
                             class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700">
                             <h3 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">إحصائيات الملف</h3>
-                            <div class="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-6 gap-4">
-                                <div @click="showLinesModal('all')"
+                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                                <div @click="showLinesModal('all')" @keydown.enter="showLinesModal('all')"
+                                    role="button" tabindex="0"
                                     class="text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-theme">
-                                    <div class="text-2xl font-bold text-primary-light dark:text-primary-dark">{{ totalLines
+                                    <div class="text-2xl font-bold tabular-nums text-primary-light dark:text-primary-dark">{{ totalLines
                                         }}</div>
                                     <div class="text-xs text-gray-500 dark:text-gray-400">إجمالي الأسطر</div>
                                 </div>
-                                <div @click="showLinesModal('ltr')"
+                                <div @click="showLinesModal('ltr')" @keydown.enter="showLinesModal('ltr')"
+                                    role="button" tabindex="0"
                                     class="text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-theme">
-                                    <div class="text-2xl font-bold text-ltr-light dark:text-ltr-dark">{{ ltrCount }}</div>
+                                    <div class="text-2xl font-bold tabular-nums text-ltr-light dark:text-ltr-dark">{{ ltrCount }}</div>
                                     <div class="text-xs text-gray-500 dark:text-gray-400">LTR</div>
                                 </div>
-                                <div @click="showLinesModal('rtl')"
+                                <div @click="showLinesModal('rtl')" @keydown.enter="showLinesModal('rtl')"
+                                    role="button" tabindex="0"
                                     class="text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-theme">
-                                    <div class="text-2xl font-bold text-rtl-light dark:text-rtl-dark">{{ rtlCount }}</div>
+                                    <div class="text-2xl font-bold tabular-nums text-rtl-light dark:text-rtl-dark">{{ rtlCount }}</div>
                                     <div class="text-xs text-gray-500 dark:text-gray-400">RTL</div>
                                 </div>
 
-                                <div @click="showFontsModal = true"
+                                <div @click="showFontsModal = true" @keydown.enter="showFontsModal = true"
+                                    role="button" tabindex="0"
                                     class="text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-theme">
-                                    <div class="text-2xl font-bold text-primary-light dark:text-primary-dark">{{ fontCount
+                                    <div class="text-2xl font-bold tabular-nums text-primary-light dark:text-primary-dark">{{ fontCount
                                         }}</div>
                                     <div class="text-xs text-gray-500 dark:text-gray-400">الخطوط والأنماط</div>
                                 </div>
-                                <div v-if="showDebugButton" @click="openDebugModal"
+                                <div class="text-center rounded-lg p-2">
+                                    <div class="text-2xl font-bold tabular-nums text-gray-600 dark:text-gray-400" dir="ltr">{{ fileSize }}
+                                    </div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">حجم الملف</div>
+                                </div>
+                                <div v-if="showDebugButton" @click="openDebugModal" @keydown.enter="openDebugModal"
+                                    role="button" tabindex="0"
                                     class="text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-theme">
                                     <div class="text-2xl font-bold text-gray-500">?</div>
                                     <div class="text-xs text-gray-500 dark:text-gray-400">تصحيح</div>
                                 </div>
-                            </div>
-                            <div class="mt-3 text-center">
-                                <div class="text-lg font-bold text-gray-600 dark:text-gray-400" dir="ltr">{{ fileSize }}
-                                </div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">حجم الملف</div>
                             </div>
                         </div>
 
@@ -372,7 +402,9 @@
                                 <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">تقدم التحويل</h3>
                                 <span class="text-sm text-gray-500 dark:text-gray-400">{{ conversionPercentage }}%</span>
                             </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3" role="progressbar"
+                                :aria-valuenow="conversionPercentage" aria-valuemin="0" aria-valuemax="100"
+                                aria-label="تقدم التحويل">
                                 <div class="bg-rtl-light dark:bg-rtl-dark h-3 rounded-full transition-all duration-300"
                                     :style="{ width: conversionPercentage + '%' }"></div>
                             </div>
@@ -397,140 +429,6 @@
                     </div>
 
                     <div v-else class="space-y-6">
-                        <!-- View Mode Toggle -->
-                        <div class="flex justify-center bg-gray-100 dark:bg-gray-800 p-1 rounded-xl w-fit mx-auto">
-                            <button @click="viewMode = 'cards'" @dblclick="handleDummyVideoUnlockSecondStep"
-                                class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2"
-                                :class="viewMode === 'cards' ? 'bg-white dark:bg-gray-700 text-primary-light dark:text-primary-dark shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                </svg>
-                                بطاقات
-                            </button>
-                            <button v-if="showDummyVideoToggle || viewMode === 'dummy-video'" @click="viewMode = 'dummy-video'" 
-                                class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2"
-                                :class="viewMode === 'dummy-video' ? 'bg-white dark:bg-gray-700 text-primary-light dark:text-primary-dark shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                فيديو تجريبي
-                            </button>
-                        </div>
-
-                        <!-- Dummy Video Player -->
-                        <div v-if="viewMode === 'dummy-video'" class="space-y-4">
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-                                <div class="bg-black">
-                                    <div ref="videoContainer" class="relative w-full flex items-center justify-center overflow-hidden" 
-                                         :style="{ backgroundColor: dummyVideo.color, aspectRatio: (dummyVideo.width > 0 && dummyVideo.height > 0) ? (dummyVideo.width + ' / ' + dummyVideo.height) : '16 / 9' }">
-                                <div class="absolute inset-0 pointer-events-none overflow-hidden">
-                                    <canvas v-if="useLibassWasm" ref="libassCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
-                                    <div v-else>
-                                        <canvas v-if="libassPartsEnabled" ref="libassPartsCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
-                                        <svg v-if="!libassPartsEnabled" class="absolute inset-0 w-full h-full pointer-events-none"
-                                             :width="dummyVideo.containerWidth" :height="dummyVideo.containerHeight">
-                                            <defs>
-                                                <clipPath v-for="entry in renderedActiveSubtitles" v-if="entry.clip && !entry.clip.invert"
-                                                    :key="'ass-clip-def-' + entry.idx" :id="getLineClipPathId(entry.idx)" clipPathUnits="userSpaceOnUse">
-                                                    <rect v-if="entry.clip.kind === 'rect'" :x="entry.clip.x" :y="entry.clip.y" :width="entry.clip.w" :height="entry.clip.h"></rect>
-                                                    <path v-else-if="entry.clip.kind === 'path'" :d="entry.clip.d"></path>
-                                                </clipPath>
-                                                <mask v-for="entry in renderedActiveSubtitles" v-if="entry.clip && entry.clip.invert"
-                                                    :key="'ass-clip-mask-' + entry.idx" :id="getLineClipMaskId(entry.idx)" maskUnits="userSpaceOnUse">
-                                                    <rect x="0" y="0" :width="dummyVideo.containerWidth" :height="dummyVideo.containerHeight" fill="white"></rect>
-                                                    <rect v-if="entry.clip.kind === 'rect'" :x="entry.clip.x" :y="entry.clip.y" :width="entry.clip.w" :height="entry.clip.h" fill="black"></rect>
-                                                    <path v-else-if="entry.clip.kind === 'path'" :d="entry.clip.d" fill="black"></path>
-                                                </mask>
-                                            </defs>
-                                        </svg>
-                                        <div v-for="entry in renderedActiveSubtitles" :key="entry.idx" 
-                                             class="select-none transition-all duration-100"
-                                             :style="entry.style">
-                                            <template v-for="(part, pIdx) in entry.parts" :key="pIdx">
-                                                <span v-if="!part.kind || part.kind === 'text'" :style="part.style">{{ part.text }}</span>
-                                                <svg v-else-if="part.kind === 'drawing'" :style="part.style" width="1" height="1" viewBox="0 0 1 1">
-                                                    <path :d="part.d" :fill="part.fill" :stroke="part.stroke" :stroke-width="part.strokeWidth" fill-rule="evenodd"></path>
-                                                </svg>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-                                    </div>
-                                </div>
-
-                                <div class="bg-white dark:bg-gray-800 p-3 border-t border-gray-200 dark:border-gray-700">
-                                    <div class="flex flex-wrap items-center gap-3 mb-3">
-                                        <button @click="togglePlayback" class="text-primary-light dark:text-primary-dark hover:opacity-80 transition-opacity">
-                                            <svg v-if="dummyVideo.isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                            </svg>
-                                            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                        
-                                        <div class="text-sm font-mono font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap" dir="ltr">
-                                            {{ formattedCurrentTime }} / {{ formattedDuration }}
-                                        </div>
-
-                                        <button @click="openDummyVideoOptions" class="ml-auto p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="إعدادات الفيديو">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <input type="range" min="0" :max="videoDuration" step="10" 
-                                        :value="currentTime" @input="seek($event.target.value)"
-                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-primary-light dark:accent-primary-dark ltr mb-4">
-                                    
-                                    <div class="flex items-center gap-2 w-full justify-center">
-                                        <button @click="goToLastLine" :disabled="!canGoToLastFiltered"
-                                            class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
-                                            title="الأخير">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M4.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414zm6 0a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L14.586 10l-4.293-4.293a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                        <button @click="goToNextLine" :disabled="!canGoToNextFiltered"
-                                            class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
-                                            title="التالي">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                        <button @click="goToPreviousLine" :disabled="!canGoToPreviousFiltered"
-                                            class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
-                                            title="السابق">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                        <button @click="goToFirstLine" :disabled="!canGoToFirstFiltered"
-                                            class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
-                                            title="الأول">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
                         <div class="p-4 space-y-4">
@@ -568,9 +466,8 @@
                                     </div>
                                 </div>
                                 <textarea readonly :value="currentLine?.Text || ''"
-                                    class="preview-box w-full p-3 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-sm resize-y text-end"
-                                    rows="2" :class="{ 'ltr': currentLine?.isArabic, 'ltr': !currentLine?.isArabic }"
-                                    :dir="currentLine?.isArabic ? 'ltr' : 'ltr'"></textarea>
+                                    class="preview-box ltr w-full p-3 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-sm resize-y text-end"
+                                    rows="2" dir="ltr" aria-label="النص الأصلي"></textarea>
                             </div>
 
                             <div>
@@ -579,7 +476,7 @@
                                         <label class="text-sm font-medium text-gray-700 dark:text-gray-300">{{
                                             currentLine?.isRTL ? 'تعديل (RTL)' : 'معاينة وتعديل (RTL)' }}
                                         </label>
-                                        <button @click="undoRtlEdit" :disabled="!canUndoRtlEdit"
+                                        <button @click="undoRtlEdit" :disabled="!canUndoRtlEdit" aria-label="تراجع عن التعديل"
                                             class="touch-target w-10 h-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                             title="تراجع">
                                             <span class="w-full h-full flex items-center justify-center">
@@ -588,7 +485,7 @@
                                                 </svg>
                                             </span>
                                         </button>
-                                        <button @click="redoRtlEdit" :disabled="!canRedoRtlEdit"
+                                        <button @click="redoRtlEdit" :disabled="!canRedoRtlEdit" aria-label="إعادة التعديل"
                                             class="touch-target w-10 h-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                             title="إعادة">
                                             <span class="w-full h-full flex items-center justify-center">
@@ -597,7 +494,7 @@
                                                 </svg>
                                             </span>
                                         </button>
-                                        <button @click="resetRtlEditToBase" :disabled="!canResetRtlEdit"
+                                        <button @click="resetRtlEditToBase" :disabled="!canResetRtlEdit" aria-label="إعادة ضبط التعديل"
                                             class="touch-target w-10 h-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                             title="إعادة ضبط">
                                             <span class="w-full h-full flex items-center justify-center">
@@ -609,11 +506,11 @@
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <button @click="convertRTLtoLTR" v-if="canConvertToLTR"
-                                            class="text-xs px-3 py-1 bg-green-700 text-white rounded hover:opacity-90 transition-theme flex items-center gap-1">
+                                            class="text-xs px-3 py-1 bg-ltr-light dark:bg-ltr-dark text-white rounded hover:opacity-90 transition-theme flex items-center gap-1">
                                             تحويل إلى LTR
                                         </button>
                                         <button @click="applyRTLConversion" v-else-if="canConvertToRTL"
-                                            class="mr-2 text-xs px-2 py-1 bg-red-900 text-white rounded hover:opacity-90 transition-theme flex items-center gap-1">
+                                            class="mr-2 text-xs px-2 py-1 bg-rtl-light dark:bg-rtl-dark text-white rounded hover:opacity-90 transition-theme flex items-center gap-1">
                                             تحويل إلى RTL
                                         </button>
                                     </div>
@@ -628,7 +525,7 @@
                             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <!-- Navigation Buttons -->
                                 <div class="flex items-center gap-2 w-full sm:w-auto justify-center">
-                                    <button @click="goToLastLine" :disabled="!canGoToLastFiltered"
+                                    <button @click="goToLastLine" :disabled="!canGoToLastFiltered" aria-label="الانتقال إلى السطر الأخير"
                                         class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                         title="الأخير">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -638,7 +535,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <button @click="goToNextLine" :disabled="!canGoToNextFiltered"
+                                    <button @click="goToNextLine" :disabled="!canGoToNextFiltered" aria-label="السطر التالي"
                                         class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                         title="التالي">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -648,7 +545,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <button @click="goToPreviousLine" :disabled="!canGoToPreviousFiltered"
+                                    <button @click="goToPreviousLine" :disabled="!canGoToPreviousFiltered" aria-label="السطر السابق"
                                         class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                         title="السابق">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -658,7 +555,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <button @click="goToFirstLine" :disabled="!canGoToFirstFiltered"
+                                    <button @click="goToFirstLine" :disabled="!canGoToFirstFiltered" aria-label="الانتقال إلى السطر الأول"
                                         class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                         title="الأول">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -689,7 +586,7 @@
                     <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <button @click="bulkConvertToRTL"
                             :disabled="isProcessing || (convertibleToRTLCount === 0 && emptyDialogueLinesCount === 0)"
-                            class="w-full sm:w-auto touch-target px-6 py-3 bg-yellow-800 text-white rounded-xl hover:opacity-90 disabled:opacity-50 transition-theme flex items-center justify-center gap-2 shadow-sm font-semibold">
+                            class="w-full sm:w-auto touch-target px-6 py-3 bg-rtl-light dark:bg-rtl-dark text-white rounded-xl hover:opacity-90 disabled:opacity-50 transition-theme flex items-center justify-center gap-2 shadow-sm font-semibold">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -726,14 +623,15 @@
                             Code
                         </a>
                     </div>
-                    <div class="mt-1 text-sm" @dblclick="handleDummyVideoUnlockFirstStep">
+                    <div class="mt-1 text-sm">
                         v{{ version }} (2026-03-25)
                     </div>
                 </div>
             </footer>
 
             <!-- Line List Modal -->
-            <div v-if="showLinesModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+            <div v-if="showLinesModalOpen" role="dialog" aria-modal="true" aria-label="قائمة الأسطر"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div
                     class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-4xl w-full modal-content flex flex-col max-h-[90vh]">
                     <div
@@ -742,10 +640,10 @@
                         <div class="flex items-center gap-2">
                             <button v-if="linesModalType === 'rtl' && filteredLines.some(l => l.isRTL)"
                                 @click="convertFilteredToLTR"
-                                class="text-sm px-3 py-1.5 bg-red-800 text-white rounded-lg hover:opacity-90 transition-theme">
+                                class="text-sm px-3 py-1.5 bg-ltr-light dark:bg-ltr-dark text-white rounded-lg hover:opacity-90 transition-theme">
                                 تحويل الكل لـ LTR
                             </button>
-                            <button @click="showLinesModalOpen = false"
+                            <button @click="showLinesModalOpen = false" aria-label="إغلاق"
                                 class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">&times;</button>
                         </div>
                     </div>
@@ -809,7 +707,7 @@
                                         </td>
                                         <td v-if="showColText" class="py-2 px-2 max-w-xs text-right">
                                             <span class="block truncate-left">
-                                                <span :class="{'ltr': line.isArabic, 'ltr': !line.isArabic}">{{ line.Text
+                                                <span class="ltr">{{ line.Text
                                                     }}</span>
                                             </span>
                                         </td>
@@ -819,8 +717,7 @@
                         </div>
                         <!-- Pagination -->
                         <div class="mt-4 flex items-center justify-center gap-2">
-                            </button>
-                            <button @click="currentPage = totalPages" :disabled="currentPage === totalPages"
+                            <button @click="currentPage = totalPages" :disabled="currentPage === totalPages" aria-label="الصفحة الأخيرة"
                                 class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                 title="الأخير">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -830,7 +727,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <button @click="currentPage++" :disabled="currentPage === totalPages"
+                            <button @click="currentPage++" :disabled="currentPage === totalPages" aria-label="الصفحة التالية"
                                 class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                 title="التالي">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -843,7 +740,7 @@
                             <span class="px-4 text-sm text-gray-500 dark:text-gray-400 font-bold">
                                 {{ currentPage }}/{{ totalPages }}
                             </span>
-                            <button @click="currentPage--" :disabled="currentPage === 1"
+                            <button @click="currentPage--" :disabled="currentPage === 1" aria-label="الصفحة السابقة"
                                 class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                 title="السابق">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -852,7 +749,8 @@
                                         d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <button @click="currentPage = 1" :disabled="currentPage === 1"
+                            </button>
+                            <button @click="currentPage = 1" :disabled="currentPage === 1" aria-label="الصفحة الأولى"
                                     class="touch-target px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-theme"
                                     title="الأول">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -868,7 +766,7 @@
             </div>
 
             <!-- Extension Error Modal -->
-        <div v-if="showExtensionErrorModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div v-if="showExtensionErrorModal" role="alertdialog" aria-modal="true" aria-label="نوع الملف غير مدعوم" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-sm w-full mx-4 shadow-xl">
                 <div class="text-center">
                     <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/30 mb-4">
@@ -891,11 +789,11 @@
         </div>
 
         <!-- Script Info Modal -->
-            <div v-if="showScriptInfoModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+            <div v-if="showScriptInfoModal" role="dialog" aria-modal="true" aria-label="معلومات ملف الترجمة" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full modal-content">
                     <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
                         <h3 class="text-lg font-semibold">معلومات ملف الترجمة</h3>
-                        <button @click="showScriptInfoModal = false"
+                        <button @click="showScriptInfoModal = false" aria-label="إغلاق"
                             class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl">&times;</button>
                     </div>
                     <div class="p-4" dir="ltr">
@@ -914,7 +812,8 @@
                 </div>
             </div>
 
-            <div v-if="showFontsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay"
+            <div v-if="showFontsModal" role="dialog" aria-modal="true" aria-label="V4+ Styles"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay"
                 dir="ltr">
                 <div
                     class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-6xl w-full modal-content max-h-[90vh] overflow-hidden flex flex-col">
@@ -926,8 +825,8 @@
                                     class="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
                                     {{ showStylesColumnCheckboxes ? 'إخفاء الأعمدة' : 'إظهار الأعمدة الأخرى' }}
                                 </button>
-                                <button @click="showFontsModal = false"
-                                    class="text-red-600 hover:text-gray-700 dark:hover:text-gray-300 text-3xl pl-4">&times;</button>
+                                <button @click="showFontsModal = false" aria-label="إغلاق"
+                                    class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">&times;</button>
                             </div>
                         </div>
                         <div v-if="showStylesColumnCheckboxes" class="flex flex-wrap gap-4">
@@ -1166,12 +1065,12 @@
                 </div>
             </div>
             <!-- Debug Modal -->
-            <div v-if="showDebugModal"
+            <div v-if="showDebugModal" role="dialog" aria-modal="true" aria-label="معلومات التصحيح"
                 class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col">
                     <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
                         <h3 class="text-lg font-semibold">Debug Information</h3>
-                        <button @click="showDebugModal = false"
+                        <button @click="showDebugModal = false" aria-label="إغلاق"
                             class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl">&times;</button>
                     </div>
                     <div class="p-4 overflow-y-auto">
@@ -1184,19 +1083,19 @@
                                 <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded">
                                     <span class="font-bold block mb-1">الحالة:</span>
                                     <ul class="text-sm space-y-1">
-                                        <li>isRTL: <span :class="debugLineInfo.isRTL ? 'text-green-500' : 'text-red-500'">{{
+                                        <li>isRTL: <span :class="debugLineInfo.isRTL ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">{{
                                                 debugLineInfo.isRTL }}</span></li>
                                         <li>isArabic: <span
-                                                :class="debugLineInfo.isArabic ? 'text-green-500' : 'text-red-500'">{{
+                                                :class="debugLineInfo.isArabic ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">{{
                                                 debugLineInfo.isArabic }}</span></li>
                                         <li>hasRLE: <span
-                                                :class="debugLineInfo.hasRLE ? 'text-green-500' : 'text-red-500'">{{
+                                                :class="debugLineInfo.hasRLE ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">{{
                                                 debugLineInfo.hasRLE }}</span></li>
                                         <li>startRegex: <span
-                                                :class="debugLineInfo.startRegex ? 'text-green-500' : 'text-red-500'">{{
+                                                :class="debugLineInfo.startRegex ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">{{
                                                 debugLineInfo.startRegex }}</span></li>
                                         <li>newlineRegex: <span
-                                                :class="debugLineInfo.newlineRegex ? 'text-green-500' : 'text-red-500'">{{
+                                                :class="debugLineInfo.newlineRegex ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">{{
                                                 debugLineInfo.newlineRegex }}</span></li>
                                     </ul>
                                 </div>
@@ -1223,6 +1122,7 @@
 
             <!-- Bulk Convert Confirmation Modal -->
             <div v-if="showBulkConvertModal && !showIgnoreEmptyLinesConfirmModal && !showBulkConvertEmptyLinesExportConfirmModal"
+                role="dialog" aria-modal="true" aria-label="تأكيد التحويل"
                 class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
                     <div v-if="bulkConvertStage === 'confirm'" class="p-6">
@@ -1355,7 +1255,8 @@
             </div>
             <!-- Ignore Empty Lines Confirmation Modal -->
             <div v-if="showIgnoreEmptyLinesConfirmModal"
-                class="fixed inset-0 z-60 flex items-center justify-center p-4 modal-overlay">
+                role="dialog" aria-modal="true" aria-label="تأكيد تجاهل الأسطر الفارغة"
+                class="fixed inset-0 z-[60] flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-center text-gray-900 dark:text-white mb-2">
@@ -1392,7 +1293,8 @@
 
             <!-- Bulk Convert: Empty Lines Export Confirmation Modal -->
             <div v-if="showBulkConvertEmptyLinesExportConfirmModal"
-                class="fixed inset-0 z-70 flex items-center justify-center p-4 modal-overlay">
+                role="dialog" aria-modal="true" aria-label="تأكيد تصدير الأسطر الفارغة"
+                class="fixed inset-0 z-[70] flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-center text-gray-900 dark:text-white mb-2">
@@ -1426,7 +1328,8 @@
                     </div>
                 </div>
             </div>
-            <div v-if="showResetConfirmModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+            <div v-if="showResetConfirmModal" role="alertdialog" aria-modal="true" aria-label="تأكيد إعادة الضبط"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full modal-content">
                     <div class="p-6">
                         <div class="mb-4">
@@ -1454,73 +1357,6 @@
                                 إلغاء
                             </button>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Dummy Video Options Modal -->
-            <div v-show="dummyVideo.showOptions" v-cloak style="display:none" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm" role="dialog" aria-modal="true">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform transition-all">
-                    <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-light dark:text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            إعدادات الفيديو التجريبي
-                        </h3>
-                        <button @click="dummyVideo.showOptions = false" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="p-6 space-y-6">
-                        <!-- Resolution -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">أبعاد الفيديو</label>
-                            <div class="flex items-center gap-2">
-                                <input type="number" v-model.number="dummyVideo.width" class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent outline-none text-center" placeholder="العرض">
-                                <span class="text-gray-500">×</span>
-                                <input type="number" v-model.number="dummyVideo.height" class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent outline-none text-center" placeholder="الارتفاع">
-                            </div>
-                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">الافتراضي: 1920 × 1080 (FHD)</p>
-                        </div>
-
-                        <!-- Color -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">لون الخلفية</label>
-                            <div class="flex items-center gap-3">
-                                <input type="color" v-model="dummyVideo.color" class="h-10 w-20 p-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer">
-                                <span class="text-sm text-gray-600 dark:text-gray-400 font-mono">{{ dummyVideo.color }}</span>
-                            </div>
-                        </div>
-
-                        <!-- Duration -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">مدة الفيديو (بالمللي ثانية)</label>
-                            <div class="relative">
-                                <input type="number" v-model.number="dummyVideo.customDuration" 
-                                    placeholder="اتركه فارغاً لاستخدام مدة ملف الترجمة"
-                                    class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent outline-none">
-                                <button v-if="dummyVideo.customDuration !== null" @click="dummyVideo.customDuration = null" 
-                                    class="absolute left-2 top-1/2 transform -translate-y-1/2 text-xs text-primary-light dark:text-primary-dark hover:underline">
-                                    استعادة الافتراضي
-                                </button>
-                            </div>
-                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                                المدة المحسوبة من الملف: {{ formatTime(fileMaxDuration) }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-900/50 flex justify-end gap-3">
-                        <button @click="dummyVideo.showOptions = false" class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors font-medium">
-                            إلغاء
-                        </button>
-                        <button @click="saveDummyOptions" class="px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity font-medium shadow-sm">
-                            حفظ
-                        </button>
                     </div>
                 </div>
             </div>
